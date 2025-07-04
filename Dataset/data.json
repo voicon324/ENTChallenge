@@ -1,0 +1,3964 @@
+[
+    {
+        "Path": "17089462_231004112419923831_954_image05.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "thành sau họng đọng dịch nhầy\r\nsụn phễu phù nề sung huyết\r\nquá phát mép sau\r\ndây thanh 2 bên phù nề\r\nxóa thanh thất",
+        "DescriptionEN": "white discharge on the posterior wall of the pharynx\r\nedema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nvocal cords are edematous\r\nventricular obliteration"
+    },
+    {
+        "Path": "17090495_230727104701590831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa thoái hóa polyp",
+        "DescriptionEN": "superior septal deviation\r\npolypoid degeneration of the middle turbinate"
+    },
+    {
+        "Path": "17090495_230727104701590831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "17092118_231121081438130831_954_image01.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, tam giác sáng còn, màng nhĩ dày ở phần sau và phần dưới",
+        "DescriptionEN": "the tympanic membrane is intact, the cone of light is visualized, the tympanic membrane is thickened posteriorly and inferiorly"
+    },
+    {
+        "Path": "17092946_230330075548499831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "17092946_230330075548499831_954_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages "
+    },
+    {
+        "Path": "17093219_231208092055263831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "17093219_231208092055263831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "có khối nhạt màu từ khe trên, nghĩ polyp",
+        "DescriptionEN": "a pale mass protruding from the superior meatus, suspected of polyp"
+    },
+    {
+        "Path": "17093219_231208092055263831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh 2 bên sung huyết \r\nquá phát mép sau",
+        "DescriptionEN": "the vocal cords are erythematous\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "17094044_231212085741536831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa thoái hóa polyp",
+        "DescriptionEN": "superior septal deviation\r\npolypoid degeneration of the middle turbinate"
+    },
+    {
+        "Path": "17094263_230714082721062831_954_image08.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "quá phát amidan (T)",
+        "DescriptionEN": "enlargement of the left tonsil"
+    },
+    {
+        "Path": "17095233_231107081405390831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh 2 bên phù nề\r\nquá phát mép sau\r\nxóa thanh thất",
+        "DescriptionEN": "edema of the vocal cords\r\nposterior commissure hypertrophy\r\nventricular obliteration"
+    },
+    {
+        "Path": "17095516_230927105314719831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "17095516_230927105314719831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "17096145_230817081318039831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn ",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "17097046_231208091356464831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "17097046_231208091356464831_954_image08.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "17097111_230425080714509831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "vẹo vách ngăn"
+    },
+    {
+        "Path": "17097111_230822151204315831_121_image01.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "17097111_230822151204315831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch nhầy từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "mucus from the nasal meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "17097111_231004093806111831_954_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "17097111_231101102742409831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "17097196_230808093845972831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết, có ráy tai và nấm\r\nmàng nhĩ nguyên vẹn, tam giác sáng còn",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe presence of cerumen with superimposed fungal infection\r\nthe tympanic membrane is intact, the cone of light is visualized\r\n"
+    },
+    {
+        "Path": "17097196_230808093845972831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết, có ráy tai và nấm\r\nmàng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe presence of cerumen with superimposed fungal infection\r\nthe tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "17097383_231124095029081831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "17097383_231124095029081831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "17097383_231124095029081831_121_image07.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, tam giác sáng còn\r\ngóc sau dưới màng nhĩ dày\r\ncó mảng vôi hóa ở góc sau dưới",
+        "DescriptionEN": "the tympanic membrane is intact, the cone of light is visualized\r\nthe tympanic membrane is thickened in the posteroinferior quadrant\r\na calcareous plaque is present in the posteroinferior quadrant"
+    },
+    {
+        "Path": "17097561_230921074417169831_949_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối nhạt màu từ khe trên, nghĩ polyp",
+        "DescriptionEN": "a pale mass protruding from the superior meatus, suspected of polyp"
+    },
+    {
+        "Path": "17097561_230921074417169831_949_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết\r\ndòng dịch nhầy trắng đục từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "the nasopharynx is erythematous\r\na streak of white mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "17097561_230921074417169831_949_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch nhầy trắng đục từ ngách bướm sàng chảy xuống vòm",
+        "DescriptionEN": "a streak of white mucus from the sphenoethmoidal recess moving toward the nasopharynx"
+    },
+    {
+        "Path": "17097561_230921074417169831_949_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nhốc mũi đọng dịch nhầy",
+        "DescriptionEN": "superior septal deviation\r\nthe presence of nasal discharge\r\n"
+    },
+    {
+        "Path": "17097561_230921074417169831_949_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết",
+        "DescriptionEN": "the nasopharynx is erythematous"
+    },
+    {
+        "Path": "17097561_230921074417169831_949_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "17097561_231107095542012831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized "
+    },
+    {
+        "Path": "17097561_231107095542012831_954_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "17097561_231107095542012831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết\r\ndịch nhầy trắng đục từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "the nasopharynx is erythematous\r\nwhite mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "17097561_231208093759106831_954_image04.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng ",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized "
+    },
+    {
+        "Path": "17097561_231208093759106831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dòng dịch nhầy trắng đục từ khe giữa và ngách bướm sàng chảy xuống vòm",
+        "DescriptionEN": "streaks of white mucus from the middle meatus and sphenoethmoidal recess moving toward the nasopharynx"
+    },
+    {
+        "Path": "17098832_230522200647119831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết\r\nmàng nhĩ sung huyết, căng phồng\r\nhòm nhĩ đọng dịch",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe tympanic membrane is erythematous and bulged\r\nCatarrhal fluid can be seen in the tympanic cavity"
+    },
+    {
+        "Path": "17098832_230522200647119831_121_image02.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết\r\nmàng nhĩ sung huyết, căng phồng\r\nhòm nhĩ đọng dịch",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe tympanic membrane is erythematous and bulged\r\nCatarrhal fluid can be seen in the tympanic cavity"
+    },
+    {
+        "Path": "17098832_230522200647119831_121_image04.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết\r\nmàng nhĩ sung huyết, căng phồng\r\nhòm nhĩ đọng dịch",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe tympanic membrane is erythematous and bulged\r\nCatarrhal fluid can be seen in the tympanic cavity"
+    },
+    {
+        "Path": "17099724_231207091636363831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa nhợt nhạt ",
+        "DescriptionEN": "superior septal deviation\r\nthe middle turbinate mucosa is pale"
+    },
+    {
+        "Path": "17100170_230523141152109831_954_image01.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát",
+        "DescriptionEN": "tonsillar hypertrophy"
+    },
+    {
+        "Path": "17100188_231027092538627831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn ",
+        "DescriptionEN": "septal deviation "
+    },
+    {
+        "Path": "17100188_231027092538627831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn ",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "17101474_231023082940450831_954_image08.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "17101474_231023082940450831_954_image09.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy "
+    },
+    {
+        "Path": "17101729_231208100911363831_954_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "17101729_231208100911363831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy trắng đục",
+        "DescriptionEN": "white mucus in the nasopharynx\r\n"
+    },
+    {
+        "Path": "17101729_231208100911363831_954_image04.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi\r\nthành sau họng đọng dịch nhầy trắng đục",
+        "DescriptionEN": "lingual tonsillar hypertrophy\r\nwhite mucus in the posterior wall of the oropharynx\r\n"
+    },
+    {
+        "Path": "17102052_230922081743225831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\ncuốn giữa phình to, nghĩ có bóng khí cuốn giữa",
+        "DescriptionEN": "superior septal deviation\r\nenlargement of the middle turbinate, suspected of concha bullosa"
+    },
+    {
+        "Path": "17102052_230922081743225831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge\r\n"
+    },
+    {
+        "Path": "17102052_230922081743225831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy",
+        "DescriptionEN": "mucus on the nasopharynx"
+    },
+    {
+        "Path": "17103250_231221093431827831_954_image02.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và nấm\r\nmàng nhĩ nguyên vẹn, dày nhẹ, tam giác sáng còn",
+        "DescriptionEN": "cerumen and fungal infection in the external auditory canal\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is visualized"
+    },
+    {
+        "Path": "17103250_231221093431827831_954_image03.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, tam giác sáng còn",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is visualized"
+    },
+    {
+        "Path": "17103250_231221093431827831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nquá phát bóng sàng",
+        "DescriptionEN": "superior septal deviation\r\nenlargement of the ethmoid bulla"
+    },
+    {
+        "Path": "17103250_231221093431827831_954_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc cuốn giữa sung huyết nhẹ\r\nquá phát bóng sàng",
+        "DescriptionEN": "the middle turbinate mucosa is slightly erythematous\r\nenlargement of the ethmoid bulla"
+    },
+    {
+        "Path": "17103328_230608080153879831_949_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch nhầy trắng đục từ khe giữa",
+        "DescriptionEN": "a streak of white mucus from the middle meatus"
+    },
+    {
+        "Path": "17103328_230608080153879831_949_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "17103328_230608080153879831_949_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch nhầy trắng đục ở khe giữa\r\nniêm mạc đuôi cuốn dưới thoái hóa polyp",
+        "DescriptionEN": "white mucus in the middle meatus\r\npolypoid degeneration of the mucosa of the posterior tip of the middle meatus "
+    },
+    {
+        "Path": "17103328_230608080153879831_949_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch nhầy trắng đục ở khe giữa",
+        "DescriptionEN": "white mucus in the middle meatus"
+    },
+    {
+        "Path": "17103375_231229120934669831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "17103375_231229120934669831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "17103375_231229120934669831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "đã phẫu thuật\r\nhốc mũi đọng dịch nhầy đục",
+        "DescriptionEN": "endoscopic sinus surgery has been performed\r\nwhitish mucus in the nasal cavity"
+    },
+    {
+        "Path": "17103375_231229120934669831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết\r\nvòm đọng dịch nhầy đục",
+        "DescriptionEN": "edema of the nasopharynx\r\nwhitish mucus in the nasopharynx"
+    },
+    {
+        "Path": "17103375_231229120934669831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch nhầy từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "mucus form the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "17103655_230908085159439831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "17103788_231227150326134831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nquá phát mỏm móc, bóng sàng",
+        "DescriptionEN": "superior septal deviation\r\nenlargement of the uncinate process and ethmoid bulla"
+    },
+    {
+        "Path": "17103788_231227150326134831_954_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh 2 bên phù nề\r\nquá phát mép sau",
+        "DescriptionEN": "edema of the vocal cords \r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "17104182_231109101101164831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages "
+    },
+    {
+        "Path": "17104182_231109101101164831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\ndây thanh phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nedema of the vocal cords"
+    },
+    {
+        "Path": "17105545_230928084836926831_121_image04.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ\r\nmàng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the external auditory canal is slightly edematous\r\nthe tympanic membrane is intact but thickened, the cone of light is not visualized "
+    },
+    {
+        "Path": "19010116_231019085645499831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn ",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "19010116_231019085645499831_954_image09.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "quá phát mép sau\r\nxóa thanh thất ",
+        "DescriptionEN": "posterior commissure hypertrophy \r\nventricular obliteration"
+    },
+    {
+        "Path": "19010641_230519110027516831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "19010641_230519110027516831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh 2 bên phù nề\r\nquá phát mép sau",
+        "DescriptionEN": "edema of the arytenoid cartilages and the vocal cords\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "19010762_230626101458296831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy đục",
+        "DescriptionEN": "whitish mucus in the nasopharynx"
+    },
+    {
+        "Path": "19010762_230626101458296831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy đục",
+        "DescriptionEN": "whitish mucus in the nasopharynx"
+    },
+    {
+        "Path": "19010762_230626101458296831_121_image07.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "thành sau họng đọng dịch nhầy đục",
+        "DescriptionEN": "whitish mucus on the posterior wall of the oropharynx"
+    },
+    {
+        "Path": "19010762_231025091014395831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch mủ trắng đục",
+        "DescriptionEN": "purulent discharge in the nasal cavity"
+    },
+    {
+        "Path": "19010762_231025091014395831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "19010762_231025091014395831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh phù nề\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nedema of the vocal cords\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "19010827_230718092327222831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch mủ đục",
+        "DescriptionEN": "purulent discharge in the nasal cavity"
+    },
+    {
+        "Path": "19010827_230720093838338831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc mũi nhợt nhạt\r\nhốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "the nasal mucosa is pale\r\npresence of nasal watery discharge"
+    },
+    {
+        "Path": "19010827_230720093838338831_954_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy trong",
+        "DescriptionEN": "clear mucus in the nasopharynx"
+    },
+    {
+        "Path": "19010827_230720093838338831_954_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc mũi nhợt nhạt\r\nhốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "the nasal mucosa is pale\r\npresence of nasal watery discharge"
+    },
+    {
+        "Path": "19010827_230720093838338831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "19010940_230929141319288831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng ",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19010940_230929141319288831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19010940_230929141319288831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "19010940_230929141319288831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "19011099_231114101655268831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19011418_231221110452473831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "19011685_231003082551039831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết\r\nhốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "erythema of the nasopharynx \r\npresence of nasal watery discharge"
+    },
+    {
+        "Path": "19011685_231003082551039831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt\r\nquá phát bóng sàng",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale\r\nenlargement of the ethmoid bulla"
+    },
+    {
+        "Path": "19011685_231003082551039831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết \r\nhốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "erythema of the nasopharynx\r\npresence of nasal watery discharge"
+    },
+    {
+        "Path": "19011685_231006094617286831_954_image04.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh sung huyết",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe vocal cords are erythematous"
+    },
+    {
+        "Path": "19011685_231006094617286831_954_image05.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh 2 bên phù nề sung huyết",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe vocal cords are edematous and erythematous"
+    },
+    {
+        "Path": "19012499_230908090243540831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "quá phát mép sau\r\ndây thanh 2 bên phù nề\r\nhạt xơ nhỏ ở 1/3 trước - giữa dây thanh 2 bên",
+        "DescriptionEN": "posterior commissure hypertrophy \r\nthe vocal cords are edematous\r\nsmall callous-like growths on the middle section of the vocal cords (Bilateral vocal cord nodules)"
+    },
+    {
+        "Path": "19012499_230908090243540831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "quá phát mép sau\r\ndây thanh 2 bên phù nề\r\nhạt xơ nhỏ ở 1/3 trước - giữa dây thanh 2 bên",
+        "DescriptionEN": "posterior commissure hypertrophy \r\nthe vocal cords are edematous\r\nsmall callous-like growths on the middle section of the vocal cords (Bilateral vocal cord nodules)"
+    },
+    {
+        "Path": "19014832_230801103515635831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nhốc mũi đọng dịch nhầy đục",
+        "DescriptionEN": "superior septal deviation\r\nwhitish mucus in the nasal cavity"
+    },
+    {
+        "Path": "19014832_230801103515635831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "cuốn giữa cong ngược",
+        "DescriptionEN": "paradoxical middle turbinate"
+    },
+    {
+        "Path": "19015016_231117145701906831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "19015016_231117145701906831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dòng dịch nhầy trắng đục từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "a streak of white mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "19015673_230517101136435831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "19015673_230517101136435831_121_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy trắng đục",
+        "DescriptionEN": "white mucus on the nasopharynx"
+    },
+    {
+        "Path": "19015673_230517101136435831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn ",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "19015673_230517101136435831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy trắng đục",
+        "DescriptionEN": "white mucus on the nasopharynx"
+    },
+    {
+        "Path": "19015673_230517101136435831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "19017038_231010150720248831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "19017038_231010150720248831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "19017038_231010150720248831_954_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "19017038_231010150720248831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "19018485_230526093745892831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch nhầy đục từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "19018485_230609081358914831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19071292_231226082111448831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "dị vật tai",
+        "DescriptionEN": "foreign body in the external auditory canal"
+    },
+    {
+        "Path": "19071292_231226082111448831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "19074994_230403111035975831_949_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn ",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "19075733_230616085932960831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19075733_230616085932960831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết, có ráy tai\r\nmàng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the external auditory canal is erythematous\r\ncerumen in the external auditory canal\r\nthe tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19075733_230616085932960831_121_image05.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và nấm\r\nmàng nhĩ bị che một phần dưới và sau, phần còn lại của màng nhĩ dày",
+        "DescriptionEN": "cerumen and fungal infection in the external auditory canal\r\nthe tympanic membrane is covered inferiorly and posteriorly, the remaining part of the tympanic membrane is thickened"
+    },
+    {
+        "Path": "19076970_231207092848905831_121_image02.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ thủng ở góc trước dưới, cán búa còn, niêm mạc hòm nhĩ bình thường",
+        "DescriptionEN": "a perforation in the anteroinferior quadrant of the tympanic membrane\r\nthe handle of the malleus is visualized\r\nthe middle ear mucosa is normal"
+    },
+    {
+        "Path": "19076970_231207092848905831_121_image03.png",
+        "Classification": "ear-left",
+        "Type": "",
+        "Description": "màng nhĩ thủng ở nửa dưới, cán búa cụp, nhiêm mạc hòm nhĩ bình thường",
+        "DescriptionEN": "a perforation in the inferior quadrants of the tympanic membrane\r\nthe handle of the malleus is medialized\r\nthe middle ear mucosa is normal"
+    },
+    {
+        "Path": "19076970_231207092848905831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "cuốn giữa cong ngược",
+        "DescriptionEN": "paradoxical middle turbinate"
+    },
+    {
+        "Path": "19076970_231207092848905831_121_image08.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "đã cắt amidan",
+        "DescriptionEN": "tonsillectomy has been performed"
+    },
+    {
+        "Path": "19077627_231010082550715831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "19077627_231010082550715831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn ",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "19077900_231215142901053831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ, có ráy tai và nấm\r\nráy tai che một phần góc trước dưới màng nhĩ, phần còn lại của màng nhĩ dày",
+        "DescriptionEN": "the external auditory canal is slightly erythematous\r\ncerumen with fungal infection in the external auditory canal\r\ncerumen covers the anteroinferior quadrant of the tympanic membrane\r\nthe remaining part of the tympanic membrane is thickened"
+    },
+    {
+        "Path": "19077900_231215142901053831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có nấm trắng vàng\r\nmàng nhĩ nguyên vẹn, dày, mất tam giác sáng ",
+        "DescriptionEN": "yellow-white fungal material in the external auditory canal\r\nthe tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19077900_231215142901053831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vảy máu cũ ở cuốn giữa và cuốn dưới\r\nhốc mũi đọng dịch nhầy trắng",
+        "DescriptionEN": "dark red crusts on the middle and inferior turbinates\r\nwhitish mucus in the nasal cavity\r\n"
+    },
+    {
+        "Path": "19077900_231215142901053831_954_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "xoang lê 2 bên đọng dịch\r\nsụn phễu phù nề\r\nquá phát mép sau\r\nxóa thanh thất",
+        "DescriptionEN": "discharge in the pyriform sinuses\r\nedema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nventricular obliteration"
+    },
+    {
+        "Path": "19079363_230907102622799831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "19079363_230907102622799831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "cuốn giữa cong ngược",
+        "DescriptionEN": "paradoxical middle turbinate"
+    },
+    {
+        "Path": "19079363_230907102622799831_954_image05.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\ndây thanh khép không kín",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "19079363_230907102622799831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên phù nề\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nedema of the vocal cords\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "19080387_231121092111319831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết\r\nmàng nhĩ nguyên vẹn, dày nhẹ, sung huyết dọc cán búa, mất tam giác sáng",
+        "DescriptionEN": "erythematous of the external auditory canal\r\nthe tympanic membrane is intact but slightly thickened\r\nthe area of the malleus handle is hyperemic\r\nthe cone of light is not visualized"
+    },
+    {
+        "Path": "19080512_230605093902829831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ có lỗ thủng nhỏ trung tâm\r\nmàng nhĩ dày, mất tam giác sáng",
+        "DescriptionEN": "a small central perforation in the tympanic membrane\r\nthe tympanic membrane is thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19080512_230605093902829831_954_image03.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ có sẹo mỏng ở góc trước dưới, phần còn lại của màng nhĩ dày, mất tam giác sáng",
+        "DescriptionEN": "a thin scar in the anteroinferior quadrant of the tympanic membrane\r\nthe remaning part tympanic membrane is thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "19082079_230523135218556831_949_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối nhạt màu từ khe giữa, nghĩ polyp\r\nniêm mạc cuốn giữa phù nề, thoái hóa polyp",
+        "DescriptionEN": "a pale mass protrudes from the middle meatus, suspected of polyp\r\nedema and polypoid degeneration of the middle turbinate"
+    },
+    {
+        "Path": "19082079_230523135218556831_949_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "cuốn giữa phình to, nghĩ có bóng khí cuốn giữa\r\nniêm mạc cuốn giữa phù nề, thoái hóa polyp",
+        "DescriptionEN": "enlargement of the middle turbinate, suspected of concha bullosa\r\nedema and polypoid degeneration of the middle turbinate"
+    },
+    {
+        "Path": "19082079_230523135218556831_949_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "khối nhạt màu trong hốc mũi, nghĩ polyp\r\nhốc mũi đọng dịch nhầy trắng",
+        "DescriptionEN": "a pale mass in the nasal cavity, suspected of polyp\r\nthe presence of nasal whitish mucus"
+    },
+    {
+        "Path": "19082461_230928100729422831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết\r\ndòng dịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "erythema of the nasopharynx\r\na streak of whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "19082461_231011101231274831_954_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh khép không sát",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "19082569_230801083935154831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "19082569_230801083935154831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe middle turbinate mucosa is pale"
+    },
+    {
+        "Path": "19084179_230810095238653831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "quá phát mỏm móc, bóng sàng",
+        "DescriptionEN": "enlargement of the uncinate process and ethmoid bulla"
+    },
+    {
+        "Path": "19085102_230905135518413831_954_image05.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu sung huyết\r\ndây thanh 2 bên phù nề sung huyết",
+        "DescriptionEN": "erythema of the arytenoid cartilages\r\nedema and erythema of the vocal cords"
+    },
+    {
+        "Path": "19086309_231011144424243831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "19086309_231016100604195831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\ndịch mủ đục từ khe giữa",
+        "DescriptionEN": "superior septal deviation\r\npurulent discharge from the middle meatus"
+    },
+    {
+        "Path": "19086309_231016100604195831_121_image05.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai phù nề sung huyết\r\nmàng nhĩ sung huyết, căng phồng",
+        "DescriptionEN": "edema and erythema of the external auditory canal\r\nthe tympanic membrane is erythematous and bulged"
+    },
+    {
+        "Path": "19086309_231023093006012831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch mủ đục từ khe giữa",
+        "DescriptionEN": "purulent discharge from the middle meatus"
+    },
+    {
+        "Path": "19086309_231023093006012831_954_image08.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch mủ đục từ khe giữa chảy xuống vòm",
+        "DescriptionEN": "a streak of purulent discharge from the middle meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "19086380_231206093946060831_954_image08.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "19086380_231206093946060831_954_image11.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\nquá phát mép sau\r\nphù nề hạ thanh môn",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nsubglottic edema"
+    },
+    {
+        "Path": "19086567_230919081946891831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "19086567_230919081946891831_954_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the nasopharynx"
+    },
+    {
+        "Path": "19086642_231004083703418831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối lớn ở vòm che một phần hố Rosenmuller (P), bề mặt sung huyết ",
+        "DescriptionEN": "a large hyperemic mass filliing the nasopharynx and the right Rosenmuller's fossa "
+    },
+    {
+        "Path": "19090302_230914083637527831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ có sẹo mỏng ở nửa dưới, phần trên của màng nhĩ dày nhẹ, mất tam giác sáng ",
+        "DescriptionEN": "a thin scar in the inferior quadrants of the tympanic membrane\r\nthe superior part of the tympanic membrane is slightly thickened\r\nthe cone of light is not visualized"
+    },
+    {
+        "Path": "19090812_231229090550594831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và mủ trắng\r\nmàng nhĩ dày, phồng nhẹ, bị mủ che một phần phía trước",
+        "DescriptionEN": "cerumen and white ear discharge in the external auditory canal\r\nthe tympanic membrane is thickened and slightly bulged\r\nthe anterior part of tympanic membrane is covered by ear discharge"
+    },
+    {
+        "Path": "19090812_231229090550594831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai đọng mủ trắng vàng che toàn bộ màng nhĩ",
+        "DescriptionEN": "yellow - white ear discharge in the external auditory canal and completely covers the tympanic membrane"
+    },
+    {
+        "Path": "19090812_231229090550594831_954_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn ",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "19091014_231219095603849831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "19092078_231114082917105831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc cuốn giữa thoái hóa polyp\r\ncó vị trí tiếp xúc giữa cuốn giữa và vách ngăn",
+        "DescriptionEN": "polypoid degeneration of the middle turbinate\r\nmucosal contact between the nasal septum and middle turbinate\r\n"
+    },
+    {
+        "Path": "19092099_231120095539387831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "19092644_231214075644208831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "22117472_231123095255631831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22117472_231123095255631831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22121665_230927100526824831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22121665_230927100526824831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22128068_230816153636135831_954_image05.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và nấm\r\nmàng nhĩ bị che phần sau, tam giác sáng còn",
+        "DescriptionEN": "cerumen with fungal infection in the external auditory canal\r\nthe posterior part tympanic membrane is covered\r\nthe cone of light is visualized"
+    },
+    {
+        "Path": "22129652_230515111841005831_954_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối lớn ở vòm che hố Rosenmuller (P)",
+        "DescriptionEN": "a large mass filling the nasopharynx and the right Rosenmuller's fossa"
+    },
+    {
+        "Path": "22135185_230807110142441831_954_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "22135759_230328092140992831_121_image03.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "22135760_230328074205309831_121_image02.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "22136981_230327100451922831_121_image09.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh 2 bên phù nề sung huyết\r\nhạt xơ nhỏ ở 1/3 trước - giữa dây thanh 2 bên",
+        "DescriptionEN": "edema and erythema of the vocal cords\r\nsmall callous-like growths on the middle section of the vocal cords (bilateral vocal cord nodules)"
+    },
+    {
+        "Path": "22137217_230327091629911831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "22145064_230821081327548831_954_image05.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ, có ráy tai và nấm\r\nráy tai che phần sau của màng nhĩ\r\nphần trước của màng nhĩ dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "erythematous of the external auditory canal\r\ncerumen with fungal infection in the external auditory canal\r\ncerumen covers the posterior part of the tympanic membrane\r\nthe anterior part is slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "22145064_230821081327548831_954_image08.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22145864_230817155443096831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "22147573_231228111857416831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ có sẹo mỏng ở góc trước dưới\r\nmất tam giác sáng\r\ncó mảng vôi hóa ở trước cán búa\r\nnửa sau của màng nhĩ dày nhẹ",
+        "DescriptionEN": "a thin scar in the anteroinferior quadrant of the tympanic membrane\r\nthe cone of light is not visualized\r\na calcareous plaque is present (anterior to the handle of the malleus)\r\nthe posterior part of the tympanic membrane is slightly thickened\r\n"
+    },
+    {
+        "Path": "22147816_231006095156735831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "cuốn giữa cong ngược",
+        "DescriptionEN": "paradoxical middle turbinate"
+    },
+    {
+        "Path": "22147816_231006095156735831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22148095_230329083626022831_121_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch mủ từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "a streak of purulent discharge from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "23109714_231114101029933831_949_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "23110452_230822091603718831_949_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "23110452_230822091603718831_949_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23110457_231027084053818831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "xơ nhĩ, màng nhĩ còn nguyên, góc trước dưới màng nhĩ bị teo",
+        "DescriptionEN": "Tympanosclerosis with intact tympanic membrane. The anteroinferior quadrant of the tympanic membrane is atrophic"
+    },
+    {
+        "Path": "23110457_231027084053818831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch trắng từ khe giữa chảy xuống vòm",
+        "DescriptionEN": "a streak of whitish mucus from the middle meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "23110457_231027084053818831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "đã phẫu thuật",
+        "DescriptionEN": "ethmoidectomy has been performed"
+    },
+    {
+        "Path": "23110457_231027084053818831_954_image08.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "23110457_231027084053818831_954_image09.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nphù nề nếp liên phễu",
+        "DescriptionEN": "edema of the arytenoid cartilages and the interarytenoid area"
+    },
+    {
+        "Path": "23110663_231110142111262831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23110663_231110142111262831_121_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "23112123_230602092604855831_954_image01.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn\r\nniêm mạc vách ngăn sung huyết",
+        "DescriptionEN": "septal deviation\r\nthe septal mucosa is erythematous"
+    },
+    {
+        "Path": "23113662_230518085607793831_949_image05.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "họng sung huyết\r\nthành sau họng đọng dịch nhầy đục\r\namidan 2 bên quá phát",
+        "DescriptionEN": "erythema of the oropharynx\r\nwhite mucus on the posterior wall of the oropharynx\r\ntonsillar hypertrophy"
+    },
+    {
+        "Path": "23113749_231031083607161831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23113749_231031083607161831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23113749_231031083607161831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "23113749_231031083607161831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "23114586_230519105217792831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ có sẹo mỏng ở nửa dưới\r\ncó mản vôi hóa ở góc sau trên màng nhĩ sau cán bua\r\ntam giác sáng mất",
+        "DescriptionEN": "a thin scar in the inferior quadrants of the tympanic membrane\r\na calcareous plaque can be seen in the posterosuperior quadrant (posteromalleolar)\r\nthe cone of light is not visualized\r\n\r\n"
+    },
+    {
+        "Path": "23114606_230801100030444831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23114619_231219083530808831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ ở phần sau, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact, the posterior quadrants are slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23114619_231219083530808831_954_image11.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát\r\nquá phát mô lympho đáy lưỡi",
+        "DescriptionEN": "tonsillar hypertrophy\r\nlingual tonsillar hypertrophy"
+    },
+    {
+        "Path": "23114708_230519104404520831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "",
+        "Description": "sụn phễu phù nề sung huyết \r\ndây thanh khép không kín",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "23114708_230519104404520831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên phù nề sung huyết, đọng dịch nhầy\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages and vocal cords\r\nwhite mucus on the vocal cords\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "23114989_230526101312998831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "23115224_230606084120346831_121_image01.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23115224_230606084120346831_121_image02.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "dị vật (sợi tóc) trong ống tai\r\nmàng nhĩ nguyên vẹn, tam giác sáng còn",
+        "DescriptionEN": "foreign body (hair) in the external auditory canal\r\nthe tympanic membrane is intact, the cone of light is visualized"
+    },
+    {
+        "Path": "23115224_230606084120346831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nquá phát bóng sàng",
+        "DescriptionEN": "superior septal deviation\r\nenlargement of the ethmoid bulla"
+    },
+    {
+        "Path": "23115611_230520152842361831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn\r\nniêm mạc mũi sung huyết",
+        "DescriptionEN": "a spur on the septum\r\nerythema of the nasal mucosa"
+    },
+    {
+        "Path": "23115611_230520152842361831_121_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "các khe mũi đọng dịch nhầy trắng\r\nniêm mạc mũi sung huyết ",
+        "DescriptionEN": "whitish mucus in the nasal meatus\r\nthe nasal mucosa is erythematous"
+    },
+    {
+        "Path": "23115611_230520152842361831_121_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "các khe mũi đọng dịch nhầy trắng\r\nniêm mạc mũi sung huyết",
+        "DescriptionEN": "whitish mucus in the nasal meatus\r\nthe nasal mucosa is erythematous"
+    },
+    {
+        "Path": "23115692_231120081352634831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu",
+        "DescriptionEN": "edema of the arytenoid cartilages and the interarytenoid area"
+    },
+    {
+        "Path": "23115698_231016103419851831_954_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi phù nề, nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale and edematous"
+    },
+    {
+        "Path": "23115698_231016103419851831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi phù nề, nhợt nhạt\r\nquá phát mỏm móc, bóng sàng\r\n",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale and edematous\r\nenlargement of the uncinate process and ethmoid bulla"
+    },
+    {
+        "Path": "23115775_230522074317232831_949_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23115775_230522074317232831_949_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23165160_230927101920431831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23165423_230717150013817831_949_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn\r\ncó khối nhạt màu ở cuốn dưới",
+        "DescriptionEN": "a spur on the septum\r\na pale mass on the inferior turbinate"
+    },
+    {
+        "Path": "23165423_230717150013817831_949_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "23165977_230915075557923831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "23165977_230915075557923831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "23907323_231218101813158831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "23907323_231218101813158831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "15004709_231206082905713831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "lỗ thông phụ của xoang hàm (P) ở phía trước\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "A right maxillary anterior accessory ostium\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "15004709_231206082905713831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu\r\ndây thanh (P) phù nề sung huyết, đọng nhầy trắng\r\ndây thanh (T) sung huyết nhẹ",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area\r\nthe right vocal cord is edematous and erythematous\r\nwhite mucus on the right vocal cord\r\nthe left vocal cord is slightly erythematous"
+    },
+    {
+        "Path": "15004709_231206082905713831_954_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh (P) phù nề, sung huyết, đọng nhầy trắng\r\ndây thanh (T) sung huyết nhẹ",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe right vocal cord is edematous and erythematous\r\nwhite mucus on the right vocal cord\r\nthe left vocal cord is slightly erythematous"
+    },
+    {
+        "Path": "15004709_231206082905713831_954_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh (P) phù nề, sung huyết, đọng nhầy trắng\r\ndây thanh (T) sung huyết nhẹ",
+        "DescriptionEN": "the right vocal cord is edematous and erythematous\r\nwhite mucus on the right vocal cord\r\nthe left vocal cord is slightly erythematous"
+    },
+    {
+        "Path": "15005172_230913080858365831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "15005172_231121083530463831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15005172_231121083530463831_954_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\nxóa thanh thất ",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nventricular obliteration"
+    },
+    {
+        "Path": "15005513_231030084038267831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ráy tai che kín ống tai ngoài\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "cerumen completely obstructs the ear canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "15005513_231030084038267831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "đã phẫu thuật\r\nvẹo vách ngăn phần cao",
+        "DescriptionEN": "ethmoidectomy has been performed\r\nsuperior septal deviation"
+    },
+    {
+        "Path": "15005848_230714150145303831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu\r\ndây thanh 2 bên phù nề nhẹ",
+        "DescriptionEN": "edema of the arytenoid cartilages and the interarytenoid area\r\nthe vocal cords are slightly edematous"
+    },
+    {
+        "Path": "15005876_230920100349907831_954_image01.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vảy máu cũ ở cuốn dưới",
+        "DescriptionEN": "dark red crust on the inferior turbinate"
+    },
+    {
+        "Path": "15005876_230920100349907831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "chảy máu mũi từ đầu cuốn dưới và vách ngăn\r\nvẹo vách ngăn",
+        "DescriptionEN": "epistaxis from the anterior tip of the inferior turbinate and the septum\r\nseptal deviation"
+    },
+    {
+        "Path": "15005876_230920100349907831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "chảy máu mũi từ đầu cuốn dưới\r\nvảy máu cũ đọng ở cuốn dưới\r\nhốc mũi đọng dịch trắng đục",
+        "DescriptionEN": "epistaxis from the anterior tip of the inferior turbinate\r\ndark red crust on the inferior turbinate\r\nwhite mucus in the nasal cavity"
+    },
+    {
+        "Path": "15006335_230821080455237831_954_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "15006335_231012101523913831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15006335_231012101523913831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15006723_230808105100692831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15006723_230808105100692831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15006723_230808105100692831_954_image05.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "15006723_230808105100692831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages "
+    },
+    {
+        "Path": "15007558_231120082017735831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu\r\nxóa thanh thất\r\nphù nề hạ thanh môn",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nventricular obliteration\r\nsubglottic edema"
+    },
+    {
+        "Path": "15007558_231120082017735831_954_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "15008623_231016105506914831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dòng dịch mủ đục từ khe mũi chảy xuống vòm\r\nniêm mạc vòm sung huyết",
+        "DescriptionEN": "a streak of purulent discharge from the meatus moving toward the nasopharynx\r\nthe nasopharynx is erythematous"
+    },
+    {
+        "Path": "15008623_231016105506914831_954_image05.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày ở nửa dưới, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but the posterior quadrants are thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "15008623_231016105506914831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh phù nề nhẹ, khép không sát",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe vocal cords are slightly edematous\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "15008623_231016105506914831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu\r\ndây thanh 2 bên phù nề nhẹ",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area\r\nthe vocal cords are slightly edematous"
+    },
+    {
+        "Path": "15009138_230605085238215831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và nấm\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "cerumen with superimposed fungal infection in the external auditory canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "15009138_230605085238215831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn ",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "15012315_230420150011069831_954_image01.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi",
+        "DescriptionEN": "lingual tonsillar hypertrophy"
+    },
+    {
+        "Path": "15012315_230420150011069831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi\r\nsụn phễu phù nề sung huyết\r\nthanh thiệt phù nề nhẹ",
+        "DescriptionEN": "lingual tonsillar hypertrophy\r\nedema and erythema of the arytenoid cartilages\r\nthe epiglottis is slightly edematous"
+    },
+    {
+        "Path": "15012936_231127084401243831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh (T) phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the left vocal cord"
+    },
+    {
+        "Path": "15013084_230815094814873831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15013084_230815094814873831_954_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "15013334_230510083120812831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "15013764_230724090938735831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "15014737_230719082619092831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ\r\nmàng nhĩ sung huyết nhẹ dọc cán búa, phần sau của màng nhĩ dày, có mảng vôi hóa ở góc trước dưới, mất tam giác sáng",
+        "DescriptionEN": "the external auditory canal is slightly erythematous\r\nThe tympanic membrane over the malleus handle is slightly hyperemic\r\nthe posterior part of the tympanic membrane is thickened\r\na calcareous plaque can be seen in the anteroinferior quadrant\r\nthe cone of light is not visualized"
+    },
+    {
+        "Path": "15014737_230719082619092831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối nhạt màu từ khe giữa, nghĩ polyp ",
+        "DescriptionEN": "a pale mass protrudes from the middle meatus, suspected of polyp"
+    },
+    {
+        "Path": "15014737_230719082619092831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "có khối nhạt màu từ khe giữa, nghĩ polyp ",
+        "DescriptionEN": "a pale mass protrudes from the middle meatus, suspected of polyp"
+    },
+    {
+        "Path": "15015014_230919085639983831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe middle turbinate mucosa is pale"
+    },
+    {
+        "Path": "15015871_231026093628050831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15017069_231113135410294831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch mủ đục",
+        "DescriptionEN": "purulent discharge on the nasopharynx"
+    },
+    {
+        "Path": "15017255_231107104450948831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "15017797_231004095125295831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "15018523_230407153309150831_949_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum "
+    },
+    {
+        "Path": "15019955_230424082814262831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "khe giữa đọng dịch mủ đục",
+        "DescriptionEN": "purulent discharge in the middle meatus"
+    },
+    {
+        "Path": "15019955_230828091846590831_121_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch nhầy trắng từ ngáng bướm sàng chảy xuống vòm",
+        "DescriptionEN": "a streak of whitish mucus from the sphenoethmoidal recess moving toward the nasopharynx"
+    },
+    {
+        "Path": "15021750_230911081058706831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "15021750_230911081058706831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "15022069_230407101018142831_949_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "khối nhạt màu ở khe giữa, nghĩ polyp\r\ncuốn giữa chẻ đôi\r\ncuốn giữa phù nề, thoái hóa polyp",
+        "DescriptionEN": "a pale mass in the middle meatus, suspected of polyp\r\nbifid middle turbinate\r\nedema and polypoid degeneration of the middle turbinate"
+    },
+    {
+        "Path": "15022069_230512095000403831_121_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\ncó khối nhạt màu từ khe giữa, nghĩ polyp",
+        "DescriptionEN": "superior septal deviation\r\na pale mass from the middle meatus, suspected of polyp"
+    },
+    {
+        "Path": "15022069_230512095000403831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mỏm móc phù nề, thoái hóa polyp",
+        "DescriptionEN": "edema and polypoid degeneration of the uncinate process"
+    },
+    {
+        "Path": "15023443_230512081019139831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "xoang lê 2 bên đọng dịch\r\nsụn phễu phù nề",
+        "DescriptionEN": "white discharge in the pyriform sinuses\r\nedema of the arytenoid cartilages"
+    },
+    {
+        "Path": "15023796_231205083901701831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dòng dịch mủ từ ngách bướm sàng chảy xuống vòm",
+        "DescriptionEN": "a streak of purulent discharge from the sphenoethmoidal recess moving toward the nasopharynx"
+    },
+    {
+        "Path": "15023799_230922085220867831_121_image06.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ, đọng mủ trắng\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "the external auditory canal is slightly erythematous \r\nwhite ear discharge in the external auditory canal\r\nthe tympanic membrane is not visualized "
+    },
+    {
+        "Path": "15023886_230828083920833831_121_image02.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "15023886_230828083920833831_121_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "15023994_230926083959783831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trắng",
+        "DescriptionEN": "whitish mucus in the nasal cavity"
+    },
+    {
+        "Path": "15023994_230926083959783831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trắng",
+        "DescriptionEN": "whitish mucus in the nasal cavity"
+    },
+    {
+        "Path": "22043263_230620084759579831_121_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "cuốn giữa quá phát, niêm mạc cuốn giữa phù nề sung huyết",
+        "DescriptionEN": "enlargement of the middle turbinate\r\nthe middle turbinate mucosa is edematous and erythematous"
+    },
+    {
+        "Path": "22043263_230620084759579831_121_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm phù nề sung huyết\r\nhốc mũi đọng dịch trong",
+        "DescriptionEN": "edema and erythema of the nasopharynx\r\npresence of nasal watery discharge"
+    },
+    {
+        "Path": "22043806_231018102225814831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "22050697_230911080449142831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết\r\nmàng nhĩ sung huyết, phồng\r\nhòm nhĩ đọng dịch vàng, có mức khí dịch ở góc sau dưới",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe tympanic membrane is hyperemic and bulged\r\nyellowish fluid is present in the middle ear and an air-fluid level can be seen in the posteroinferior quadrant\r\n"
+    },
+    {
+        "Path": "22050740_231207101837027831_949_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "22050740_231207101837027831_949_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "22051991_231101105007620831_954_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nquá phát bóng sàng",
+        "DescriptionEN": "superior septal deviation\r\nenlargement of the ethmoid bulla"
+    },
+    {
+        "Path": "22051991_231101105007620831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết\r\nvòm đọng dịch nhầy trắng",
+        "DescriptionEN": "erythema of the nasopharynx\r\nwhitish mucus on the nasopharynx"
+    },
+    {
+        "Path": "22062598_231212082119769831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối ở vòm che một phần hố Rosenmuller (P)",
+        "DescriptionEN": "a mass on the nasopharynx partly filling the right Rosenmuller's fossa"
+    },
+    {
+        "Path": "22062598_231212082119769831_954_image05.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát",
+        "DescriptionEN": "tonsillar hypertrophy"
+    },
+    {
+        "Path": "22062598_231212082119769831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "22062598_231212082119769831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh 2 bên phù nề nhẹ",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe vocal cords are slightly edematous"
+    },
+    {
+        "Path": "22069256_231228083314949831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22069859_231012094133633831_954_image01.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "22069859_231012094133633831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "22070648_230804095009268831_954_image08.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22071194_230918104225612831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22072710_231207083826860831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22073014_230926102605550831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ\r\nmàng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "the eacc is slightly erythematous\r\nthe tympanic membrane is intact but thickened, the cone of light is not visualized "
+    },
+    {
+        "Path": "22073709_230722202854055831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\ndây thanh (P) phù nề\r\ndây thanh khép không sát",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nthe right vocal cord is edematous\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "22075669_231212100218967831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "22076101_230810112503877831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22079003_230912104446252831_954_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe middle turbinate mucosa is pale"
+    },
+    {
+        "Path": "22080705_230530105122327831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên phù nề sung huyết, khép không sát\r\ndịch nhầy trắng đọng trên 2 dây thanh",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages and the vocal cords\r\nincomplete glottic closure\r\nwhite mucus on the vocal cords"
+    },
+    {
+        "Path": "22080705_230530105122327831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên phù nề sung huyết, đọng dịch nhầy trắng",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages and the vocal cords\r\nwhite mucus on the vocal cords"
+    },
+    {
+        "Path": "22080705_230530105122327831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên phù nề sung huyết, đọng dịch nhầy trắng",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages and the vocal cords\r\nwhite mucus on the vocal cords"
+    },
+    {
+        "Path": "22080705_230530105122327831_954_image04.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên phù nề sung huyết, khép không sát\r\ndịch nhầy trắng đọng trên 2 dây thanh",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages and the vocal cords\r\nincomplete glottic closure\r\nwhite mucus on the vocal cords"
+    },
+    {
+        "Path": "22080866_231205083537045831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "22088197_230725104158413831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\ndây thanh 2 bên phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nedema of the vocal cords"
+    },
+    {
+        "Path": "22090553_230925093341512831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "22094616_231005100642099831_949_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "cuốn giữa chẻ đôi",
+        "DescriptionEN": "bifid middle turbinate"
+    },
+    {
+        "Path": "22098600_231228110038550831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22098600_231228110038550831_121_image06.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát",
+        "DescriptionEN": "tonsillar hypertrophy"
+    },
+    {
+        "Path": "22099094_230822104055146831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "22099094_230822104055146831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "22105516_230926103043484831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22106607_231101083348296831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "23144375_230622085729593831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23144375_230622085729593831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dòng dịch mủ từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "a streak of purulent discharge from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "23144482_231013104805185831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages and the interarytenoid area"
+    },
+    {
+        "Path": "23145133_230623100317915831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23145157_231009092953020831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "dịch mủ trắng đọng trong ống tai, màng nhĩ chưa quan sát được",
+        "DescriptionEN": "white ear discharge in the external auditory canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "23145157_231009092953020831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "23145424_230623105638788831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "chảy máu mũi từ phần trước vách ngăn",
+        "DescriptionEN": "epistaxis from the anterior part of the septum"
+    },
+    {
+        "Path": "23145490_231024151106677831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt\r\nquá phát mỏm móc, bóng sàng",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale\r\nenlargement of the uncinate process and ethmoid bulla"
+    },
+    {
+        "Path": "23146949_230624143545369831_949_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "23146949_230624143545369831_949_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23146955_230624145953203831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "23146990_230905092441106831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "23146990_230905092441106831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23146990_230905092441106831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\nxóa thanh thất",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nventricular obliteration"
+    },
+    {
+        "Path": "23147279_230630142751852831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23147388_230626103720158831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23147412_231218104909684831_954_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh (P) sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nthe right vocal cord is erythematous"
+    },
+    {
+        "Path": "23147896_231019150101629831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\nquá phát mép sau\r\ndây thanh 2 bên phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nedema and erythema of the vocal cords"
+    },
+    {
+        "Path": "23147933_230920134915850831_121_image01.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "23147933_231005081916255831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "chảy máu mũi từ niêm mạc ở khe giữa",
+        "DescriptionEN": "epistaxis from the mucosa in the middle meatus"
+    },
+    {
+        "Path": "23148063_230817153842368831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai đọng dịch mủ trắng, màng nhĩ chưa quan sát được",
+        "DescriptionEN": "white ear discharge in the external auditory canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "23148299_230627093148268831_121_image07.png",
+        "Classification": "throat",
+        "Type": "",
+        "Description": "họng sung huyết\r\nthành sau họng đọng dịch nhầy trắng\r\namidan 2 bên quá phát",
+        "DescriptionEN": "erythema of the oropharynx\r\nwhite mucus on the posterior wall of the oropharynx\r\ntonsillar hypertrophy\r\n"
+    },
+    {
+        "Path": "23148386_230627091349211831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "23148386_230627091349211831_121_image06.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát",
+        "DescriptionEN": "tonsillar hypertrophy"
+    },
+    {
+        "Path": "23148604_230807100242223831_954_image08.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai đọng dịch mủ trắng\r\nmàng nhĩ có lỗ thủng ở góc trước dưới, còn rìa",
+        "DescriptionEN": "white ear discharge in the external auditory canal\r\nnonmarginal perforation in the anteroinferior of the tympanic membrane"
+    },
+    {
+        "Path": "23148776_230703104700066831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "23148776_230703104700066831_121_image05.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ có lỗ thủng trung tâm\r\ncán búa cụp nhẹ\r\ncó khối phồng hồng nhạt ở phần màng nhĩ còn lại ở góc sau dưới\r\ncó 2 mảng vôi hóa ở nửa trên (trước và sau cán búa)",
+        "DescriptionEN": "a central perforation in the tympanic membrane\r\nthe handle of the malleus is slightly medialized\r\na pinkish mass in the residue of the tympanic membrane in the posteroinferior quadrant\r\nTwo calcareous plaques are present (antero- and posteromalleolar)\r\n"
+    },
+    {
+        "Path": "23148776_230703104700066831_121_image06.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "có lỗ thủng ở nửa dưới màng nhĩ, còn rìa\r\ncán búa cụp\r\nniêm mạc hòm nhĩ phù nề",
+        "DescriptionEN": "a nonmarginal perforation in the inferior quadrants of the tympanic membrane\r\nthe handle of malleus is medialized\r\nthe middle ear mucosa is edematous\r\n"
+    },
+    {
+        "Path": "23149901_230718075102304831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23150555_230629082221499831_948_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ, đọng dịch mủ trắng\r\nmàng nhĩ có lỗ thủng trung tâm, phần còn lại của màng nhĩ sung huyết",
+        "DescriptionEN": "the external auditory canal is slightly erythematous\r\nwhite ear discharge in the external auditory canal\r\na central perforation in the tympanic membrane, the residue of the tympanic membrane is hyperemic"
+    },
+    {
+        "Path": "23150555_230629082221499831_948_image03.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ, đọng dịch mủ trắng\r\nmàng nhĩ có lỗ thủng trung tâm, phần còn lại của màng nhĩ sung huyết",
+        "DescriptionEN": "the external auditory canal is slightly erythematous\r\nwhite ear discharge in the external auditory canal\r\na central perforation in the tympanic membrane, the residue of the tympanic membrane is hyperemic"
+    },
+    {
+        "Path": "23150983_230804112416157831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "23151136_230707142426469831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu sung huyết\r\ndây thanh 2 bên phù nề sung huyết, khép không sát\r\nđọng dịch nhầy trắng trên dây thanh",
+        "DescriptionEN": "erythema of the arytenoid cartilages\r\nthe vocal cords are edematous and erythematous\r\nincomplete glottic closure\r\nwhite mucus in the vocal cords\r\n"
+    },
+    {
+        "Path": "23151136_230707142426469831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu sung huyết \r\ndây thanh 2 bên phù nề sung huyết",
+        "DescriptionEN": "erythema of the arytenoid cartilages\r\nedema and erythema of the vocal cords"
+    },
+    {
+        "Path": "23921185_230612133810145831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "hạ họng và xoang lê đọng dịch trắng\r\nphù nề sụn phễu và nếp liên phễu\r\nxóa thanh thất\r\nphù nề hạ thanh môn",
+        "DescriptionEN": "white discharge in the hypopharynx and pyriform sinuses\r\nedema of the arytenoid cartilages and the interarytenoid area\r\nventricular obliteration\r\nsubglottic edema"
+    },
+    {
+        "Path": "23921386_230613203524031831_954_image02.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "xương cá cắm vào amidan (P)",
+        "DescriptionEN": "a fish bone stuck in the right tonsil"
+    },
+    {
+        "Path": "23922152_230626082633772831_121_image03.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai đọng mủ trắng\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "white ear discharge in the external auditory canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "23922152_230626082633772831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23922365_230621170028752831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\ndây thanh 2 bên phù nề",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nthe vocal cords are edematous"
+    },
+    {
+        "Path": "23922415_230626075146250831_954_image01.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\nquá phát mép sau\r\nxóa thanh thất",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nventricular obliteration"
+    },
+    {
+        "Path": "23922415_230626075146250831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "23922415_230626075146250831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\nquá phát mép sau\r\nxóa thanh thất ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nventricular obliteration"
+    },
+    {
+        "Path": "23922415_230626075146250831_954_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "23922415_230626075146250831_954_image07.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng địch nhầy trắng từ khe giữa chảy xuống vòm",
+        "DescriptionEN": "a streak of whitish mucus from the middle meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "23922415_230626075146250831_954_image09.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn ",
+        "DescriptionEN": "a spur on the septum "
+    },
+    {
+        "Path": "23922498_230622214653118831_121_image01.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa phù nề, thoái hóa polyp",
+        "DescriptionEN": "superior septal deviation\r\nedema and polypoid degeneration of the middle turbinate mucosa"
+    },
+    {
+        "Path": "23922498_230622214653118831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn \r\nchảy máu mũi từ phần trước của vách ngăn",
+        "DescriptionEN": "a spur on the septum \r\nepistaxis from the anterior part of the septum"
+    },
+    {
+        "Path": "23922498_230622214653118831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23922582_230623125717703831_948_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23922643_230624031645128831_121_image03.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "dị vật tai (côn trùng)\r\nống tai sung huyết, đọng máu\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "foreign body (insect) in the external auditory canal\r\nthe external auditory canal is erythematous\r\nblood in the external auditory canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "23922643_230802112304325831_948_image01.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai đọng vảy máu cũ\r\nmàng nhĩ nguyên vẹn, tam giác sáng còn",
+        "DescriptionEN": "dark red crusts in the external auditory canal\r\nthe tympanic membrane is intact, the cone of light is visualized"
+    },
+    {
+        "Path": "23922897_230626120154112831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ráy tai và nấm ở ống tai và phần sau màng nhĩ\r\nmàng nhĩ nguyên vẹn, sung huyết dọc cán búa, tam giác sáng còn",
+        "DescriptionEN": "cerumen with superimposed fungal infection in the external auditory canal and the posterior quadrants of the tympanic membrane\r\nthe tympanic membrane is intact\r\nThe area of the malleus handle is hyperemic\r\nthe cone of light is visualized\r\n\r\n"
+    },
+    {
+        "Path": "23923761_230703203759745831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\ndây thanh khép không sát",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "23924800_230711214823287831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên phù nề, khép không sát",
+        "DescriptionEN": "edema and erythema of the tympanic membrane\r\nthe vocal cords are edematous\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "23925027_230713225600420831_954_image02.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi",
+        "DescriptionEN": "lingual tonsillar hypertrophy"
+    },
+    {
+        "Path": "23925158_230718104026034831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết\r\nmàng nhĩ nguyên vẹn, dày nhẹ, tam giác sáng không rõ",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is not well visualized"
+    },
+    {
+        "Path": "23925158_230718104026034831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết\r\nmàng nhĩ nguyên vẹn, dày nhẹ, tam giác sáng còn",
+        "DescriptionEN": "the external auditory canal is erythematous\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is visualized"
+    },
+    {
+        "Path": "23925463_231024085805648831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "23925463_231024085805648831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\nxóa thanh thất",
+        "DescriptionEN": "edema of the accumulation of cerumen\r\nposterior commissure hypertrophy\r\nventricular obliteration"
+    },
+    {
+        "Path": "23926496_230726200459026831_954_image01.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát, amidan (P) > (T)",
+        "DescriptionEN": "tonsillar hypertrophy (the right tonsil is bigger than the left one)"
+    },
+    {
+        "Path": "23926496_230726200459026831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh 2 bên sung huyết, đọng dịch nhầy trắng",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nthe vocal cords are erythematous\r\nwhite mucus in the vocal cords"
+    },
+    {
+        "Path": "23926496_230726200459026831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu\r\ndây thanh 2 bên sung huyết\r\nthanh môn đọng dịch nhầy đặc\r\nxóa thanh thất",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area\r\nerythema of the vocal cords\r\nthick endolaryngeal mucus\r\nventricular obliteration\r\n"
+    },
+    {
+        "Path": "23926891_230907103240262831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is pale"
+    },
+    {
+        "Path": "23927190_230802153109425831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn ",
+        "DescriptionEN": "a spur on the septum "
+    },
+    {
+        "Path": "23927207_231107100440440831_954_image08.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vòm đọng dịch nhầy trắng đục",
+        "DescriptionEN": "white mucus on the nasopharynx"
+    },
+    {
+        "Path": "16143327_230627083942878831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages "
+    },
+    {
+        "Path": "16143327_230627083942878831_954_image02.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát",
+        "DescriptionEN": "tonsillar hypertrophy"
+    },
+    {
+        "Path": "16143409_230929153531794831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "16144146_230815100248013831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh (T) sung huyết\r\ndây thanh khép không sát",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe left vocal cord is erythematous\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "16144146_230815100248013831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu\r\ndây thanh (T) sung huyết nhẹ",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area\r\nthe left vocal cord is slightly erythematous"
+    },
+    {
+        "Path": "16144875_230810112720108831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "16144875_230810112720108831_954_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm phù nề sung huyết\r\ndòng dịch trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "edema and erythema of the nasopharynx\r\na streak of whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "16146013_231218083653875831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "16146013_231218083653875831_954_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "a streak of whitish mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "16146146_230410085218629831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "16146146_230410085218629831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "16146547_230504155042251831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "16147928_230817160214038831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch nhầy trắng từ ngách bướm sàng chảy xuống vòm",
+        "DescriptionEN": "a streak of whitish mucus from the sphenoethmoidal recess moving toward the nasopharynx"
+    },
+    {
+        "Path": "16148134_231212081600575831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai\r\ncó mảng vôi hóa ở góc trước dưới màng nhĩ, tam giác sáng còn\r\ngóc sau trên màng nhĩ hơi mỏng",
+        "DescriptionEN": "cerumen in the external auditory canal\r\na calcareous plaque is seen in the anteroinferior quadran(T)\r\nthe cone of light is visualized\r\nthe posterosuperior part of the tympanic membrane is slightly thinned"
+    },
+    {
+        "Path": "16149162_230516082008275831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "16149672_231010083238491831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa nhợt nhạt ",
+        "DescriptionEN": "superior septal deviation\r\nthe middle turbinate mucosa is pale"
+    },
+    {
+        "Path": "16150712_231116104929033831_954_image01.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "16150712_231116104929033831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "16151317_231114075859458831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và nấm\r\nmàng nhĩ nguyên vẹn, dày nhẹ, tam giác sáng còn",
+        "DescriptionEN": "cerumen with superimposed fungal infection in the external auditory canal\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "16151317_231114075859458831_954_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "16151333_230814085615008831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, mỏng ở góc trước dưới, mất tam giác sáng, phần còn lại của màng nhĩ dày",
+        "DescriptionEN": "the tympanic membrane is intact but thinned in the anteroinferior quadrant\r\nthe cone of light is not visualized\r\nthe remaining part of the tympanic membrane is thickened"
+    },
+    {
+        "Path": "16151333_230814085615008831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "16151534_230713092020564831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "thanh thiệt hình omega",
+        "DescriptionEN": "omega-shaped epiglottis"
+    },
+    {
+        "Path": "16151534_230713092020564831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "thanh thiệt hình omega",
+        "DescriptionEN": "omega-shaped epiglottis"
+    },
+    {
+        "Path": "16151534_230713092020564831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\ncó khối nhạt màu ở khe giữa, nghĩ polyp",
+        "DescriptionEN": "superior septal deviation\r\na pale mass protrudes from the middle meatus, suspected of polyp"
+    },
+    {
+        "Path": "16151965_230707153111316831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "16151965_230707153111316831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "dòng dịch mủ từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "a streak of purulent discharge from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "16152097_231117150631335831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "16153916_230516094601170831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và nấm\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "cerumen with superimposed fungal infection in the external auditory canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "16153916_230516094601170831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "16155173_231002081313153831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối mềm màu hồng ở cuốn dưới",
+        "DescriptionEN": "a pink soft mass on the inferior turbinate"
+    },
+    {
+        "Path": "16155173_231002081313153831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nsung huyết đầu cuốn dưới",
+        "DescriptionEN": "superior septal deviation\r\nerythema of the anterior tip of the middle turbinate"
+    },
+    {
+        "Path": "20064902_230919090142300831_954_image05.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phêix\r\ndây thanh (T) phù nề\r\nxóa thanh thất",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area\r\nthe left vocal cord is edematous\r\nventricular obliteration"
+    },
+    {
+        "Path": "20064902_230919090142300831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phêix\r\ndây thanh (T) phù nề\r\nxóa thanh thất",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area\r\nthe left vocal cord is edematous\r\nventricular obliteration"
+    },
+    {
+        "Path": "20066822_230920083932327831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area"
+    },
+    {
+        "Path": "20066822_230920083932327831_954_image05.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area"
+    },
+    {
+        "Path": "20067154_230607093358363831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh 2 bên phù nề, khép không sát",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe vocal cords are edematous\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "20067154_230607093358363831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh 2 bên phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe vocal cords are edematous"
+    },
+    {
+        "Path": "20067277_230921093217991831_121_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "20069187_230418083403330831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "20071315_230914090827079831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "có khối hồng ở vòm che lấp hố Rosenmuller (P)",
+        "DescriptionEN": "a pink mass on the nasopharynx filling the right Rosenmuller's fossa"
+    },
+    {
+        "Path": "20071315_230914090827079831_954_image07.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát",
+        "DescriptionEN": "tonsillar hypertrophy "
+    },
+    {
+        "Path": "20071749_231002085236567831_121_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\ndây thanh khép không sát",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "20071749_231002085236567831_121_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\nquá phát mép sau\r\ndây thanh 2 bên phù nề",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nthe vocal cords are edematous"
+    },
+    {
+        "Path": "20072280_230615151513751831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "20072280_230615151513751831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết ",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "20072671_230515082954398831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày ở phần sau và phần dưới\r\ntam giác sáng không rõ",
+        "DescriptionEN": "the tympanic membrane is intact but thickened in the posterior and inferior parts\r\nthe cone of light is not well visualized"
+    },
+    {
+        "Path": "20072671_230515082954398831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vảy máu đọng ở cuốn dưới và vách ngăn",
+        "DescriptionEN": "dark red crusts on the inferior turbinate and septum"
+    },
+    {
+        "Path": "20079258_230929084533150831_954_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "cuốn giữa cong ngược",
+        "DescriptionEN": "paradoxical middle turbinate"
+    },
+    {
+        "Path": "20079258_230929084533150831_954_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "20079258_230929084533150831_954_image05.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh khép không sát",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "20079258_230929084533150831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "quá phát mép sau\r\ndây thanh 2 bên phù nề nhẹ",
+        "DescriptionEN": "posterior commissure hypertrophy \r\nthe vocal cords are slightly edematous"
+    },
+    {
+        "Path": "20079624_230906102248604831_121_image01.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ\r\nmàng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the external auditory canal is slightly erythematous\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "22041164_230829083212855831_954_image05.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "22043259_230621093343707831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, mỏng ở góc trước dưới, phần còn lại của màng nhĩ dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thinned in the anteroinferior quadrant\r\nthe remaining part of the tympanic membrane is thickened\r\nthe cone of light is not visualized "
+    },
+    {
+        "Path": "22043259_230621093343707831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, mỏng ở góc trước dưới, phần còn lại của màng nhĩ dày, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but thinned in the anteroinferior quadrant\r\nthe remaining part of the tympanic membrane is thickened\r\nthe cone of light is not visualized "
+    },
+    {
+        "Path": "22043259_230621093343707831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22043259_230621093343707831_121_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh phù nề, khép không sát",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nedema and erythema of the vocal cords"
+    },
+    {
+        "Path": "22043259_230621093343707831_121_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh 2 bên phù nề nhẹ",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nthe vocal cords are slightly edematous"
+    },
+    {
+        "Path": "22107682_231012095632670831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe middle turbinate mucosa is pale"
+    },
+    {
+        "Path": "22108515_230428101950352831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "22109700_230914081528019831_121_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation "
+    },
+    {
+        "Path": "22109700_230914081528019831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22110218_231219085946529831_954_image05.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai\r\nmàng nhĩ nguyên vẹn, dày, mất tam giác sáng",
+        "DescriptionEN": "cerumen in the external auditory canal\r\nthe tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "22110218_231219085946529831_954_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần ca0",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22110834_230407075645705831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22110834_230407075645705831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "hốc mũi đọng dịch nhầy trong",
+        "DescriptionEN": "presence of nasal watery discharge"
+    },
+    {
+        "Path": "22110834_231027095013965831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "22110868_231027103720276831_121_image01.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm sung huyết\r\nvòm đọng dịch nhầy trắng",
+        "DescriptionEN": "erythema of the nasopharynx\r\nwhitish mucus on the nasopharynx"
+    },
+    {
+        "Path": "22110986_230407073620409831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22111049_230407072616505831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "22111049_231027094212922831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn ",
+        "DescriptionEN": "septal deviation"
+    },
+    {
+        "Path": "22111085_230410093848009831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai\r\nmàng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "cerumen in the external auditory canal\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is not visualized "
+    },
+    {
+        "Path": "22111085_230410093848009831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai\r\nmàng nhĩ nguyên vẹn, dày nhẹ, tam giác sáng còn",
+        "DescriptionEN": "cerumen in the external auditory canal\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is visualized "
+    },
+    {
+        "Path": "22111085_230410093848009831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22111085_231027094801984831_121_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\ndây thanh 2 bên sung huyết",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nthe vocal cords are erythematous"
+    },
+    {
+        "Path": "22111362_230424090545699831_954_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai đọng mủ vàng trắng và nấm\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "yellow white ear discharge with superimposed fungal infection in the external auditory canal\r\nthe tympanic membrane is not visualized"
+    },
+    {
+        "Path": "22111801_230929080849937831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum "
+    },
+    {
+        "Path": "22114013_230703082808292831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum "
+    },
+    {
+        "Path": "22155863_231018085038522831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai\r\nmàng nhĩ nguyên vẹn, dày, mất tam giác sáng ",
+        "DescriptionEN": "cerumen in the external auditory canal\r\nthe tympanic membrane is intact but thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "22155863_231018085038522831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có dịch mủ vàng và nấm che phần trước của màng nhĩ\r\nphần sau của màng nhĩ dày",
+        "DescriptionEN": "yellow ear discharge with superimposed fungal infection in the external auditory canal and covers the anterior quadrants of the tympanic membrane\r\nthe posterior part of the tympanic membrane is thickened\r\n"
+    },
+    {
+        "Path": "22157358_230327084655941831_121_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh phù nề, khép không sát",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nedema and erythema of the vocal cords"
+    },
+    {
+        "Path": "22157358_230327084655941831_121_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh phù nề sung huyết",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nedema and erythema of the vocal cords"
+    },
+    {
+        "Path": "22158640_230327081806858831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22158640_230327081806858831_121_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "22160111_231123094147396831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai, dịch mủ vàng và nấm\r\nmàng nhĩ chưa quan sát được",
+        "DescriptionEN": "cerumen and yellow ear discharge with superimposed fungal infection in the external auditory canal\r\nthe tympanic membrane is not visualized\r\n"
+    },
+    {
+        "Path": "22160111_231123094147396831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22160111_231123094147396831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22161247_231213090159744831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22161247_231213090159744831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22161247_231220142853674831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "phù nề sụn phễu và nếp liên phễu\r\nxóa thanh thất\r\nphù nề hạ thanh môn ",
+        "DescriptionEN": "edema of the arytenoid cartilages and interarytenoid area\r\nventricular obliteration\r\nsubglottic edema"
+    },
+    {
+        "Path": "22161247_231220142853674831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "22161247_231220142853674831_954_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "22161247_231220142853674831_954_image09.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "22162576_230905065625688831_954_image01.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "thanh thiệt phù nề ",
+        "DescriptionEN": "edema of the epiglottis"
+    },
+    {
+        "Path": "22162576_230905065625688831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "thanh thiệt phù nề\r\nsụn phễu phù nề",
+        "DescriptionEN": "edema of the epi\r\nedema of the arytenoid cartilages"
+    },
+    {
+        "Path": "22162576_230906153710361831_954_image01.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "phù nề lưỡi gà",
+        "DescriptionEN": "edema of the uvula"
+    },
+    {
+        "Path": "22162576_230912144918124831_954_image03.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "thanh thiệt phù nề\r\nhạ họng đọng dịch nhầy trắng đục\r\nsụn phễu phù nề",
+        "DescriptionEN": "the epiglottis is edematous\r\nwhite mucus in the hypopharynx\r\nedema of the arytenoid cartilages "
+    },
+    {
+        "Path": "23077742_230424111606385831_121_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23077742_230424111606385831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23077757_230403152939756831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\ndây thanh 2 bên sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nthe vocal cords are erythematous"
+    },
+    {
+        "Path": "23078142_231101101814193831_954_image03.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai \r\nmàng nhĩ nguyên vẹn, dày ở phần sau, tam giác sáng không rõ",
+        "DescriptionEN": "cerumen in the external auditory canal\r\nthe tympanic membrane is intact but thickened in the posterior quadrants\r\nthe cone of light is not well visualized"
+    },
+    {
+        "Path": "23078697_230404142615060831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "gai vách ngăn chạm vào cuốn dưới",
+        "DescriptionEN": "a spur on the septum touching the inferior turbinate"
+    },
+    {
+        "Path": "23078697_230404142615060831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc mũi sung huyết\r\nhốc mũi đọng dịch nhầy trắng",
+        "DescriptionEN": "superior septal deviation\r\nthe nasal mucosa is erythematous\r\nwhite mucus in the nasal cavity"
+    },
+    {
+        "Path": "23078697_230404142615060831_121_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "niêm mạc vòm phù nề\r\ndịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "edema of the nasopharynx\r\nwhite mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "23078697_230404142615060831_121_image07.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai sung huyết nhẹ, có ráy tai và nấm\r\nmàng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the external auditory canal is slightly erythematous\r\ncerumen with superimposed fungal infection in the external auditory canal\r\nthe tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23078994_230405081302497831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23078994_230405081302497831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23078997_230405083240983831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23078997_230405083240983831_121_image02.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "màng nhĩ nguyên vẹn, dày nhẹ, mất tam giác sáng",
+        "DescriptionEN": "the tympanic membrane is intact but slightly thickened, the cone of light is not visualized"
+    },
+    {
+        "Path": "23078997_230405083240983831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23078997_230405083240983831_121_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "23079204_230801085033209831_954_image06.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\ndây thanh phù nề sung huyết\r\nxóa thanh thất",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy \r\nthe vocal cords are edematous and erythematous\r\nventricular obliteration"
+    },
+    {
+        "Path": "23079283_230905080457493831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23079298_230411095149642831_121_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23079298_230411095149642831_121_image07.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages"
+    },
+    {
+        "Path": "23079362_230414151023080831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23079362_230414151023080831_121_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23080680_231027085814640831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao\r\nniêm mạc cuốn giữa nhợt nhạt",
+        "DescriptionEN": "superior septal deviation\r\nthe middle turbinate mucosa is pale"
+    },
+    {
+        "Path": "23080830_230517115121313831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\ndây thanh phù nề sung huyết",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nthe vocal cords are edematous and erythematous"
+    },
+    {
+        "Path": "23080830_230517115121313831_954_image04.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh phù nề sung huyết, khép không kín",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nedema and erythema of the vocal cords\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "23080830_230517115121313831_954_image05.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\nquá phát mép sau\r\ndây thanh phù nề sung huyết",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nthe vocal cords are edematous and erythematous"
+    },
+    {
+        "Path": "23080830_230517115121313831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề\r\ndây thanh phù nề sung huyết, khép không kín",
+        "DescriptionEN": "edema of the arytenoid cartilages\r\nedema and erythema of the vocal cords\r\nincomplete glottic closure"
+    },
+    {
+        "Path": "23081629_230407095937623831_121_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\ndây thanh 2 bên phù nề\r\nquá phát mép sau",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nthe vocal cords are edematous\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "23082124_230428091722080831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề sung huyết \r\nquá phát mép sau\r\ndây thanh 2 bên phù nề",
+        "DescriptionEN": "edema and erythema of the arytenoid cartilages\r\nposterior commissure hypertrophy\r\nthe vocal cords are edematous"
+    },
+    {
+        "Path": "23082290_230602145401139831_954_image06.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát ",
+        "DescriptionEN": "tonsillar hypertrophy"
+    },
+    {
+        "Path": "23301219_231208104931498831_121_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23301219_231208104931498831_121_image06.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23301898_231214110411619831_121_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "ống tai có ráy tai và nấm che phần sau màng nhĩ\r\ntam giác sáng mất",
+        "DescriptionEN": "cerumen with superimposed fungal infection in the external auditory canal and covers the posterior quadrants of the tympanic membrane\r\nthe cone of light is not visualized\r\n"
+    },
+    {
+        "Path": "23301942_231211084924551831_954_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo vách ngăn phần cao",
+        "DescriptionEN": "superior septal deviation"
+    },
+    {
+        "Path": "23301942_231211084924551831_954_image04.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "amidan 2 bên quá phát",
+        "DescriptionEN": "tonsillar hypertrophy"
+    },
+    {
+        "Path": "23302232_231211085718508831_954_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "cuốn giữa cong ngược",
+        "DescriptionEN": "paradoxical middle turbinate"
+    },
+    {
+        "Path": "23302232_231211085718508831_954_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn ",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "13135998_240329090725185831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn (T) \r\nniêm mạc mũi nhợt nhạt",
+        "DescriptionEN": "a spur on the septum"
+    },
+    {
+        "Path": "13136475_240614135513901831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh phù nề (T)>(P) ",
+        "DescriptionEN": "vocal cord edema (T)>(P) "
+    },
+    {
+        "Path": "13136475_240614135513901831_954_image04.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "dây thanh phù nề, khép không sát khi phát âm",
+        "DescriptionEN": "vocal cord edema,incomplete glottic closure"
+    },
+    {
+        "Path": "13137211_240306082136481831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn (T)",
+        "DescriptionEN": "a spur on the septum (T) "
+    },
+    {
+        "Path": "13137511_240918075921205831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "mào vách ngăn (T) ",
+        "DescriptionEN": "a spur on the septum (T) "
+    },
+    {
+        "Path": "13137864_240201144119392831_121_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vòm sung huyết, phù nề, đọng vẩy vàng ở vùng giữa vòm\r\ndịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "the nasopharynx is erythematous, edematous, and has the yellow scales in the middle of the nasopharynx\r\nwhite mucus from the meatus moving toward the nasopharynx\r\n"
+    },
+    {
+        "Path": "13137864_240201144119392831_121_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "dịch nhầy trắng từ khe mũi chảy xuống vòm",
+        "DescriptionEN": "white mucus from the meatus moving toward the nasopharynx"
+    },
+    {
+        "Path": "13137864_240201144119392831_121_image09.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "trụ trước và lưỡi gà phù nề",
+        "DescriptionEN": "The anterior pillars of the tonsils and uvula are edematous"
+    },
+    {
+        "Path": "13137944_240812091331820831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vẹo phần cao vách ngăn (T) \r\nquá phát mỏm móc \r\nniêm mạc mũi xuất tiết ít dịch trong",
+        "DescriptionEN": "superior septal deviation\r\nenlargement of the uncinate process\r\nThe nasal mucosa secretes little mucus"
+    },
+    {
+        "Path": "13137944_240812091331820831_121_image05.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi\r\n",
+        "DescriptionEN": "lingual tonsillar hypertrophy"
+    },
+    {
+        "Path": "13138252_240829082201552831_121_image09.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề \r\ndày nếp liên phễu \r\nquá phát mép sau dây thanh ",
+        "DescriptionEN": "edema of the arytenoid cartilages \r\nedema of the interarytenoid area\r\nposterior commissure hypertrophy"
+    },
+    {
+        "Path": "13138867_240704080331798831_954_image01.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi\r\ndày nếp liên phễu",
+        "DescriptionEN": "lingual tonsillar hypertrophy\r\nedema of the interarytenoid area"
+    },
+    {
+        "Path": "13138867_240704080331798831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "dày nếp liên phễu ",
+        "DescriptionEN": "edema of the interarytenoid area"
+    },
+    {
+        "Path": "13138867_240704080331798831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dày, phù nề nếp liên phễu",
+        "DescriptionEN": "edema of the interarrytenoid area"
+    },
+    {
+        "Path": "13138867_240704080331798831_954_image05.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi",
+        "DescriptionEN": "lingual tonsills hypertrophy"
+    },
+    {
+        "Path": "13140140_240104093719027831_954_image02.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "nắp thanh thiệt cong hình omega ",
+        "DescriptionEN": "omega-shaped epiglottis"
+    },
+    {
+        "Path": "13140140_240104093719027831_954_image06.png",
+        "Classification": "ear-left",
+        "Type": "abnormal",
+        "Description": "sẹo mỏng góc trước dưới màng nhĩ",
+        "DescriptionEN": "a thin scar in the anterioinferio quadrant"
+    },
+    {
+        "Path": "13140140_240710091845428831_954_image01.png",
+        "Classification": "ear-right",
+        "Type": "abnormal",
+        "Description": "sẹo mỏng góc trước dưới màng nhĩ, mất tam giác sáng",
+        "DescriptionEN": "a thin scar in the anterioinferior quadrant, the cone of light is not visualized"
+    },
+    {
+        "Path": "13140140_240710091845428831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "khe mũi giữa có khối bờ rõ, mềm nhẵn, mọng trong, màu trắng trong như thạch nghĩ polyp độ 2 ",
+        "DescriptionEN": "The middle meatus has a soft, clear, white, jelly-like mass, thought to be a grade 2 polyp "
+    },
+    {
+        "Path": "13140140_240710091845428831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "khe mũi giữa có khối bờ rõ, mềm nhẵn, mọng trong, màu trắng trong như thạch nghĩ polyp độ 1 ",
+        "DescriptionEN": "The middle meatus has a soft, clear, white, jelly-like mass, thought to be a grade 1 polyp"
+    },
+    {
+        "Path": "13140140_240710091845428831_954_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "nắp thanh thiệt cong hình omega ",
+        "DescriptionEN": "omega-shaped epiglottis"
+    },
+    {
+        "Path": "13140140_240710091845428831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "nắp thanh thiệt cong hình omega ",
+        "DescriptionEN": "omega-shaped epiglottis"
+    },
+    {
+        "Path": "13140140_241001094445032831_954_image02.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề \r\nnắp thanh thiệt cong hình omega ",
+        "DescriptionEN": "edema of the arytenoid\r\nomega-shaped epiglottis"
+    },
+    {
+        "Path": "13140140_241001094445032831_954_image03.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "nắp thanh thiệt cong hình omega ",
+        "DescriptionEN": "omega-shaped epiglottis"
+    },
+    {
+        "Path": "13140140_241001094445032831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "khe mũi trên có khối bờ rõ, mềm nhẵn, mọng trong, màu trắng trong như thạch nghĩ polyp ",
+        "DescriptionEN": "The superior meatus has a soft, clear, white, jelly-like mass, thought to be a polyp"
+    },
+    {
+        "Path": "13140429_240122094012938831_954_image03.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "Khe mũi dưới có dịch mủ trắng đục ",
+        "DescriptionEN": "white purulent discharge in the inferior meatus"
+    },
+    {
+        "Path": "13141410_240227081824840831_954_image04.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "đã phẫu thuật\r\nhố mổ bờ gọn, không đọng dịch, niêm mạc hồng \r\n",
+        "DescriptionEN": "ethmoidectomy has been performed\r\nwith neat edges, no fluid retension, normal mucosa"
+    },
+    {
+        "Path": "13141410_240227081824840831_954_image05.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "đã phẫu thuật\r\nhố mổ bờ gọn, không đọng dịch, niêm mạc hồng \r\ncuốn mũi giữa dính vào vách ngăn ",
+        "DescriptionEN": "ethmoidectomy has been performed\r\nwith neat edges, no fluid retension, normal mucosa \r\nadhension between the middle turbinate and the septum"
+    },
+    {
+        "Path": "13141410_240227081824840831_954_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "đọng mủ trắng đục ở sụn phễu (P) ",
+        "DescriptionEN": "purulence in the arytenoid (P) "
+    },
+    {
+        "Path": "13141410_240227081824840831_954_image08.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "đọng mủ trắng đục ở sụn phễu (P) ",
+        "DescriptionEN": "purulence in the arytenoid (P) "
+    },
+    {
+        "Path": "13141644_240319092100478831_121_image03.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc mũi nhợt nhạt ",
+        "DescriptionEN": "the nasal mucosa is pale"
+    },
+    {
+        "Path": "13141644_240319092100478831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "niêm mạc mũi nhợt nhạt ",
+        "DescriptionEN": "the nasal mucosa is pale "
+    },
+    {
+        "Path": "13141644_240319092100478831_121_image05.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "vòm sung huyết\r\nVA tồn dư độ 1",
+        "DescriptionEN": "erythema of the nasopharynx\r\n"
+    },
+    {
+        "Path": "13141644_240319092100478831_121_image06.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "khe mũi giữa có khối bờ rõ, mềm nhẵn, mọng trong, màu trắng trong như thạch nghĩ polyp, lan xuống hốc mũi",
+        "DescriptionEN": "The middle meatus has a soft, clear, white, jelly-like mass, thought to be a grade 2 polyp "
+    },
+    {
+        "Path": "13141644_240319092100478831_121_image08.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề ",
+        "DescriptionEN": "edema of the arytenoid cartilages"
+    },
+    {
+        "Path": "13141644_241011081009932831_121_image01.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "viêm VA tồn dư ",
+        "DescriptionEN": "Adenoditis"
+    },
+    {
+        "Path": "13141644_241011081009932831_121_image02.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "khe mũi giữa có khối bờ rõ, mềm nhẵn, mọng trong, màu trắng trong như thạch nghĩ polyp độ 1 ",
+        "DescriptionEN": "The middle meatus has a soft, clear, white, jelly-like mass, thought to be a grade 1 polyp "
+    },
+    {
+        "Path": "13141644_241011081009932831_121_image06.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "quá phát mô lympho đáy lưỡi",
+        "DescriptionEN": "hypertrophy of lingual tonsillar"
+    },
+    {
+        "Path": "13141644_241011081009932831_121_image07.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề ",
+        "DescriptionEN": "edema of arytenoid cartilages\r\n"
+    },
+    {
+        "Path": "13142046_240610084817440831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vòm phù nề và sung huyết, đọng dịch\r\nhố Rosenmuller đầy",
+        "DescriptionEN": "nasopharynx is edema and erythema\r\nfullness in the Rosenmuller fossa"
+    },
+    {
+        "Path": "13142046_240610084817440831_121_image07.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "vòm phù nề và sung huyết, đọng dịch\r\nhố Rosenmuller đầy",
+        "DescriptionEN": "nasopharynx is edema and erythema\r\nfullness in the Rosenmuller fossa"
+    },
+    {
+        "Path": "13142046_240610084817440831_121_image08.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "lưỡi gà phù nê",
+        "DescriptionEN": "uvula is edema"
+    },
+    {
+        "Path": "13142427_240318080525353831_121_image04.png",
+        "Classification": "throat",
+        "Type": "abnormal",
+        "Description": "nắp thanh thiệt cong hình omega ",
+        "DescriptionEN": "omega-shaped epiglottis"
+    },
+    {
+        "Path": "13144258_240219083840316831_121_image08.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh (P) dày 1/3 giữa",
+        "DescriptionEN": "1/3 middle of vocal cord (P) is edematous"
+    },
+    {
+        "Path": "13144271_240321094445974831_121_image06.png",
+        "Classification": "vc-closed",
+        "Type": "abnormal",
+        "Description": "sụn phễu phù nề ",
+        "DescriptionEN": "edema of arytenoid cartilages"
+    },
+    {
+        "Path": "13148186_240313144957932831_954_image04.png",
+        "Classification": "vc-open",
+        "Type": "abnormal",
+        "Description": "dây thanh (P) phù nề ",
+        "DescriptionEN": "the right vocal cord is edematous"
+    },
+    {
+        "Path": "13148338_240906134649350831_121_image02.png",
+        "Classification": "nose-right",
+        "Type": "abnormal",
+        "Description": "Vòm sung huyết, có khối ở hố Rosenmuller sung huyết phù nề ",
+        "DescriptionEN": "Nasopharynx mucosa is edematous and errythematous like a mass"
+    },
+    {
+        "Path": "13148338_240906134649350831_121_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "Vòm sung huyết, có khối ở hố Rosenmuller sung huyết phù nề ",
+        "DescriptionEN": "Nasopharynx mucosa is edematous and errythematous like a mass"
+    },
+    {
+        "Path": "13152052_240129081447318831_954_image04.png",
+        "Classification": "nose-left",
+        "Type": "abnormal",
+        "Description": "khe mũi đọng nhiều mủ trắng đục, hình mạng nhện",
+        "DescriptionEN": "purulence from the meatus moving toward the nasopharynx "
+    }
+]
