@@ -6,37 +6,75 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from typing import Optional
+from pathlib import Path
 
 class EntVitBackbone(nn.Module):
     """EntVit backbone for feature extraction"""
     
-    def __init__(self, model_name: str = 'google/vit-base-patch16-224'):
+    def __init__(self, model_name: str = 'egeozsoy/EndoViT'):
         super().__init__()
         
-        # Load pre-trained ViT
+        # First try to load EndoViT from HuggingFace
         try:
-            from transformers import ViTModel, ViTConfig
-            self.config = ViTConfig.from_pretrained(model_name)
-            self.backbone = ViTModel.from_pretrained(model_name)
-            self.feature_dim = self.config.hidden_size
-            print(f"✅ Loaded {model_name} from transformers")
+            print("📥 Loading pretrained EndoViT from HuggingFace...")
+            from huggingface_hub import snapshot_download
+            from timm.models.vision_transformer import VisionTransformer
+            from functools import partial
+            
+            # Download model files
+            model_path = snapshot_download(repo_id=model_name, revision="main")
+            model_weights_path = Path(model_path) / "pytorch_model.bin"
+            
+            if model_weights_path.exists():
+                # Define the EndoViT model architecture (based on ViT-B/16)
+                self.backbone = VisionTransformer(
+                    patch_size=16, 
+                    embed_dim=768, 
+                    depth=12, 
+                    num_heads=12, 
+                    mlp_ratio=4, 
+                    qkv_bias=True, 
+                    norm_layer=partial(nn.LayerNorm, eps=1e-6)
+                ).eval()
+                
+                # Load the pretrained weights
+                model_weights = torch.load(model_weights_path, map_location='cpu', weights_only=False)
+                if 'model' in model_weights:
+                    model_weights = model_weights['model']
+                    
+                loading_info = self.backbone.load_state_dict(model_weights, strict=False)
+                self.feature_dim = 768
+                print(f"✅ Successfully loaded pretrained EndoViT: {loading_info}")
+            else:
+                raise FileNotFoundError("EndoViT weights not found")
+                
         except Exception as e:
-            print(f"⚠️ Could not load {model_name}: {e}")
-            # Fallback to torchvision ViT
-            from torchvision.models import vit_b_16
-            self.backbone = vit_b_16(pretrained=True)
+            print(f"⚠️ Could not load EndoViT from HuggingFace: {e}")
+            print("💡 Falling back to standard ViT with ImageNet pretrained weights")
+            # Fallback to standard pretrained ViT
+            from torchvision.models import vit_b_16, ViT_B_16_Weights
+            self.backbone = vit_b_16(weights=ViT_B_16_Weights.IMAGENET1K_V1)
             self.backbone.heads = nn.Identity()
             self.feature_dim = 768
-            print("💡 Using fallback ViT model")
+            print("✅ Using fallback ViT model with pretrained weights")
         
     def forward(self, x):
         """Forward pass"""
         try:
-            # For transformers ViT
-            outputs = self.backbone(x)
-            return outputs.last_hidden_state[:, 0]  # CLS token
-        except:
+            # For EndoViT (timm ViT) - use forward_features method
+            if hasattr(self.backbone, 'forward_features'):
+                features = self.backbone.forward_features(x)
+                # Take the CLS token (first token) from the sequence
+                if len(features.shape) == 3:  # [batch, seq_len, embed_dim]
+                    return features[:, 0]  # CLS token
+                else:
+                    return features
             # For torchvision ViT
+            else:
+                return self.backbone(x)
+        except Exception as e:
+            print(f"⚠️ Error in EntVit forward pass: {e}")
+            # Fallback to regular forward
             return self.backbone(x)
 
 class EntVitHead(nn.Module):
@@ -76,14 +114,14 @@ class EntVitModel(nn.Module):
     """Complete EntVit model for image retrieval"""
     
     def __init__(self, 
-                 model_name: str = 'google/vit-base-patch16-224',
+                 model_name: str = 'egeozsoy/EndoViT',
                  feature_dim: int = 768,
                  num_classes: int = 1000,
                  dropout: float = 0.1,
                  freeze_backbone: bool = False):
         super().__init__()
         
-        # Initialize backbone
+        # Initialize backbone with EndoViT
         self.backbone = EntVitBackbone(model_name)
         
         # Freeze backbone if requested

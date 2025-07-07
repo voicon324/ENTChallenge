@@ -89,6 +89,31 @@ class InfoNCELoss(nn.Module):
         loss = -torch.log(pos_sim.sum(dim=1) / (pos_sim.sum(dim=1) + neg_sim.sum(dim=1)))
         return loss.mean()
 
+class NTXentLoss(nn.Module):
+    """Normalized Temperature-scaled Cross Entropy Loss."""
+    def __init__(self, temperature, device):
+        super(NTXentLoss, self).__init__()
+        self.temperature = temperature
+        self.device = device
+
+    def forward(self, z_i, z_j):
+        batch_size = z_i.shape[0]
+        z = F.normalize(torch.cat((z_i, z_j), dim=0), p=2, dim=1)
+        similarity_matrix = torch.matmul(z, z.T)
+        
+        sim_ij = torch.diag(similarity_matrix, batch_size)
+        sim_ji = torch.diag(similarity_matrix, -batch_size)
+        positives = torch.cat([sim_ij, sim_ji], dim=0)
+        
+        nominator = torch.exp(positives / self.temperature)
+        
+        mask = (~torch.eye(batch_size * 2, batch_size * 2, dtype=bool)).float().to(self.device)
+        denominator = mask * torch.exp(similarity_matrix / self.temperature)
+        
+        loss_partial = -torch.log(nominator / torch.sum(denominator, dim=1))
+        loss = torch.sum(loss_partial) / (2 * batch_size)
+        return loss
+
 class Trainer:
     """Main Trainer class"""
     
@@ -198,6 +223,11 @@ class Trainer:
         elif strategy == 'info_nce':
             loss_fn = InfoNCELoss(
                 temperature=self.config.training.get('temperature', 0.07)
+            )
+        elif strategy == 'ntxent':
+            loss_fn = NTXentLoss(
+                temperature=self.config.training.get('temperature', 0.07),
+                device=self.device
             )
         else:
             # Default to CrossEntropy for classification

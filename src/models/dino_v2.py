@@ -13,17 +13,19 @@ class DinoV2Backbone(nn.Module):
     def __init__(self, model_name: str = 'dinov2_vitb14'):
         super().__init__()
         
-        # Load pre-trained DinoV2
+        # Load pre-trained DinoV2 model
         try:
-            self.backbone = torch.hub.load('facebookresearch/dinov2', model_name)
-            print(f"✅ Loaded {model_name} from torch.hub")
+            print(f"📥 Loading pretrained {model_name} from torch.hub...")
+            self.backbone = torch.hub.load('facebookresearch/dinov2', model_name, pretrained=True)
+            print(f"✅ Successfully loaded pretrained {model_name}")
         except Exception as e:
-            print(f"⚠️ Could not load {model_name}: {e}")
-            # Fallback to ViT
-            from torchvision.models import vit_b_16
-            self.backbone = vit_b_16(pretrained=True)
+            print(f"⚠️ Could not load pretrained {model_name}: {e}")
+            print("💡 Falling back to torchvision ViT with ImageNet pretrained weights")
+            # Fallback to ViT with pretrained weights
+            from torchvision.models import vit_b_16, ViT_B_16_Weights
+            self.backbone = vit_b_16(weights=ViT_B_16_Weights.IMAGENET1K_V1)
             self.backbone.heads = nn.Identity()
-            print("💡 Using fallback ViT model")
+            print("✅ Using fallback ViT model with pretrained weights")
         
         # Get output dimension
         self.feature_dim = self._get_feature_dim()

@@ -7,8 +7,17 @@ import torch.nn as nn
 from typing import Dict, Any
 from pathlib import Path
 
+# Import models from modules
+try:
+    from .models.dino_v2 import DinoV2Model as DinoV2Core
+    from .models.ent_vit import EntVitModel as EntVitCore
+except ImportError:
+    # For direct execution
+    from models.dino_v2 import DinoV2Model as DinoV2Core
+    from models.ent_vit import EntVitModel as EntVitCore
+
 class DinoV2Model(nn.Module):
-    """DinoV2 Model for Image Retrieval"""
+    """DinoV2 Model for Image Retrieval - Wrapper around core DinoV2Model"""
     
     def __init__(self, 
                  feature_dim: int = 768,
@@ -17,66 +26,29 @@ class DinoV2Model(nn.Module):
                  freeze_backbone: bool = False):
         super().__init__()
         
-        # Load pre-trained DinoV2
-        try:
-            self.backbone = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitb14')
-            backbone_dim = 768  # DinoV2 ViT-B/14 output dimension
-        except Exception as e:
-            print(f"⚠️ Could not load DinoV2 from torch.hub: {e}")
-            print("💡 Using fallback ViT model")
-            from torchvision.models import vit_b_16
-            self.backbone = vit_b_16(pretrained=True)
-            # Remove classifier head
-            self.backbone.heads = nn.Identity()
-            backbone_dim = 768
-        
-        # Freeze backbone if requested
-        if freeze_backbone:
-            for param in self.backbone.parameters():
-                param.requires_grad = False
-            print("🔒 Frozen backbone parameters")
-        
-        # Feature projection layers
-        self.feature_projection = nn.Sequential(
-            nn.Linear(backbone_dim, feature_dim),
-            nn.ReLU(inplace=True),
-            nn.Dropout(dropout),
-            nn.Linear(feature_dim, feature_dim),
-            nn.LayerNorm(feature_dim)
+        # Use the core DinoV2Model from models module
+        self.model = DinoV2Core(
+            model_name='dinov2_vitb14',
+            feature_dim=feature_dim,
+            num_classes=num_classes,
+            dropout=dropout,
+            freeze_backbone=freeze_backbone
         )
         
-        # Classification head (for fine-tuning)
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout),
-            nn.Linear(feature_dim, num_classes)
-        )
-        
-        # Store dimensions
+        # Store dimensions for compatibility
         self.feature_dim = feature_dim
         self.num_classes = num_classes
         
     def forward(self, x, return_features=False):
         """Forward pass"""
-        # Extract features from backbone
-        features = self.backbone(x)
-        
-        # Project features
-        projected_features = self.feature_projection(features)
-        
-        if return_features:
-            return projected_features
-        
-        # Classification
-        logits = self.classifier(projected_features)
-        
-        return logits
+        return self.model.forward(x, return_features=return_features)
     
     def get_features(self, x):
         """Get feature embeddings"""
-        return self.forward(x, return_features=True)
+        return self.model.get_features(x)
 
 class EntVitModel(nn.Module):
-    """EndoViT Model for Image Retrieval"""
+    """EndoViT Model for Image Retrieval - Wrapper around core EntVitModel"""
     
     def __init__(self, 
                  feature_dim: int = 768,
@@ -85,101 +57,26 @@ class EntVitModel(nn.Module):
                  freeze_backbone: bool = False):
         super().__init__()
         
-        # Load pre-trained EndoViT from HuggingFace
-        try:
-            from timm.models.vision_transformer import VisionTransformer
-            from functools import partial
-            from huggingface_hub import snapshot_download
-            
-            print("📥 Downloading EndoViT model from HuggingFace...")
-            # Download model files
-            model_path = snapshot_download(repo_id="egeozsoy/EndoViT", revision="main")
-            model_weights_path = Path(model_path) / "pytorch_model.bin"
-            
-            # Define the EndoViT model architecture
-            self.backbone = VisionTransformer(
-                patch_size=16, 
-                embed_dim=768, 
-                depth=12, 
-                num_heads=12, 
-                mlp_ratio=4, 
-                qkv_bias=True, 
-                norm_layer=partial(nn.LayerNorm, eps=1e-6)
-            ).eval()
-            
-            # Load the pre-trained weights
-            model_weights = torch.load(model_weights_path, map_location='cpu')['model']
-            loading_info = self.backbone.load_state_dict(model_weights, strict=False)
-            print(f"✅ EndoViT loaded successfully: {loading_info}")
-            
-            backbone_dim = 768  # EndoViT output dimension
-            
-        except Exception as e:
-            print(f"⚠️ Could not load EndoViT from HuggingFace: {e}")
-            print("💡 Using fallback ViT model")
-            from torchvision.models import vit_b_16
-            self.backbone = vit_b_16(pretrained=True)
-            # Remove classifier head
-            self.backbone.heads = nn.Identity()
-            backbone_dim = 768
-        
-        # Freeze backbone if requested
-        if freeze_backbone:
-            for param in self.backbone.parameters():
-                param.requires_grad = False
-            print("🔒 Frozen backbone parameters")
-        
-        # Feature projection layers
-        self.feature_projection = nn.Sequential(
-            nn.Linear(backbone_dim, feature_dim),
-            nn.ReLU(inplace=True),
-            nn.Dropout(dropout),
-            nn.Linear(feature_dim, feature_dim),
-            nn.LayerNorm(feature_dim)
+        # Use the core EntVitModel from models module
+        self.model = EntVitCore(
+            model_name='egeozsoy/EndoViT',  # Use actual EndoViT from HuggingFace
+            feature_dim=feature_dim,
+            num_classes=num_classes,
+            dropout=dropout,
+            freeze_backbone=freeze_backbone
         )
         
-        # Classification head (for fine-tuning)
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout),
-            nn.Linear(feature_dim, num_classes)
-        )
-        
-        # Store dimensions
+        # Store dimensions for compatibility
         self.feature_dim = feature_dim
         self.num_classes = num_classes
         
     def forward(self, x, return_features=False):
         """Forward pass"""
-        # Extract features from backbone
-        try:
-            # For EndoViT - use forward_features method
-            if hasattr(self.backbone, 'forward_features'):
-                features = self.backbone.forward_features(x)
-                # Take the CLS token (first token) from the sequence
-                if len(features.shape) == 3:  # [batch, seq_len, embed_dim]
-                    features = features[:, 0]  # CLS token
-            else:
-                # For fallback ViT
-                features = self.backbone(x)
-        except Exception as e:
-            print(f"⚠️ Error in forward pass: {e}")
-            # Fallback to regular forward
-            features = self.backbone(x)
-        
-        # Project features
-        projected_features = self.feature_projection(features)
-        
-        if return_features:
-            return projected_features
-        
-        # Classification
-        logits = self.classifier(projected_features)
-        
-        return logits
+        return self.model.forward(x, return_features=return_features)
     
     def get_features(self, x):
         """Get feature embeddings"""
-        return self.forward(x, return_features=True)
+        return self.model.get_features(x)
 
 class ContrastiveModel(nn.Module):
     """Wrapper for contrastive learning"""
