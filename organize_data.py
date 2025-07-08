@@ -146,7 +146,7 @@ def main():
     json_path = dataset_dir / 'data.json'
     images_dir = dataset_dir / 'images'
     target_dir = Path('data/processed')
-    
+        
     # Load and analyze data
     print("📖 Loading data...")
     data = load_data(json_path)

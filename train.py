@@ -58,6 +58,11 @@ def main():
         train_loader, val_loader = create_contrastive_dataloaders(cfg['data'], backbone)
         # For contrastive learning, we'll use the same val_loader for testing
         test_loader = val_loader
+    elif training_strategy == 'ntxent':
+        from src.data_loader import create_ntxent_dataloaders
+        train_loader, val_loader = create_ntxent_dataloaders(cfg['data'], backbone)
+        # For NT-Xent learning, we'll use the same val_loader for testing
+        test_loader = val_loader
     else:
         train_loader, val_loader, test_loader = create_dataloaders(cfg['data'], backbone)
     

@@ -8,7 +8,7 @@ wandb:
 
 # -------------------
 # DATA CONFIG
-# -------------------
+# -------------------vơi
 data:
   path: "data/processed/"
   batch_size: 8
@@ -36,8 +36,8 @@ model:
 # TRAINING CONFIG
 # -------------------
 training:
-  # 'contrastive', 'self_supervise_then_finetune', 'test_only'
-  strategy: "contrastive"
+  # 'contrastive', 'self_supervise_then_finetune', 'test_only', 'ntxent'
+  strategy: "ntxent"
   epochs: 50
   optimizer: "AdamW"
   learning_rate: 0.0001

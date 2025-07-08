@@ -185,6 +185,47 @@ class ContrastivePairDataset(Dataset):
         img2, _ = self.base_dataset[idx2]
         
         return img1, img2, label
+    
+class NTXentPairDataset(Dataset):
+    """Dataset for NT-Xent loss (SimCLR-style): returns two augmented views of each image."""
+
+    def __init__(self, base_dataset: ImageRetrievalDataset, 
+                 transform: Optional[transforms.Compose] = None):
+        """
+        Args:
+            base_dataset: Base dataset to create pairs from
+            transform: Augmentation to apply for each view (if None, use base_dataset.transform)
+        """
+        self.base_dataset = base_dataset
+        self.transform = transform if transform is not None else base_dataset.transform
+
+    def __len__(self) -> int:
+        return len(self.base_dataset)
+
+    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor, int]:
+        """
+        Returns:
+            view1: First augmented view of the image
+            view2: Second augmented view of the image
+            label: Class label index (optional, can be ignored for unsupervised)
+        """
+        img_path = self.base_dataset.image_paths[idx]
+        label = self.base_dataset.label_indices[idx]
+
+        # Load image
+        try:
+            image = Image.open(img_path).convert('RGB')
+        except Exception as e:
+            print(f"⚠️ Error loading image {img_path}: {e}")
+            image = Image.new('RGB', (self.base_dataset.image_size, self.base_dataset.image_size), (0, 0, 0))
+
+        # Apply two different augmentations
+        view1 = self.transform(image)
+        view2 = self.transform(image)
+
+        return view1, view2, label
+        
+        
 
 def get_transforms(image_size: int = 224, 
                   split: str = 'train', 
@@ -403,6 +444,62 @@ def create_contrastive_dataloaders(data_config: Dict, backbone: str = 'dino_v2')
     
     val_loader = DataLoader(
         val_contrastive,
+        batch_size=data_config.get('batch_size', 32),
+        shuffle=False,
+        num_workers=data_config.get('num_workers', 4),
+        pin_memory=True
+    )
+    
+    return train_loader, val_loader
+
+def create_ntxent_dataloaders(data_config: Dict, backbone: str = 'dino_v2') -> Tuple[DataLoader, DataLoader]:
+    """Create NT-Xent (SimCLR-style) dataloaders"""
+    
+    # Create base datasets first
+    train_transform = get_transforms(
+        data_config.get('image_size', 224), 
+        'train', 
+        data_config.get('normalize', True),
+        backbone
+    )
+    
+    val_transform = get_transforms(
+        data_config.get('image_size', 224), 
+        'val', 
+        data_config.get('normalize', True),
+        backbone
+    )
+    
+    train_base_dataset = ImageRetrievalDataset(
+        data_config['path'], 
+        split='train',
+        transform=None,  # We'll apply transforms in NTXentPairDataset
+        image_size=data_config.get('image_size', 224)
+    )
+    
+    val_base_dataset = ImageRetrievalDataset(
+        data_config['path'], 
+        split='val',
+        transform=None,  # We'll apply transforms in NTXentPairDataset
+        image_size=data_config.get('image_size', 224)
+    )
+    
+    # Create NT-Xent datasets
+    train_ntxent = NTXentPairDataset(train_base_dataset, transform=train_transform)
+    val_ntxent = NTXentPairDataset(val_base_dataset, transform=val_transform)
+    
+    # Create dataloaders
+    train_loader = DataLoader(
+        train_ntxent,
+        batch_size=data_config.get('batch_size', 32),
+        shuffle=True,
+        num_workers=data_config.get('num_workers', 4),
+        pin_memory=True,
+        drop_last=True
+    )
+    
+    val_loader = DataLoader(
+        val_ntxent,
         batch_size=data_config.get('batch_size', 32),
         shuffle=False,
         num_workers=data_config.get('num_workers', 4),
