@@ -428,10 +428,9 @@ class Trainer:
                     checkpoint_path
                 )
             
-            # Check for best model
-            primary_metric = val_metrics.get('HitRate@10', val_metrics.get('MRR', 0))
-            if primary_metric > self.best_val_metric:
-                self.best_val_metric = primary_metric
+            # Check for best model based on validation loss
+            if val_loss < self.best_val_loss:
+                self.best_val_loss = val_loss
                 self.patience_counter = 0
                 
                 # Save best model
@@ -444,15 +443,21 @@ class Trainer:
                     val_loss,
                     best_model_path
                 )
-                print(f"💾 Saved best model with {primary_metric:.4f}")
+                print(f"💾 Saved best model with val_loss: {val_loss:.4f}")
+                
+                # Also track the best primary metric for logging
+                primary_metric = val_metrics.get('HitRate@10', val_metrics.get('MRR', 0))
+                if primary_metric > self.best_val_metric:
+                    self.best_val_metric = primary_metric
                 
                 # Log best model to W&B
-                self.wandb_run.log({"best_metric": primary_metric})
+                self.wandb_run.log({"best_val_loss": val_loss, "best_metric": self.best_val_metric})
                 
             else:
                 self.patience_counter += 1
+                print(f"📈 Val loss not improving for {self.patience_counter}/{early_stopping_patience} epochs")
                 if self.patience_counter >= early_stopping_patience:
-                    print(f"⏰ Early stopping after {early_stopping_patience} epochs without improvement")
+                    print(f"⏰ Early stopping after {early_stopping_patience} epochs without val_loss improvement")
                     break
         
         print("✅ Training completed!")

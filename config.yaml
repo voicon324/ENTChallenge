@@ -45,7 +45,7 @@ training:
   scheduler: "cosine"
   warmup_epochs: 5
   save_every: 10
-  early_stopping_patience: 10
+  early_stopping_patience: 15
   
   # Contrastive learning specific
   temperature: 0.07
