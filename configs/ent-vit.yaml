@@ -4,14 +4,14 @@
 wandb:
   project: "Image_Retrieval_Experiments"  # Tên project trên W&B
   entity: "hokhanhduy-none"           # Tên user/team W&B của bạn
-  run_name: ent_vit_ntxent                          # Tên run cụ thể (null để tự động tạo)
+  run_name: "ent_vit_ntxent"                          # Tên run cụ thể (null để tự động tạo)
 
 # -------------------
 # DATA CONFIG
 # -------------------vơi
 data:
   path: "data/processed/"
-  batch_size: 16
+  batch_size: 8
   num_workers: 4
   train_split: 0.8
   val_split: 0.1

@@ -151,12 +151,14 @@ class Trainer:
         self.best_val_metric = 0.0
         self.patience_counter = 0
         
-        # Output directory
-        self.output_dir = Path("outputs")
-        self.output_dir.mkdir(exist_ok=True)
+        # Output directory - use run_name for unique directories
+        run_name = config.get('wandb', {}).get('run_name', 'default_run')
+        self.output_dir = Path("outputs") / run_name
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         
         print(f"💻 Training on device: {self.device}")
-        print(f"📚 Training batches: {len(train_loader)}")
+        print(f"� Output directory: {self.output_dir}")
+        print(f"�📚 Training batches: {len(train_loader)}")
         print(f"📊 Validation batches: {len(val_loader)}")
     
     def _setup_optimizer(self):
@@ -452,7 +454,7 @@ class Trainer:
                     val_loss,
                     best_model_path
                 )
-                print(f"💾 Saved best model with val_loss: {val_loss:.4f}")
+                print(f"💾 Saved best model with val_loss: {val_loss:.4f} at {best_model_path}")
                 
                 # Also track the best primary metric for logging
                 primary_metric = val_metrics.get('HitRate@10', val_metrics.get('MRR', 0))
