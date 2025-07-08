@@ -21,6 +21,15 @@ help:
 	@echo "  make train-entvit   - Train with EntVit"
 	@echo "  make experiments    - Run all experiments"
 	@echo ""
+	@echo "DinoV2 Experiments:"
+	@echo "  make dinov2-small   - Run DinoV2 ViT-S/14"
+	@echo "  make dinov2-base    - Run DinoV2 ViT-B/14"
+	@echo "  make dinov2-large   - Run DinoV2 ViT-L/14"
+	@echo "  make dinov2-all     - Run all DinoV2 variants"
+	@echo "  make dinov2-test    - Test DinoV2 variants"
+	@echo "  make dinov2-menu    - Interactive DinoV2 menu"
+	@echo "  make dinov2-compare - Compare DinoV2 results"
+	@echo ""
 	@echo "Evaluation:"
 	@echo "  make eval           - Evaluate best model"
 	@echo "  make eval-val       - Evaluate on validation set"
@@ -174,3 +183,33 @@ docker-build:
 docker-run:
 	@echo "🐳 Running Docker container..."
 	docker run -it --gpus all -v $(PWD):/workspace image-retrieval
+
+# DinoV2 Experiments
+.PHONY: dinov2-small dinov2-base dinov2-large dinov2-all dinov2-test
+dinov2-small:
+	@echo "🚀 Running DinoV2 ViT-S/14 experiment..."
+	python train.py --config configs/dinov2_vits14.yaml
+
+dinov2-base:
+	@echo "🚀 Running DinoV2 ViT-B/14 experiment..."
+	python train.py --config configs/dinov2_vitb14.yaml
+
+dinov2-large:
+	@echo "🚀 Running DinoV2 ViT-L/14 experiment..."
+	python train.py --config configs/dinov2_vitl14.yaml
+
+dinov2-all:
+	@echo "🚀 Running all DinoV2 experiments..."
+	python run_dinov2_experiments.py
+
+dinov2-test:
+	@echo "🧪 Testing DinoV2 variants..."
+	python test_dinov2_variants.py
+
+dinov2-menu:
+	@echo "📋 DinoV2 experiment menu..."
+	python run_individual_experiments.py
+
+dinov2-compare:
+	@echo "📊 Comparing DinoV2 results..."
+	python compare_dinov2_results.py

@@ -4,7 +4,7 @@
 wandb:
   project: "Image_Retrieval_Experiments"  # Tên project trên W&B
   entity: "hokhanhduy-none"           # Tên user/team W&B của bạn
-  run_name: null                          # Tên run cụ thể (null để tự động tạo)
+  run_name: ent_vit_ntxent                          # Tên run cụ thể (null để tự động tạo)
 
 # -------------------
 # DATA CONFIG
@@ -38,7 +38,7 @@ model:
 training:
   # 'contrastive', 'self_supervise_then_finetune', 'test_only', 'ntxent'
   strategy: "ntxent"
-  epochs: 50
+  epochs:   200
   optimizer: "AdamW"
   learning_rate: 0.0001
   weight_decay: 0.01

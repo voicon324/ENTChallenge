@@ -16,7 +16,7 @@ import random
 from sklearn.model_selection import train_test_split
 
 class ImageRetrievalDataset(Dataset):
-    """Dataset class for image retrieval"""
+    """Dataset class for image retrieval with 4 ENT classes: ear/nose/throat/vc"""
     
     def __init__(self, 
                  data_path: str, 
@@ -35,18 +35,25 @@ class ImageRetrievalDataset(Dataset):
         self.transform = transform
         self.image_size = image_size
         
+        # Define the 4 ENT classes
+        self.target_classes = ['ear', 'nose', 'throat', 'vc']
+        
         # Load data
         self.image_paths, self.labels = self._load_data()
         
-        # Create label to index mapping
-        self.label_to_idx = {label: idx for idx, label in enumerate(sorted(set(self.labels)))}
+        # Map original labels to target classes
+        self.image_paths, self.labels = self._map_to_target_classes()
+        
+        # Create label to index mapping for the 4 classes
+        self.label_to_idx = {label: idx for idx, label in enumerate(self.target_classes)}
         self.idx_to_label = {idx: label for label, idx in self.label_to_idx.items()}
         
         # Convert labels to indices
         self.label_indices = [self.label_to_idx[label] for label in self.labels]
         
         print(f"📊 Loaded {len(self.image_paths)} images for {split} split")
-        print(f"📋 Number of classes: {len(self.label_to_idx)}")
+        print(f"📋 Number of classes: {len(self.label_to_idx)} (ear/nose/throat/vc)")
+        print(f"📈 Class distribution: {self._get_class_distribution()}")
         
     def _load_data(self) -> Tuple[List[str], List[str]]:
         """Load image paths and labels"""
@@ -123,6 +130,77 @@ class ImageRetrievalDataset(Dataset):
     def get_num_classes(self) -> int:
         """Get number of classes"""
         return len(self.label_to_idx)
+    
+    def _map_to_target_classes(self) -> Tuple[List[str], List[str]]:
+        """Map original labels to the 4 target ENT classes"""
+        mapped_paths = []
+        mapped_labels = []
+        
+        # Define mapping from original labels to target classes
+        class_mapping = {
+            # Ear classes
+            'ear-left': 'ear',
+            'ear-right': 'ear',
+            'ear_left': 'ear',
+            'ear_right': 'ear',
+            'ear': 'ear',
+            
+            # Nose classes  
+            'nose-left': 'nose',
+            'nose-right': 'nose',
+            'nose_left': 'nose',
+            'nose_right': 'nose',
+            'nose': 'nose',
+            
+            # Throat classes
+            'throat': 'throat',
+            
+            # VC (Vocal Cords) classes
+            'vc-closed': 'vc',
+            'vc-open': 'vc',
+            'vc_closed': 'vc',
+            'vc_open': 'vc',
+            'vc': 'vc',
+            'vocal_cord': 'vc',
+            'vocal_cords': 'vc'
+        }
+        
+        # Map labels to target classes
+        for img_path, label in zip(self.image_paths, self.labels):
+            # Normalize label (handle different naming conventions)
+            label_normalized = label.lower().replace('_', '-')
+            
+            if label_normalized in class_mapping:
+                mapped_label = class_mapping[label_normalized]
+                mapped_paths.append(img_path)
+                mapped_labels.append(mapped_label)
+            elif label.lower() in class_mapping:
+                mapped_label = class_mapping[label.lower()]
+                mapped_paths.append(img_path)
+                mapped_labels.append(mapped_label)
+            else:
+                # Try substring matching for cases where label contains target class names
+                found_match = False
+                for target_class in self.target_classes:
+                    if target_class in label.lower():
+                        mapped_paths.append(img_path)
+                        mapped_labels.append(target_class)
+                        found_match = True
+                        break
+                
+                if not found_match:
+                    print(f"⚠️ Skipping image with unmapped label: {label}")
+        
+        original_count = len(self.image_paths)
+        mapped_count = len(mapped_paths)
+        print(f"🔍 Mapped {mapped_count}/{original_count} images to target classes")
+        
+        return mapped_paths, mapped_labels
+    
+    def _get_class_distribution(self) -> Dict[str, int]:
+        """Get distribution of classes"""
+        from collections import Counter
+        return dict(Counter(self.labels))
 
 class ContrastivePairDataset(Dataset):
     """Dataset for contrastive learning"""

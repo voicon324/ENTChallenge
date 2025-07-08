@@ -1,0 +1,71 @@
+# Configuration for DinoV2 ViT-B/14 experiments
+# -------------------
+# W&B CONFIG
+# -------------------
+wandb:
+  project: "Image_Retrieval_Experiments"
+  entity: "hokhanhduy-none"
+  run_name: "dinov2_vitb14_ntxent"
+
+# -------------------
+# DATA CONFIG
+# -------------------
+data:
+  path: "data/processed/"
+  batch_size: 12  # Base model, moderate batch size
+  num_workers: 4
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  image_size: 224
+  normalize: true
+
+# -------------------
+# MODEL CONFIG
+# -------------------
+model:
+  backbone: "dino_v2"
+  model_name: "dinov2_vitb14"  # Base model
+  pretrained_checkpoint: null  # ví dụ: "outputs/best_model.pth"
+  feature_dim: 768
+  num_classes: 7
+  dropout: 0.1
+  freeze_backbone: false
+
+# -------------------
+# TRAINING CONFIG
+# -------------------
+training:
+  # 'contrastive', 'self_supervise_then_finetune', 'test_only', 'ntxent'
+  strategy: "ntxent"
+  epochs:   200
+  optimizer: "AdamW"
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  scheduler: "cosine"
+  warmup_epochs: 5
+  save_every: 10
+  early_stopping_patience: 15
+  
+  # Contrastive learning specific
+  temperature: 0.07
+  margin: 0.5
+
+# -------------------
+# EVALUATION CONFIG
+# -------------------
+evaluation:
+  metrics: ["HitRate@1", "HitRate@5", "HitRate@10", "MRR", "mAP"]
+  # Bật/tắt tính năng log ảnh Grad-CAM lên W&B
+  log_grad_cam: true
+  grad_cam_samples: 5
+  save_embeddings: true
+
+# -------------------
+# LOGGING CONFIG
+# -------------------
+logging:
+  log_frequency: 100
+  save_model_frequency: 5
+  log_images: true
+  log_gradients: true

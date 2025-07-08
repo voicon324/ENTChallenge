@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
 Script chính để chạy training - RẤT GỌN
-Chỉ cần chạy: python train.py
+Chỉ cần chạy: python train.py --config configs/dinov2_vitb14.yaml
 """
 
 import yaml
 import wandb
 import torch
+import argparse
 from pathlib import Path
 
 from src.data_loader import create_dataloaders
@@ -15,11 +16,18 @@ from src.trainer import Trainer
 from src.utils import set_seed, setup_logging
 
 def main():
-    # 1. Tải cấu hình từ file YAML
-    config_path = Path('config.yaml')
-    if not config_path.exists():
-        raise FileNotFoundError("File config.yaml không tồn tại!")
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Training script for image retrieval')
+    parser.add_argument('--config', type=str, default='config.yaml',
+                       help='Path to config file (default: config.yaml)')
+    args = parser.parse_args()
     
+    # 1. Tải cấu hình từ file YAML
+    config_path = Path(args.config)
+    if not config_path.exists():
+        raise FileNotFoundError(f"File config {config_path} không tồn tại!")
+    
+    print(f"📋 Loading config from: {config_path}")
     with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
     
@@ -71,8 +79,10 @@ def main():
     model = build_model(cfg['model'])
     
     # 7. [W&B] Theo dõi model (gradients, network topology)
-    if cfg['logging']['log_gradients']:
-        wandb.watch(model, log='all', log_freq=cfg['logging']['log_frequency'])
+    logging_config = cfg.get('logging', {})
+    if logging_config.get('log_gradients', False):
+        log_freq = logging_config.get('log_frequency', 100)
+        wandb.watch(model, log='all', log_freq=log_freq)
     
     # 8. Khởi tạo Trainer và bắt đầu huấn luyện
     print("🎯 Khởi tạo Trainer...")

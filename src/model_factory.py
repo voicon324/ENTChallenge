@@ -20,6 +20,7 @@ class DinoV2Model(nn.Module):
     """DinoV2 Model for Image Retrieval - Wrapper around core DinoV2Model"""
     
     def __init__(self, 
+                 model_name: str = 'dinov2_vitb14',
                  feature_dim: int = 768,
                  num_classes: int = 1000,
                  dropout: float = 0.1,
@@ -28,7 +29,7 @@ class DinoV2Model(nn.Module):
         
         # Use the core DinoV2Model from models module
         self.model = DinoV2Core(
-            model_name='dinov2_vitb14',
+            model_name=model_name,
             feature_dim=feature_dim,
             num_classes=num_classes,
             dropout=dropout,
@@ -38,6 +39,7 @@ class DinoV2Model(nn.Module):
         # Store dimensions for compatibility
         self.feature_dim = feature_dim
         self.num_classes = num_classes
+        self.model_name = model_name
         
     def forward(self, x, return_features=False):
         """Forward pass"""
@@ -107,16 +109,20 @@ def build_model(model_config: Dict[str, Any]) -> nn.Module:
         Built model
     """
     backbone_name = model_config.get('backbone', 'dino_v2')
+    model_name = model_config.get('model_name', 'dinov2_vitb14')  # DinoV2 variant
     feature_dim = model_config.get('feature_dim', 768)
     num_classes = model_config.get('num_classes', 1000)
     dropout = model_config.get('dropout', 0.1)
     freeze_backbone = model_config.get('freeze_backbone', False)
     
     print(f"🏗️ Building model with backbone: {backbone_name}")
+    if backbone_name == 'dino_v2':
+        print(f"🔧 Using DinoV2 variant: {model_name}")
     
     # Build base model
     if backbone_name == 'dino_v2':
         model = DinoV2Model(
+            model_name=model_name,
             feature_dim=feature_dim,
             num_classes=num_classes,
             dropout=dropout,
