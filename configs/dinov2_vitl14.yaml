@@ -12,7 +12,7 @@ wandb:
 # -------------------
 data:
   path: "data/processed/"
-  batch_size: 8  # Large model, smaller batch size
+  batch_size: 16  # Large model, smaller batch size
   num_workers: 4
   train_split: 0.8
   val_split: 0.1
