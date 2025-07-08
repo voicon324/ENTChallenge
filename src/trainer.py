@@ -295,16 +295,21 @@ class Trainer:
         all_features = []
         all_labels = []
         all_outputs = []
+        sample_images = None  # Store sample images for Grad-CAM
         
         progress_bar = tqdm(self.val_loader, desc=f"Validation Epoch {self.current_epoch + 1}")
         
         with torch.no_grad():
-            for batch in progress_bar:
+            for batch_idx, batch in enumerate(progress_bar):
                 if len(batch) == 2:
                     # Standard classification
                     images, targets = batch
                     images = images.to(self.device)
                     targets = targets.to(self.device)
+                    
+                    # Store first batch images for Grad-CAM
+                    if batch_idx == 0:
+                        sample_images = images[:self.config.evaluation.get('grad_cam_samples', 1)]
                     
                     outputs = self.model(images)
                     features = self.model.get_features(images)
@@ -320,6 +325,10 @@ class Trainer:
                     images1 = images1.to(self.device)
                     images2 = images2.to(self.device)
                     # labels = labels.to(self.device)  # No longer needed for loss
+                    
+                    # Store first batch images for Grad-CAM
+                    if batch_idx == 0:
+                        sample_images = images1[:self.config.evaluation.get('grad_cam_samples', 1)]
                     
                     features1 = self.model.get_features(images1)
                     features2 = self.model.get_features(images2)
@@ -349,11 +358,11 @@ class Trainer:
             )
             
             # Log Grad-CAM if enabled
-            if self.config.evaluation.get('log_grad_cam', False):
+            if self.config.evaluation.get('log_grad_cam', False) and sample_images is not None:
                 try:
                     grad_cam_img = generate_grad_cam_image(
                         self.model, 
-                        images[:self.config.evaluation.get('grad_cam_samples', 1)], 
+                        sample_images, 
                         self.device
                     )
                     val_metrics["grad_cam_example"] = wandb.Image(grad_cam_img)

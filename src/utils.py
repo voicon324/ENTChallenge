@@ -173,7 +173,7 @@ def calculate_map(similarity_matrix: torch.Tensor, labels: torch.Tensor) -> floa
 def generate_grad_cam_image(model, images: torch.Tensor, device: torch.device, 
                            target_layer: str = None) -> np.ndarray:
     """
-    Tạo ảnh Grad-CAM để visualize
+    Tạo ảnh Grad-CAM để visualize attention heatmap overlay trên ảnh gốc
     
     Args:
         model: Model để tạo Grad-CAM
@@ -182,53 +182,295 @@ def generate_grad_cam_image(model, images: torch.Tensor, device: torch.device,
         target_layer: Target layer name
     
     Returns:
-        Grad-CAM visualization as numpy array
+        Grad-CAM visualization as numpy array with heatmap overlay
     """
     try:
-        from pytorch_grad_cam import GradCAM
-        from pytorch_grad_cam.utils.image import show_cam_on_image
-        
-        # Chọn layer cuối cùng nếu không được specify
-        if target_layer is None:
-            target_layers = [model.backbone.norm]  # Điều chỉnh theo architecture
-        else:
-            target_layers = [getattr(model, target_layer)]
-        
-        # Tạo GradCAM
-        cam = GradCAM(model=model, target_layers=target_layers)
-        
-        # Chỉ lấy một ảnh để visualize
-        single_image = images[0:1]
-        
-        # Tạo target (có thể là class với confidence cao nhất)
+        # Use the first image for visualization
+        single_image = images[0:1].clone().detach().requires_grad_(True)
         model.eval()
-        with torch.no_grad():
+        
+        # Get gradients and activations from the last convolutional layer
+        # Try to find the last conv layer automatically with better detection
+        target_layer_found = None
+        conv_layers = []
+        
+        # First, try to find conv layers in the entire model
+        for name, module in model.named_modules():
+            if isinstance(module, torch.nn.Conv2d):
+                conv_layers.append((name, module))
+        
+        # If we found conv layers, use the last one
+        if conv_layers:
+            target_layer_found = conv_layers[-1][1]
+            print(f"🎯 Using conv layer: {conv_layers[-1][0]}")
+        else:
+            # Fallback: try to get from backbone for ViT models
+            if hasattr(model, 'backbone'):
+                # For Vision Transformers, get attention from last layer
+                if hasattr(model.backbone, 'blocks'):
+                    # ViT case
+                    return generate_vit_attention_map(model, single_image, device)
+                else:
+                    # Try to find conv layers in backbone
+                    for name, module in model.backbone.named_modules():
+                        if isinstance(module, torch.nn.Conv2d):
+                            conv_layers.append((name, module))
+                    if conv_layers:
+                        target_layer_found = conv_layers[-1][1]
+                        print(f"🎯 Using backbone conv layer: {conv_layers[-1][0]}")
+        
+        # If still no conv layer found, try other layer types
+        if target_layer_found is None:
+            # Try to find Linear layers or other suitable layers
+            for name, module in model.named_modules():
+                if isinstance(module, (torch.nn.Linear, torch.nn.BatchNorm2d)):
+                    if hasattr(module, 'weight') and len(module.weight.shape) >= 2:
+                        target_layer_found = module
+                        print(f"🎯 Using fallback layer: {name}")
+                        break
+        
+        # If we still can't find a suitable layer, create a simple gradient-based heatmap
+        if target_layer_found is None:
+            print("🔄 No suitable layer found, using input gradient method")
+            return generate_input_gradient_map(model, single_image, device)
+        
+        # Manual Grad-CAM implementation with proper hook handling
+        gradients_dict = {}
+        activations_dict = {}
+        
+        def backward_hook(module, grad_input, grad_output):
+            if grad_output[0] is not None:
+                gradients_dict['gradients'] = grad_output[0].detach()
+        
+        def forward_hook(module, input, output):
+            activations_dict['activations'] = output.detach()
+        
+        # Register hooks
+        handle_backward = target_layer_found.register_full_backward_hook(backward_hook)
+        handle_forward = target_layer_found.register_forward_hook(forward_hook)
+        
+        try:
+            # Forward pass to get activations
             output = model(single_image)
-            target_category = torch.argmax(output, dim=1).item()
+            
+            # Get the score to backprop through
+            if output.dim() > 1 and output.size(1) > 1:
+                # Classification case
+                pred_class = torch.argmax(output, dim=1)
+                score = output[0, pred_class[0]]
+            else:
+                # Feature case - use mean of output
+                score = output.mean()
+            
+            # Backward pass to get gradients
+            model.zero_grad()
+            score.backward(retain_graph=True)
+            
+            # Get gradients and activations from the stored dictionaries
+            if 'gradients' in gradients_dict and 'activations' in activations_dict:
+                gradients = gradients_dict['gradients']
+                activations = activations_dict['activations']
+                
+                # Ensure gradients and activations have spatial dimensions
+                if len(gradients.shape) >= 4 and len(activations.shape) >= 4:
+                    # Calculate Grad-CAM
+                    weights = torch.mean(gradients, dim=[2, 3], keepdim=True)
+                    cam = torch.sum(weights * activations, dim=1, keepdim=True)
+                    cam = F.relu(cam)
+                    
+                    # Resize to input image size
+                    cam = F.interpolate(cam, size=(single_image.shape[2], single_image.shape[3]), 
+                                      mode='bilinear', align_corners=False)
+                    
+                    # Normalize
+                    cam = (cam - cam.min()) / (cam.max() - cam.min() + 1e-8)
+                    cam = cam.squeeze().cpu().numpy()
+                else:
+                    # For non-spatial layers, create a uniform heatmap
+                    cam = np.ones((single_image.shape[2], single_image.shape[3])) * 0.5
+            else:
+                # Fallback if hooks didn't capture anything
+                print("⚠️ Hooks didn't capture gradients/activations, using input gradient method")
+                return generate_input_gradient_map(model, single_image, device)
+            
+        finally:
+            # Always remove hooks
+            handle_backward.remove()
+            handle_forward.remove()
         
-        # Generate CAM
-        grayscale_cam = cam(input_tensor=single_image, targets=None)
-        
-        # Convert to visualization
-        image_np = single_image.squeeze().cpu().numpy()
+        # Convert image to numpy
+        image_np = single_image.squeeze().cpu().detach().numpy()
         if image_np.shape[0] == 3:  # RGB
             image_np = np.transpose(image_np, (1, 2, 0))
         
-        # Normalize image
-        image_np = (image_np - image_np.min()) / (image_np.max() - image_np.min())
+        # Normalize image to [0, 1]
+        image_np = (image_np - image_np.min()) / (image_np.max() - image_np.min() + 1e-8)
         
-        # Overlay CAM on image
-        visualization = show_cam_on_image(image_np, grayscale_cam[0], use_rgb=True)
+        # Create heatmap overlay
+        heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
+        heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
+        heatmap = heatmap.astype(np.float32) / 255.0
         
-        return visualization
+        # Blend with original image
+        alpha = 0.3  # Transparency factor - reduced for less overlay
+        overlay = alpha * heatmap + (1 - alpha) * image_np
+        overlay = np.clip(overlay, 0, 1)
+        
+        return (overlay * 255).astype(np.uint8)
         
     except Exception as e:
-        print(f"⚠️ Không thể tạo Grad-CAM: {e}")
-        # Return original image if Grad-CAM fails
-        img = images[0].cpu().numpy()
+        print(f"⚠️ Grad-CAM failed: {e}, using simple gradient method")
+        try:
+            return generate_input_gradient_map(model, images[0:1], device)
+        except Exception as e2:
+            print(f"⚠️ Input gradient method also failed: {e2}")
+            # Ultimate fallback - return original image
+            try:
+                img = images[0].cpu().detach().numpy()
+                if img.shape[0] == 3:
+                    img = np.transpose(img, (1, 2, 0))
+                img = (img - img.min()) / (img.max() - img.min() + 1e-8)
+                return (img * 255).astype(np.uint8)
+            except:
+                # Final fallback
+                return np.zeros((224, 224, 3), dtype=np.uint8)
+
+def generate_input_gradient_map(model, image: torch.Tensor, device: torch.device) -> np.ndarray:
+    """
+    Generate a simple gradient-based attention map using input gradients
+    """
+    try:
+        image = image.clone().detach().requires_grad_(True)
+        model.eval()
+        
+        # Forward pass
+        output = model(image)
+        
+        # Get score
+        if output.dim() > 1 and output.size(1) > 1:
+            pred_class = torch.argmax(output, dim=1)
+            score = output[0, pred_class[0]]
+        else:
+            score = output.mean()
+        
+        # Backward pass
+        model.zero_grad()
+        score.backward()
+        
+        # Get gradients
+        gradients = image.grad.data
+        
+        # Create attention map from gradients
+        gradient_map = torch.abs(gradients).mean(dim=1, keepdim=True)  # Average over channels
+        gradient_map = F.interpolate(gradient_map, size=(image.shape[2], image.shape[3]), 
+                                   mode='bilinear', align_corners=False)
+        
+        # Normalize
+        gradient_map = (gradient_map - gradient_map.min()) / (gradient_map.max() - gradient_map.min() + 1e-8)
+        cam = gradient_map.squeeze().cpu().numpy()
+        
+        # Convert image to numpy
+        image_np = image.squeeze().cpu().detach().numpy()
+        if image_np.shape[0] == 3:
+            image_np = np.transpose(image_np, (1, 2, 0))
+        image_np = (image_np - image_np.min()) / (image_np.max() - image_np.min() + 1e-8)
+        
+        # Create heatmap
+        heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
+        heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
+        heatmap = heatmap.astype(np.float32) / 255.0
+        
+        # Blend
+        alpha = 0.3  # Reduced transparency for clearer original image
+        overlay = alpha * heatmap + (1 - alpha) * image_np
+        overlay = np.clip(overlay, 0, 1)
+        
+        return (overlay * 255).astype(np.uint8)
+        
+    except Exception as e:
+        print(f"⚠️ Input gradient method failed: {e}")
+        # Return original image
+        img = image.squeeze().cpu().detach().numpy()
         if img.shape[0] == 3:
             img = np.transpose(img, (1, 2, 0))
-        img = (img - img.min()) / (img.max() - img.min())
+        img = (img - img.min()) / (img.max() - img.min() + 1e-8)
+        return (img * 255).astype(np.uint8)
+
+def generate_vit_attention_map(model, image: torch.Tensor, device: torch.device) -> np.ndarray:
+    """
+    Generate attention map for Vision Transformer models
+    """
+    try:
+        model.eval()
+        
+        # Get attention weights from the last transformer block
+        def hook_fn(module, input, output):
+            # For ViT, output usually contains attention weights
+            if hasattr(module, 'attn'):
+                module.attention_weights = module.attn.attention_weights
+        
+        # Register hook on the last transformer block
+        if hasattr(model.backbone, 'blocks'):
+            last_block = model.backbone.blocks[-1]
+            handle = last_block.register_forward_hook(hook_fn)
+            
+            # Forward pass
+            with torch.no_grad():
+                _ = model(image)
+            
+            # Get attention weights
+            if hasattr(last_block, 'attention_weights'):
+                attn_weights = last_block.attention_weights  # Shape: [B, heads, seq_len, seq_len]
+                
+                # Average over heads and take attention to CLS token
+                attn_weights = attn_weights.mean(dim=1)  # [B, seq_len, seq_len]
+                attn_map = attn_weights[0, 0, 1:]  # Attention from CLS to patches
+                
+                # Reshape to spatial dimensions
+                grid_size = int(np.sqrt(len(attn_map)))
+                attn_map = attn_map.reshape(grid_size, grid_size)
+                
+                # Resize to image size
+                attn_map = F.interpolate(
+                    attn_map.unsqueeze(0).unsqueeze(0),
+                    size=(image.shape[2], image.shape[3]),
+                    mode='bilinear', align_corners=False
+                ).squeeze().cpu().numpy()
+            else:
+                # Fallback
+                attn_map = np.ones((image.shape[2], image.shape[3])) * 0.5
+            
+            handle.remove()
+        else:
+            attn_map = np.ones((image.shape[2], image.shape[3])) * 0.5
+        
+        # Convert image to numpy
+        image_np = image.squeeze().cpu().numpy()
+        if image_np.shape[0] == 3:
+            image_np = np.transpose(image_np, (1, 2, 0))
+        image_np = (image_np - image_np.min()) / (image_np.max() - image_np.min() + 1e-8)
+        
+        # Normalize attention map
+        attn_map = (attn_map - attn_map.min()) / (attn_map.max() - attn_map.min() + 1e-8)
+        
+        # Create heatmap
+        heatmap = cv2.applyColorMap(np.uint8(255 * attn_map), cv2.COLORMAP_JET)
+        heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
+        heatmap = heatmap.astype(np.float32) / 255.0
+        
+        # Blend with original image
+        alpha = 0.3  # Reduced transparency for clearer original image
+        overlay = alpha * heatmap + (1 - alpha) * image_np
+        overlay = np.clip(overlay, 0, 1)
+        
+        return (overlay * 255).astype(np.uint8)
+        
+    except Exception as e:
+        print(f"⚠️ Could not generate ViT attention map: {e}")
+        img = image.squeeze().cpu().numpy()
+        if img.shape[0] == 3:
+            img = np.transpose(img, (1, 2, 0))
+        img = (img - img.min()) / (img.max() - img.min() + 1e-8)
         return (img * 255).astype(np.uint8)
 
 def log_confusion_matrix(y_true: np.ndarray, y_pred: np.ndarray, 
