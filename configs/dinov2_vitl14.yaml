@@ -44,7 +44,7 @@ training:
   weight_decay: 0.01
   scheduler: "cosine"
   warmup_epochs: 5
-  save_every: 10
+  save_every: 50
   early_stopping_patience: 15
   
   # Contrastive learning specific
