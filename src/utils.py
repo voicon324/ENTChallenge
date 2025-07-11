@@ -40,9 +40,15 @@ def setup_logging():
 
 def save_checkpoint(model, optimizer, scheduler, epoch, loss, filepath):
     """Lưu checkpoint"""
+    # Handle DataParallel models
+    if hasattr(model, 'module'):
+        model_state_dict = model.module.state_dict()
+    else:
+        model_state_dict = model.state_dict()
+    
     checkpoint = {
         'epoch': epoch,
-        'model_state_dict': model.state_dict(),
+        'model_state_dict': model_state_dict,
         'optimizer_state_dict': optimizer.state_dict(),
         'scheduler_state_dict': scheduler.state_dict() if scheduler else None,
         'loss': loss,
@@ -53,7 +59,12 @@ def save_checkpoint(model, optimizer, scheduler, epoch, loss, filepath):
 def load_checkpoint(filepath, model, optimizer=None, scheduler=None):
     """Tải checkpoint"""
     checkpoint = torch.load(filepath, map_location='cpu')
-    model.load_state_dict(checkpoint['model_state_dict'])
+    
+    # Handle DataParallel models
+    if hasattr(model, 'module'):
+        model.module.load_state_dict(checkpoint['model_state_dict'])
+    else:
+        model.load_state_dict(checkpoint['model_state_dict'])
     
     if optimizer and 'optimizer_state_dict' in checkpoint:
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])

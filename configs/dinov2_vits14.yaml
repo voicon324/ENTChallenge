@@ -12,8 +12,8 @@ wandb:
 # -------------------
 data:
   path: "data/processed/"
-  batch_size: 8  # Smaller model, can use larger batch size
-  num_workers: 4
+  batch_size: 20  # Tăng batch size cho multi-GPU (ViT-S nhỏ hơn nên có thể dùng batch size lớn hơn)
+  num_workers: 8  # Tăng num_workers cho multi-GPU
   train_split: 0.8
   val_split: 0.1
   test_split: 0.1
@@ -40,12 +40,16 @@ training:
   strategy: "ntxent"
   epochs:   200
   optimizer: "AdamW"
-  learning_rate: 0.0001
+  learning_rate: 0.00025  # Tăng learning rate cho multi-GPU (ViT-S nhỏ hơn nên có thể dùng LR cao hơn)
   weight_decay: 0.01
   scheduler: "cosine"
   warmup_epochs: 5
   save_every: 50
   early_stopping_patience: 15
+  
+  # Multi-GPU settings
+  multi_gpu: true
+  sync_bn: true  # Sync batch norm across GPUs
   
   # Contrastive learning specific
   temperature: 0.07

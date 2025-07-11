@@ -11,8 +11,8 @@ wandb:
 # -------------------vơi
 data:
   path: "data/processed/"
-  batch_size: 8
-  num_workers: 4
+  batch_size: 16  # Tăng batch size cho multi-GPU
+  num_workers: 8  # Tăng num_workers cho multi-GPU
   train_split: 0.8
   val_split: 0.1
   test_split: 0.1
@@ -25,6 +25,7 @@ data:
 model:
   # Thay đổi 'dino_v2' thành 'ent_vit' để đổi backbone
   backbone: "ent_vit"  # Options: "dino_v2", "ent_vit"
+  model_name: "ent_vit"  # ENT-ViT model
   # Đường dẫn tới checkpoint pre-trained (dùng cho test-only hoặc finetune)
   pretrained_checkpoint: null  # ví dụ: "outputs/best_model.pth"
   feature_dim: 768
@@ -40,12 +41,16 @@ training:
   strategy: "ntxent"
   epochs:   200
   optimizer: "AdamW"
-  learning_rate: 0.0001
+  learning_rate: 0.0002  # Tăng learning rate cho multi-GPU
   weight_decay: 0.01
   scheduler: "cosine"
   warmup_epochs: 5
   save_every: 50
   early_stopping_patience: 15
+  
+  # Multi-GPU settings
+  multi_gpu: true
+  sync_bn: true  # Sync batch norm across GPUs
   
   # Contrastive learning specific
   temperature: 0.07

@@ -313,12 +313,51 @@ def get_transforms(image_size: int = 224,
     
     if split == 'train':
         transform_list = [
-            transforms.Resize((image_size + 32, image_size + 32)),
-            transforms.RandomCrop((image_size, image_size)),
-            transforms.RandomHorizontalFlip(p=0.5),
-            transforms.RandomRotation(degrees=15),
-            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
+            # Bước 1: Tiền xử lý - Tập trung vào vùng quan trọng (vòng tròn nội soi)
+            # Crop phần trung tâm để loại bỏ phần lớn viền đen, giả sử vòng tròn ở giữa.
+            # Điều chỉnh kích thước crop cho phù hợp với ảnh của bạn.
+            transforms.CenterCrop(size=(450, 450)), # Giả sử ảnh gốc ~500x500
+            transforms.Resize((image_size, image_size)), # Resize về kích thước chuẩn
+
+            # Bước 2: Augmentation hình học (Mô phỏng chuyển động của ống soi)
+            # Áp dụng một trong các phép biến đổi hình học một cách ngẫu nhiên
+            transforms.RandomApply([
+                transforms.RandomAffine(
+                    degrees=20,               # Xoay một góc hợp lý
+                    translate=(0.1, 0.1),     # Dịch chuyển nhẹ
+                    scale=(0.9, 1.1)          # Zoom vào/ra một chút
+                    # Shear (biến dạng trượt) thường không thực tế với ống soi, nên bỏ
+                )
+            ], p=0.7), # Áp dụng với xác suất 70%
+
+            # transforms.RandomHorizontalFlip(p=0.5), # Rất quan trọng, mô phỏng soi tai trái/phải
+
+            # Bước 3: Augmentation màu sắc (Mô phỏng điều kiện ánh sáng và camera khác nhau)
+            # Sử dụng ColorJitter với cường độ vừa phải
+            transforms.ColorJitter(
+                brightness=0.2,   # Điều chỉnh độ sáng
+                contrast=0.2,     # Điều chỉnh độ tương phản
+                saturation=0.2,   # Điều chỉnh độ bão hòa
+                hue=0.05          # HUE rất nhạy, chỉ nên thay đổi rất ít
+            ),
+            
+            # Các phép biến đổi màu sắc an toàn khác
+            transforms.RandomAutocontrast(p=0.2), # Tự động tăng cường độ tương phản
+
+            # Bước 4: Augmentation mô phỏng nhiễu và che khuất
+            # Làm mờ nhẹ để mô phỏng ảnh bị out-focus
+            transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.5)),
+
+            # Chuyển sang Tensor TRƯỚC khi thực hiện RandomErasing
             transforms.ToTensor(),
+
+            # Xóa một vùng nhỏ để mô phỏng bị che khuất (ví dụ: bởi ráy tai)
+            transforms.RandomErasing(
+                p=0.2, # Áp dụng với xác suất thấp
+                scale=(0.02, 0.08), # Xóa một vùng nhỏ
+                ratio=(0.3, 3.3),
+                value='random' # Điền vào bằng nhiễu ngẫu nhiên thay vì màu đen
+            ),
         ]
     else:
         transform_list = [

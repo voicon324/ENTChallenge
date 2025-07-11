@@ -134,6 +134,21 @@ class Trainer:
         
         # Setup device
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        
+        # Setup multi-GPU training
+        self.multi_gpu = config.get('training', {}).get('multi_gpu', False)
+        if self.multi_gpu and torch.cuda.device_count() > 1:
+            print(f"🚀 Cấu hình DataParallel với {torch.cuda.device_count()} GPU")
+            
+            # Enable synchronized batch normalization if requested
+            if config.get('training', {}).get('sync_bn', False):
+                print("🔄 Enabling synchronized batch normalization")
+                model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
+                
+            self.model = nn.DataParallel(model)
+        else:
+            self.model = model
+            
         self.model.to(self.device)
         
         # Setup optimizer
@@ -160,6 +175,20 @@ class Trainer:
         print(f"� Output directory: {self.output_dir}")
         print(f"�📚 Training batches: {len(train_loader)}")
         print(f"📊 Validation batches: {len(val_loader)}")
+    
+    def _get_model_features(self, images):
+        """Helper method to get features, handling DataParallel"""
+        if hasattr(self.model, 'module'):
+            return self.model.module.get_features(images)
+        else:
+            return self.model.get_features(images)
+    
+    def _get_model_forward(self, images, return_features=False):
+        """Helper method for forward pass, handling DataParallel"""
+        if hasattr(self.model, 'module'):
+            return self.model.module.forward(images, return_features=return_features)
+        else:
+            return self.model.forward(images, return_features=return_features)
     
     def _setup_optimizer(self):
         """Setup optimizer"""
@@ -265,8 +294,8 @@ class Trainer:
                 # labels = labels.to(self.device)  # No longer needed
                 
                 self.optimizer.zero_grad()
-                features1 = self.model.get_features(images1)
-                features2 = self.model.get_features(images2)
+                features1 = self._get_model_features(images1)
+                features2 = self._get_model_features(images2)
                 loss = self.loss_fn(features1, features2)  # Only pass features
             
             loss.backward()
@@ -314,7 +343,7 @@ class Trainer:
                         sample_images = images[:self.config.evaluation.get('grad_cam_samples', 1)]
                     
                     outputs = self.model(images)
-                    features = self.model.get_features(images)
+                    features = self._get_model_features(images)
                     loss = self.loss_fn(outputs, targets)
                     
                     all_outputs.append(outputs.cpu())
@@ -332,8 +361,8 @@ class Trainer:
                     if batch_idx == 0:
                         sample_images = images1[:self.config.evaluation.get('grad_cam_samples', 1)]
                     
-                    features1 = self.model.get_features(images1)
-                    features2 = self.model.get_features(images2)
+                    features1 = self._get_model_features(images1)
+                    features2 = self._get_model_features(images2)
                     loss = self.loss_fn(features1, features2)  # Only pass features
                     
                     all_features.append(features1.cpu())
@@ -496,7 +525,7 @@ class Trainer:
                     targets = targets.to(self.device)
                     
                     outputs = self.model(images)
-                    features = self.model.get_features(images)
+                    features = self._get_model_features(images)
                     
                     all_outputs.append(outputs.cpu())
                     all_features.append(features.cpu())

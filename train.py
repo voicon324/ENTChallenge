@@ -52,14 +52,36 @@ def main():
     print(f"🚀 Bắt đầu thực nghiệm với backbone: {cfg['model']['backbone']}")
     print(f"📊 Theo dõi tại: {run.url}")
     
-    # 4. Kiểm tra GPU
+    # 4. Kiểm tra GPU và cấu hình multi-GPU
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"💻 Sử dụng device: {device}")
+    
+    # Check for multiple GPUs
+    if torch.cuda.is_available():
+        gpu_count = torch.cuda.device_count()
+        print(f"💻 Phát hiện {gpu_count} GPU(s)")
+        if gpu_count > 1:
+            print(f"🚀 Sử dụng {gpu_count} GPU với DataParallel")
+            cfg['training']['multi_gpu'] = True
+            cfg['training']['gpu_count'] = gpu_count
+        else:
+            print(f"💻 Sử dụng 1 GPU: {torch.cuda.get_device_name(0)}")
+            cfg['training']['multi_gpu'] = False
+    else:
+        print("💻 Sử dụng CPU")
+        cfg['training']['multi_gpu'] = False
     
     # 5. Tạo DataLoaders
     print("📂 Tạo DataLoaders...")
     training_strategy = cfg['training']['strategy']
     backbone = cfg['model']['backbone']
+    
+    # Adjust batch size for multi-GPU training
+    if cfg['training'].get('multi_gpu', False):
+        original_batch_size = cfg['data']['batch_size']
+        gpu_count = cfg['training']['gpu_count']
+        # Keep total batch size the same across all GPUs
+        cfg['data']['batch_size'] = original_batch_size // gpu_count
+        print(f"📊 Điều chỉnh batch size từ {original_batch_size} xuống {cfg['data']['batch_size']} cho mỗi GPU")
     
     if training_strategy == 'contrastive':
         from src.data_loader import create_contrastive_dataloaders
