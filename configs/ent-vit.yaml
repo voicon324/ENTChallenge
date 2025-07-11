@@ -12,7 +12,7 @@ wandb:
 data:
   path: "data/processed/"
   batch_size: 16  # Tăng batch size cho multi-GPU
-  num_workers: 8  # Tăng num_workers cho multi-GPU
+  num_workers: 4  # Tăng num_workers cho multi-GPU
   train_split: 0.8
   val_split: 0.1
   test_split: 0.1
@@ -41,7 +41,7 @@ training:
   strategy: "ntxent"
   epochs:   200
   optimizer: "AdamW"
-  learning_rate: 0.0002  # Tăng learning rate cho multi-GPU
+  learning_rate: 0.00001    # Tăng learning rate cho multi-GPU
   weight_decay: 0.01
   scheduler: "cosine"
   warmup_epochs: 5

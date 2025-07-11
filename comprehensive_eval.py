@@ -1,610 +1,463 @@
 #!/usr/bin/env python3
 """
-Script đánh giá toàn diện cho 4 model với metrics:
+Script đánh giá toàn diện cho các model với metrics:
 - HitRate@1, HitRate@5, HitRate@10
 - MRR@1, MRR@5, MRR@10
-Corpus bao gồm:
-- Train original images
-- Val original images  
-- Train augmented images (3 versions mỗi ảnh với strong augmentation)
-- Val augmented images (3 versions mỗi ảnh với strong augmentation)
-- Test augmented images (3 versions mỗi ảnh với strong augmentation - ground truth)
-Query: Test original images
-Ground Truth: Chính xác các augmented versions của test image đó (không phải chỉ cùng class)
+
+Quy trình đánh giá:
+- Query: Các ảnh gốc trong tập test.
+- Corpus: Toàn bộ ảnh gốc và ảnh đã augment của tập train, val, và test.
+- Ground Truth: Với mỗi query (ảnh test gốc), kết quả đúng là 3 phiên bản augment tương ứng của chính nó trong corpus.
 """
 
 import yaml
 import torch
 import torch.utils.data
-import wandb
 import pandas as pd
-import numpy as np
 from pathlib import Path
 import argparse
-from datetime import datetime
 import json
 from torchvision import transforms
 
 from src.data_loader import create_dataloaders
 from src.model_factory import build_model
-from src.utils import set_seed, setup_logging, calculate_metrics
+from src.utils import set_seed, setup_logging
 import torch.nn.functional as F
 
-def calculate_metrics_with_topk(query_embeddings: torch.Tensor, query_labels: torch.Tensor,
-                               corpus_embeddings: torch.Tensor, corpus_labels: torch.Tensor, 
-                               k_values: list = [1, 5, 10], test_augmented_start_idx: int = None,
-                               query_to_augmented_mapping: dict = None) -> dict:
+# --- Các hàm tính toán Metrics ---
+# Logic của các hàm này đã được làm gọn lại để tập trung vào mục tiêu chính:
+# tìm chính xác các phiên bản augment, thay vì fallback về so sánh class label.
+
+def calculate_metrics_with_topk(query_embeddings: torch.Tensor,
+                               corpus_embeddings: torch.Tensor,
+                               k_values: list,
+                               query_to_augmented_mapping: dict) -> dict:
     """
-    Tính toán HitRate@k và MRR@k cho cross-split retrieval
-    - Query: test set embeddings (original images only)
-    - Corpus: train + val + augmented train + augmented val + augmented test images
-    - Ground truth: chính xác augmented versions của test images đó (không phải chỉ cùng class)
+    Tính toán HitRate@k và MRR@k.
+
+    Args:
+        query_embeddings: Embeddings của các ảnh test gốc (queries).
+        corpus_embeddings: Embeddings của toàn bộ ảnh trong corpus.
+        k_values: Danh sách các giá trị k (ví dụ: [1, 5, 10]).
+        query_to_augmented_mapping: Dict map từ index của query đến list các index của
+                                    phiên bản augment tương ứng trong corpus.
     """
     results = {}
     
-    # Normalize embeddings
+    # Chuẩn hóa embeddings để tính cosine similarity
     query_embeddings = F.normalize(query_embeddings, p=2, dim=1)
     corpus_embeddings = F.normalize(corpus_embeddings, p=2, dim=1)
     
-    # Tính similarity matrix (query x corpus)
+    # Tính ma trận tương đồng (cosine similarity) giữa queries và corpus
     similarity_matrix = torch.mm(query_embeddings, corpus_embeddings.t())
     
-    # Debug info
     n_queries = query_embeddings.size(0)
-    n_corpus = corpus_embeddings.size(0)
-    unique_query_labels = torch.unique(query_labels)
-    unique_corpus_labels = torch.unique(corpus_labels)
     
-    print(f"  📊 Debug info:")
-    print(f"    - Number of queries (test original): {n_queries}")
-    print(f"    - Number of corpus (train+val+augmented): {n_corpus}")
-    if test_augmented_start_idx is not None:
-        print(f"    - Test augmented start index: {test_augmented_start_idx}")
-        print(f"    - Test augmented samples: {n_corpus - test_augmented_start_idx}")
-    print(f"    - Query classes: {len(unique_query_labels)}")
-    print(f"    - Corpus classes: {len(unique_corpus_labels)}")
-    print(f"    - Query samples per class: {[int(torch.sum(query_labels == label).item()) for label in unique_query_labels]}")
-    
+    # Lấy top-k indices cho tất cả các query cùng một lúc để tăng hiệu quả
+    # Lấy top-k lớn nhất để tái sử dụng cho các k nhỏ hơn
+    max_k = max(k_values)
+    _, top_k_indices_all = torch.topk(similarity_matrix, max_k, dim=1)
+
     for k in k_values:
-        # Calculate HitRate@k for cross-split retrieval
-        hit_rate = calculate_cross_split_hit_rate_at_k(similarity_matrix, query_labels, corpus_labels, k, test_augmented_start_idx, query_to_augmented_mapping)
-        results[f"HitRate@{k}"] = hit_rate
+        # Lấy top-k cho giá trị k hiện tại
+        top_k_indices = top_k_indices_all[:, :k]
         
-        # Calculate MRR@k for cross-split retrieval
-        mrr = calculate_cross_split_mrr_at_k(similarity_matrix, query_labels, corpus_labels, k, test_augmented_start_idx, query_to_augmented_mapping)
-        results[f"MRR@{k}"] = mrr
+        # --- Tính HitRate@k ---
+        hit_count = 0
+        for i in range(n_queries):
+            query_augmented_indices = set(query_to_augmented_mapping.get(i, []))
+            retrieved_indices = set(top_k_indices[i].tolist())
+            
+            # Giao của hai tập hợp không rỗng nghĩa là đã tìm thấy ít nhất 1 ground truth
+            if not query_augmented_indices.isdisjoint(retrieved_indices):
+                hit_count += 1
+        
+        results[f"HitRate@{k}"] = hit_count / n_queries
+        
+        # --- Tính MRR@k ---
+        reciprocal_ranks = []
+        for i in range(n_queries):
+            query_augmented_indices = query_to_augmented_mapping.get(i, [])
+            best_rank = float('inf')
+            
+            # Tìm rank (vị trí) của ground truth đầu tiên được tìm thấy
+            for rank, retrieved_idx in enumerate(top_k_indices[i].tolist()):
+                if retrieved_idx in query_augmented_indices:
+                    best_rank = rank + 1
+                    break
+            
+            if best_rank != float('inf'):
+                reciprocal_ranks.append(1.0 / best_rank)
+            else:
+                reciprocal_ranks.append(0.0)
+        
+        results[f"MRR@{k}"] = sum(reciprocal_ranks) / len(reciprocal_ranks) if reciprocal_ranks else 0.0
     
     return results
 
-def calculate_cross_split_hit_rate_at_k(similarity_matrix: torch.Tensor, query_labels: torch.Tensor, 
-                                       corpus_labels: torch.Tensor, k: int, 
-                                       test_augmented_start_idx: int = None,
-                                       query_to_augmented_mapping: dict = None) -> float:
-    """Tính Hit Rate@k cho cross-split retrieval - chỉ tính đúng khi tìm thấy chính xác augmented version của test image đó"""
-    n_queries = similarity_matrix.size(0)
-    hit_count = 0
-    
-    # Debug: Show first few queries
-    debug_queries = min(3, n_queries)
-    
-    for i in range(n_queries):
-        # Lấy top-k similar items từ corpus
-        _, top_k_indices = torch.topk(similarity_matrix[i], k)
-        
-        # Nếu có mapping và test augmented start index, kiểm tra chính xác augmented versions
-        if test_augmented_start_idx is not None and query_to_augmented_mapping is not None:
-            # Lấy danh sách các augmented indices của query này
-            query_augmented_indices = query_to_augmented_mapping.get(i, [])
-            
-            # Debug first few queries
-            if i < debug_queries:
-                print(f"    🔍 Query {i}: Expected augmented indices {query_augmented_indices}, Got top-{k}: {top_k_indices.tolist()}")
-            
-            # Kiểm tra xem có augmented version chính xác của query này không
-            found = False
-            for top_idx in top_k_indices:
-                if top_idx.item() in query_augmented_indices:
-                    hit_count += 1
-                    found = True
-                    break
-            
-            if i < debug_queries:
-                print(f"    ✅ Query {i}: {'Found' if found else 'Not found'}")
-        else:
-            # Fallback: kiểm tra cùng class label
-            query_label = query_labels[i]
-            retrieved_labels = corpus_labels[top_k_indices]
-            
-            # Nếu có augmented test images trong corpus, ưu tiên check chúng
-            if test_augmented_start_idx is not None:
-                # Kiểm tra xem có augmented version của cùng class không
-                augmented_indices = top_k_indices[top_k_indices >= test_augmented_start_idx]
-                if len(augmented_indices) > 0:
-                    # Kiểm tra augmented versions (ground truth)
-                    augmented_labels = corpus_labels[augmented_indices]
-                    if torch.any(augmented_labels == query_label):
-                        hit_count += 1
-                        continue
-            
-            # Kiểm tra các ảnh khác cùng class
-            if torch.any(retrieved_labels == query_label):
-                hit_count += 1
-    
-    hit_rate = hit_count / n_queries
-    print(f"    - HitRate@{k}: {hit_count}/{n_queries} = {hit_rate:.4f}")
-    return hit_rate
-
-def calculate_cross_split_mrr_at_k(similarity_matrix: torch.Tensor, query_labels: torch.Tensor, 
-                                  corpus_labels: torch.Tensor, k: int,
-                                  test_augmented_start_idx: int = None,
-                                  query_to_augmented_mapping: dict = None) -> float:
-    """Tính Mean Reciprocal Rank@k - chỉ tính đúng khi tìm thấy chính xác augmented version của test image đó"""
-    n_queries = similarity_matrix.size(0)
-    reciprocal_ranks = []
-    
-    for i in range(n_queries):
-        # Lấy top-k similar items từ corpus
-        _, top_k_indices = torch.topk(similarity_matrix[i], k)
-        
-        best_rank = float('inf')
-        
-        # Nếu có mapping và test augmented start index, kiểm tra chính xác augmented versions
-        if test_augmented_start_idx is not None and query_to_augmented_mapping is not None:
-            # Lấy danh sách các augmented indices của query này
-            query_augmented_indices = query_to_augmented_mapping.get(i, [])
-            
-            # Tìm rank tốt nhất của augmented version chính xác
-            for rank, top_idx in enumerate(top_k_indices):
-                if top_idx.item() in query_augmented_indices:
-                    best_rank = min(best_rank, rank + 1)
-                    break
-        else:
-            # Fallback: kiểm tra cùng class label
-            query_label = query_labels[i]
-            retrieved_labels = corpus_labels[top_k_indices]
-            
-            # Nếu có augmented test images, ưu tiên tìm chúng trước
-            if test_augmented_start_idx is not None:
-                for rank, (idx, label) in enumerate(zip(top_k_indices, retrieved_labels)):
-                    if label == query_label:
-                        if idx >= test_augmented_start_idx:
-                            # Đây là augmented version (ground truth)
-                            best_rank = min(best_rank, rank + 1)
-                            break
-                        else:
-                            # Đây là ảnh khác cùng class
-                            best_rank = min(best_rank, rank + 1)
-            else:
-                # Tìm rank của item đầu tiên cùng class
-                for rank, label in enumerate(retrieved_labels):
-                    if label == query_label:
-                        best_rank = rank + 1
-                        break
-        
-        if best_rank != float('inf'):
-            reciprocal_ranks.append(1.0 / best_rank)
-        else:
-            reciprocal_ranks.append(0.0)
-    
-    mrr = sum(reciprocal_ranks) / len(reciprocal_ranks)
-    print(f"    - MRR@{k}: {mrr:.4f}")
-    return mrr
+# --- Các hàm trích xuất đặc trưng ---
 
 def extract_features(model, dataloader, device):
-    """Extract features from model"""
+    """Trích xuất đặc trưng cho các ảnh gốc (không augment)."""
     model.eval()
     all_features = []
     all_labels = []
     
     with torch.no_grad():
-        for batch in dataloader:
-            if len(batch) == 2:
-                images, targets = batch
-                images = images.to(device)
-                targets = targets.to(device)
-                
-                features = model.get_features(images)
-                
-                all_features.append(features.cpu())
-                all_labels.append(targets.cpu())
+        for images, targets in dataloader:
+            images = images.to(device)
+            features = model.get_features(images)
+            all_features.append(features.cpu())
+            all_labels.append(targets.cpu())
     
-    if all_features:
-        all_features = torch.cat(all_features, dim=0)
-        all_labels = torch.cat(all_labels, dim=0)
-        return all_features, all_labels
-    
-    return None, None
+    if not all_features:
+        return None, None
+        
+    return torch.cat(all_features, dim=0), torch.cat(all_labels, dim=0)
 
-def get_strong_augmentation_transform(image_size=224):
-    """Tạo transform với augmentation mạnh hơn để tăng độ khác biệt"""
+def get_strong_augmentation_transform(image_size=224, backbone='dinov2'):
+    """Tạo transform với augmentation mạnh."""
+    
+    # Determine normalization parameters based on backbone
+    if backbone == 'ent_vit':
+        # EndoViT-specific normalization parameters
+        mean = [0.3464, 0.2280, 0.2228]
+        std = [0.2520, 0.2128, 0.2093]
+    else:
+        # Standard ImageNet normalization for other models
+        mean = [0.485, 0.456, 0.406]
+        std = [0.229, 0.224, 0.225]
+    
+    # Gợi ý: Sử dụng torchvision.transforms.v2 để có thể chạy augment trên GPU, tăng tốc độ đáng kể
     return transforms.Compose([
-        transforms.RandomResizedCrop(image_size, scale=(0.4, 1.0), ratio=(0.75, 1.33)),
-        transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomVerticalFlip(p=0.3),
-        transforms.RandomRotation(degrees=45),
-        transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.3),
-        transforms.RandomGrayscale(p=0.3),
-        transforms.RandomApply([transforms.GaussianBlur(kernel_size=3)], p=0.3),
+        # Bước 1: Tiền xử lý - Tập trung vào vùng quan trọng (vòng tròn nội soi)
+        # Crop phần trung tâm để loại bỏ phần lớn viền đen, giả sử vòng tròn ở giữa.
+        # Điều chỉnh kích thước crop cho phù hợp với ảnh của bạn.
+        transforms.CenterCrop(size=(450, 450)), # Giả sử ảnh gốc ~500x500
+        transforms.Resize((image_size, image_size)), # Resize về kích thước chuẩn
+
+        # Bước 2: Augmentation hình học (Mô phỏng chuyển động của ống soi)
+        # Áp dụng một trong các phép biến đổi hình học một cách ngẫu nhiên
+        transforms.RandomApply([
+            transforms.RandomAffine(
+                degrees=20,               # Xoay một góc hợp lý
+                translate=(0.1, 0.1),     # Dịch chuyển nhẹ
+                scale=(0.9, 1.1)          # Zoom vào/ra một chút
+                # Shear (biến dạng trượt) thường không thực tế với ống soi, nên bỏ
+            )
+        ], p=0.7), # Áp dụng với xác suất 70%
+
+        # transforms.RandomHorizontalFlip(p=0.5), # Rất quan trọng, mô phỏng soi tai trái/phải
+
+        # Bước 3: Augmentation màu sắc (Mô phỏng điều kiện ánh sáng và camera khác nhau)
+        # Sử dụng ColorJitter với cường độ vừa phải
+        transforms.ColorJitter(
+            brightness=0.2,   # Điều chỉnh độ sáng
+            contrast=0.2,     # Điều chỉnh độ tương phản
+            saturation=0.2,   # Điều chỉnh độ bão hòa
+            hue=0.05          # HUE rất nhạy, chỉ nên thay đổi rất ít
+        ),
+        
+        # Các phép biến đổi màu sắc an toàn khác
+        transforms.RandomAutocontrast(p=0.2), # Tự động tăng cường độ tương phản
+
+        # Bước 4: Augmentation mô phỏng nhiễu và che khuất
+        # Làm mờ nhẹ để mô phỏng ảnh bị out-focus
+        transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.5)),
+
+        # Chuyển sang Tensor TRƯỚC khi thực hiện RandomErasing
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+
+        # Xóa một vùng nhỏ để mô phỏng bị che khuất (ví dụ: bởi ráy tai)
+        transforms.RandomErasing(
+            p=0.2, # Áp dụng với xác suất thấp
+            scale=(0.02, 0.08), # Xóa một vùng nhỏ
+            ratio=(0.3, 3.3),
+            value='random' # Điền vào bằng nhiễu ngẫu nhiên thay vì màu đen
+        ),
+        transforms.Normalize(mean=mean, std=std)
     ])
 
-def extract_features_with_strong_augmentation(model, dataloader, device, num_augmentations=3):
-    """Extract features with strong data augmentation including random crop"""
+def extract_augmented_features(model, dataloader, device, backbone, num_augmentations=3):
+    """
+    Trích xuất đặc trưng cho các phiên bản augment của ảnh.
+    Hàm này chỉ trả về features của các ảnh đã augment.
+    """
     model.eval()
-    # Force deterministic mode for reproducible results
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-    
     all_features = []
     all_labels = []
     
-    # Get image size from model config
-    image_size = 224  # Default size
-    strong_transform = get_strong_augmentation_transform(image_size)
+    image_size = model.image_size if hasattr(model, 'image_size') else 224
+    strong_transform = get_strong_augmentation_transform(image_size, backbone)
     
-    with torch.no_grad():
-        for batch_idx, batch in enumerate(dataloader):
-            if len(batch) == 2:
-                images, targets = batch
-                images = images.to(device)
-                targets = targets.to(device)
-                
-                # Extract features for original images
-                features = model.get_features(images)
-                all_features.append(features.cpu())
-                all_labels.append(targets.cpu())
-                
-                # Extract features for augmented versions with stronger augmentation
-                for aug_idx in range(num_augmentations):
-                    # Set different random seed for each augmentation
-                    torch.manual_seed(42 + batch_idx * 1000 + aug_idx)
-                    
-                    # Create augmented batch
-                    augmented_batch = []
-                    for i in range(images.size(0)):
-                        # Convert tensor back to PIL for augmentation
-                        img_tensor = images[i].cpu()
-                        # Denormalize
-                        img_tensor = img_tensor * torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
-                        img_tensor = img_tensor + torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
-                        img_tensor = torch.clamp(img_tensor, 0, 1)
-                        
-                        # Convert to PIL
-                        img_pil = transforms.ToPILImage()(img_tensor)
-                        
-                        # Apply strong augmentation
-                        augmented_img = strong_transform(img_pil)
-                        augmented_batch.append(augmented_img)
-                    
-                    # Stack augmented images
-                    augmented_batch = torch.stack(augmented_batch).to(device)
-                    
-                    # Extract features
-                    augmented_features = model.get_features(augmented_batch)
-                    all_features.append(augmented_features.cpu())
-                    all_labels.append(targets.cpu())
+    # Lấy transform chuẩn để denormalize ảnh trước khi augment
+    if backbone == 'ent_vit':
+        # EndoViT-specific normalization parameters
+        mean = [0.3464, 0.2280, 0.2228]
+        std = [0.2520, 0.2128, 0.2093]
+    else:
+        # Standard ImageNet normalization for other models
+        mean = [0.485, 0.456, 0.406]
+        std = [0.229, 0.224, 0.225]
     
-    if all_features:
-        all_features = torch.cat(all_features, dim=0)
-        all_labels = torch.cat(all_labels, dim=0)
-        return all_features, all_labels
-    
-    return None, None
+    denormalize = transforms.Normalize(
+        mean=[-mean[0]/std[0], -mean[1]/std[1], -mean[2]/std[2]],
+        std=[1/std[0], 1/std[1], 1/std[2]]
+    )
 
-def evaluate_model(config_path, checkpoint_path=None, model_name="", use_pretrained=True):
-    """Đánh giá một model với cross-split retrieval bao gồm augmented train/val/test images"""
-    
-    # Load configuration
+    with torch.no_grad():
+        for images, targets in dataloader:
+            # `images` là batch ảnh gốc từ dataloader
+            batch_size = images.size(0)
+            
+            # Lặp lại targets cho các phiên bản augment
+            augmented_targets = targets.repeat_interleave(num_augmentations)
+            all_labels.append(augmented_targets.cpu())
+
+            # Tạo và xử lý các phiên bản augment
+            batch_augmented_features = []
+            for _ in range(num_augmentations):
+                augmented_batch_pil = []
+                for i in range(batch_size):
+                    img_tensor = images[i].cpu()
+                    img_denormalized = denormalize(img_tensor)
+                    img_pil = transforms.ToPILImage()(img_denormalized)
+                    augmented_batch_pil.append(strong_transform(img_pil))
+
+                augmented_batch_tensor = torch.stack(augmented_batch_pil).to(device)
+                features = model.get_features(augmented_batch_tensor)
+                batch_augmented_features.append(features)
+            
+            # Nối các features augment theo đúng thứ tự:
+            # [img1_aug1, img2_aug1, ..., img1_aug2, img2_aug2, ...]
+            # Cần sắp xếp lại để thành:
+            # [img1_aug1, img1_aug2, ..., img2_aug1, img2_aug2, ...]
+            reordered_features = torch.cat(batch_augmented_features, dim=0).reshape(num_augmentations, batch_size, -1).transpose(0, 1).reshape(batch_size * num_augmentations, -1)
+            all_features.append(reordered_features.cpu())
+
+    if not all_features:
+        return None, None
+
+    return torch.cat(all_features, dim=0), torch.cat(all_labels, dim=0)
+
+
+def evaluate_model(config_path, checkpoint_path=None, model_name=""):
+    """
+    Hàm chính để đánh giá một model.
+    Quy trình đã được làm rõ và logic được đơn giản hóa.
+    """
     with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
     
-    # Setup device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
-    # Create all dataloaders
-    backbone = config['model']['backbone']
-    train_loader, val_loader, test_loader = create_dataloaders(config['data'], backbone)
-    
-    # Build model
+    # --- 1. Tải Dataloaders và Model ---
+    train_loader, val_loader, test_loader = create_dataloaders(config['data'], config['model']['backbone'])
     model = build_model(config['model'])
     model.to(device)
     
-    # Load checkpoint if provided
     if checkpoint_path and Path(checkpoint_path).exists():
         checkpoint = torch.load(checkpoint_path, map_location=device)
         model.load_state_dict(checkpoint['model_state_dict'])
         print(f"✅ Loaded checkpoint: {checkpoint_path}")
     else:
-        print(f"🚫 {'No checkpoint provided' if checkpoint_path is None else 'Checkpoint not found'}: using pretrained weights only")
+        print("ℹ️ No checkpoint loaded. Using pretrained weights from model definition.")
     
-    # Extract features from test set (queries - original images only)
-    print("📊 Extracting features from test set (queries - original images)...")
-    test_features, test_labels = extract_features(model, test_loader, device)
+    # --- 2. Trích xuất đặc trưng ---
+    print("\n--- Feature Extraction ---")
+    # Query: Test gốc
+    print("📊 Extracting features from test set (Queries)...")
+    query_features, query_labels = extract_features(model, test_loader, device)
     
-    # Extract features from train set (corpus - original)
-    print("📊 Extracting features from train set (original)...")
+    # Corpus Part 1: Ảnh gốc
+    print("📊 Extracting features from train set (Corpus - Original)...")
     train_features, train_labels = extract_features(model, train_loader, device)
-    
-    # Extract features from val set (corpus - original)
-    print("📊 Extracting features from val set (original)...")
+    print("📊 Extracting features from val set (Corpus - Original)...")
     val_features, val_labels = extract_features(model, val_loader, device)
     
-    # Extract strong augmented features from train set (corpus)
-    print("📊 Extracting strong augmented features from train set (5 augmentations)...")
-    train_augmented_features, train_augmented_labels = extract_features_with_strong_augmentation(model, train_loader, device, num_augmentations=5)
-    
-    # Extract strong augmented features from val set (corpus)
-    print("📊 Extracting strong augmented features from val set (5 augmentations)...")
-    val_augmented_features, val_augmented_labels = extract_features_with_strong_augmentation(model, val_loader, device, num_augmentations=5)
-    
-    # Extract strong augmented features from test set (corpus - ground truth)
-    print("📊 Extracting strong augmented features from test set (5 augmentations)...")
-    test_augmented_features, test_augmented_labels = extract_features_with_strong_augmentation(model, test_loader, device, num_augmentations=5)
-    
-    if (test_features is None or train_features is None or val_features is None or 
-        train_augmented_features is None or val_augmented_features is None or test_augmented_features is None):
-        print(f"❌ Failed to extract features for {model_name}")
+    # Corpus Part 2: Ảnh augment
+    num_augmentations = 1
+    backbone = config['model']['backbone']
+    print(f"📊 Extracting {num_augmentations} augmented features from train set (Corpus - Augmented)...")
+    train_aug_features, train_aug_labels = extract_augmented_features(model, train_loader, device, backbone, num_augmentations)
+    print(f"📊 Extracting {num_augmentations} augmented features from val set (Corpus - Augmented)...")
+    val_aug_features, val_aug_labels = extract_augmented_features(model, val_loader, device, backbone, num_augmentations)
+    print(f"📊 Extracting {num_augmentations} augmented features from test set (Corpus - Ground Truth)...")
+    test_aug_features, test_aug_labels = extract_augmented_features(model, test_loader, device, backbone, num_augmentations)
+
+    if query_features is None or train_features is None or test_aug_features is None:
+        print(f"❌ Failed to extract necessary features for {model_name}. Skipping evaluation.")
         return None
+
+    # --- 3. Xây dựng Corpus và Ground Truth Mapping ---
+    print("\n--- Building Corpus & Ground Truth ---")
     
-    # Remove original images from augmented features (keep only augmented versions)
-    # Format: [original, aug1, aug2, aug3, original, aug1, aug2, aug3, ...]
-    # We want: [aug1, aug2, aug3, aug1, aug2, aug3, ...]
-    
-    def extract_only_augmented(augmented_features, augmented_labels, num_augmentations=5):
-        """Extract only augmented versions (skip original)"""
-        n_samples = len(augmented_features) // (num_augmentations + 1)
-        aug_only_features = []
-        aug_only_labels = []
-        
-        print(f"    🔍 Debug extract_only_augmented:")
-        print(f"    - Total features: {len(augmented_features)}")
-        print(f"    - Expected samples: {n_samples}")
-        print(f"    - Features per sample: {num_augmentations + 1}")
-        
-        for i in range(n_samples):
-            # Skip original (index 0, 6, 12, ...) and take augmented versions
-            start_idx = i * (num_augmentations + 1) + 1  # Skip original
-            end_idx = start_idx + num_augmentations  # Take augmentations
-            
-            if i < 3:  # Debug first 3 samples
-                print(f"    - Sample {i}: original at {i * (num_augmentations + 1)}, augmented at {start_idx}:{end_idx}")
-            
-            aug_only_features.append(augmented_features[start_idx:end_idx])
-            aug_only_labels.append(augmented_labels[start_idx:end_idx])
-        
-        return torch.cat(aug_only_features, dim=0), torch.cat(aug_only_labels, dim=0)
-    
-    # Extract only augmented versions
-    train_aug_only_features, train_aug_only_labels = extract_only_augmented(train_augmented_features, train_augmented_labels)
-    val_aug_only_features, val_aug_only_labels = extract_only_augmented(val_augmented_features, val_augmented_labels)
-    test_aug_only_features, test_aug_only_labels = extract_only_augmented(test_augmented_features, test_augmented_labels)
-    
-    # Tạo mapping từ query index đến augmented indices trong corpus
-    query_to_augmented_mapping = {}
-    test_augmented_start_idx = (len(train_features) + len(val_features) + 
-                               len(train_aug_only_features) + len(val_aug_only_features))
-    
-    # Mỗi test image có 5 augmented versions
-    num_augmentations = 5
-    for query_idx in range(len(test_features)):
-        # Augmented versions của query_idx nằm ở vị trí:
-        # test_augmented_start_idx + query_idx * num_augmentations đến
-        # test_augmented_start_idx + (query_idx + 1) * num_augmentations - 1
-        start_aug_idx = test_augmented_start_idx + query_idx * num_augmentations
-        end_aug_idx = start_aug_idx + num_augmentations
-        query_to_augmented_mapping[query_idx] = list(range(start_aug_idx, end_aug_idx))
-    
-    print(f"📊 Query to augmented mapping example:")
-    for i in range(min(3, len(test_features))):  # Show first 3 mappings
-        print(f"  - Query {i} -> Augmented indices: {query_to_augmented_mapping[i]}")
-    
-    # Debug: Check similarity between query and its augmented versions
-    print(f"📊 Debug: Checking similarity between queries and their augmented versions:")
-    for i in range(min(3, len(test_features))):
-        query_embedding = F.normalize(test_features[i:i+1], p=2, dim=1)
-        
-        # Get the correct augmented embeddings from test_aug_only_features
-        aug_start_in_aug_features = i * 5  # Each query has 5 augmented versions
-        aug_embeddings = F.normalize(test_aug_only_features[aug_start_in_aug_features:aug_start_in_aug_features+5], p=2, dim=1)
-        
-        # Calculate similarities
-        similarities = torch.mm(query_embedding, aug_embeddings.t())
-        print(f"  - Query {i} vs its augmented versions: {similarities.squeeze().tolist()}")
-        
-        # Also check if the features are exactly the same (they should be since no augmentation)
-        print(f"  - Query {i} feature norm: {torch.norm(test_features[i]).item():.6f}")
-        print(f"  - Aug features norms: {[torch.norm(test_aug_only_features[aug_start_in_aug_features+j]).item() for j in range(5)]}")
-        
-        # Debug: Direct comparison with raw features (before normalization)
-        raw_similarities = []
-        for j in range(5):
-            raw_sim = F.cosine_similarity(test_features[i], test_aug_only_features[aug_start_in_aug_features+j], dim=0)
-            raw_similarities.append(raw_sim.item())
-        print(f"  - Raw cosine similarities: {raw_similarities}")
-        
-        # Check if they are exactly equal
-        for j in range(5):
-            is_equal = torch.allclose(test_features[i], test_aug_only_features[aug_start_in_aug_features+j])
-            print(f"  - Query {i} == Aug {j}: {is_equal}")
-    
-    # Combine all corpus: original train + original val + augmented train + augmented val + augmented test
+    # Nối tất cả các features lại để tạo thành corpus hoàn chỉnh
     corpus_features = torch.cat([
         train_features, 
         val_features,
-        train_aug_only_features,
-        val_aug_only_features,
-        test_aug_only_features
+        train_aug_features,
+        val_aug_features,
+        test_aug_features
     ], dim=0)
     
+    # (Tùy chọn) Nối labels nếu cần debug
     corpus_labels = torch.cat([
         train_labels,
         val_labels,
-        train_aug_only_labels,
-        val_aug_only_labels,
-        test_aug_only_labels
+        train_aug_labels,
+        val_aug_labels,
+        test_aug_labels
     ], dim=0)
     
-    # Calculate start index of test augmented samples in corpus
-    test_augmented_start_idx = (len(train_features) + len(val_features) + 
-                               len(train_aug_only_features) + len(val_aug_only_features))
+    # Tính toán vị trí bắt đầu của các ảnh test augment trong corpus
+    # Đây là thông tin cốt lõi để xác định ground truth
+    test_aug_start_idx = len(train_features) + len(val_features) + len(train_aug_features) + len(val_aug_features)
     
-    print(f"📊 Cross-split setup:")
-    print(f"  - Test queries (original): {test_features.shape[0]} samples")
-    print(f"  - Train corpus (original): {train_features.shape[0]} samples")
-    print(f"  - Val corpus (original): {val_features.shape[0]} samples")
-    print(f"  - Train augmented corpus: {train_aug_only_features.shape[0]} samples")
-    print(f"  - Val augmented corpus: {val_aug_only_features.shape[0]} samples")
-    print(f"  - Test augmented corpus: {test_aug_only_features.shape[0]} samples")
-    print(f"  - Total corpus: {corpus_features.shape[0]} samples")
-    print(f"  - Test augmented start index: {test_augmented_start_idx}")
-    
-    # Calculate metrics
+    # Tạo mapping từ query (test gốc) đến các phiên bản augment của nó
+    query_to_augmented_mapping = {}
+    for query_idx in range(len(query_features)):
+        start = test_aug_start_idx + query_idx * num_augmentations
+        end = start + num_augmentations
+        query_to_augmented_mapping[query_idx] = list(range(start, end))
+
+    print(f"  - Total corpus size: {corpus_features.shape[0]} samples")
+    print(f"  - Test augmented (ground truth) start index: {test_aug_start_idx}")
+    print(f"  - Example mapping: Query 0 -> Corpus indices {query_to_augmented_mapping.get(0)}")
+
+    # --- 4. Debug & Sanity Check (Quan trọng) ---
+    # Kiểm tra xem feature của ảnh gốc có "gần" với feature của các bản augment không.
+    # Chúng không bao giờ "bằng nhau" (equal) do có phép augment ngẫu nhiên.
+    # Ta kỳ vọng cosine similarity sẽ cao.
+    print("\n--- Sanity Check: Similarity of Query vs. its Augmentations ---")
+    for i in range(min(3, len(query_features))):
+        query_emb = F.normalize(query_features[i:i+1], p=2, dim=1)
+        
+        aug_indices = query_to_augmented_mapping[i]
+        aug_embs = F.normalize(corpus_features[aug_indices], p=2, dim=1)
+        
+        similarities = torch.mm(query_emb, aug_embs.t())
+        print(f"  - Cosine Sim (Query {i} vs. its augments): {similarities.squeeze().tolist()}")
+
+    # --- 5. Tính toán và Trả về kết quả ---
+    print("\n--- Calculating Metrics ---")
     metrics = calculate_metrics_with_topk(
-        test_features, test_labels, 
-        corpus_features, corpus_labels, 
+        query_features, 
+        corpus_features, 
         k_values=[1, 5, 10],
-        test_augmented_start_idx=test_augmented_start_idx,
         query_to_augmented_mapping=query_to_augmented_mapping
     )
     
-    print(f"📊 Results for {model_name}:")
+    print(f"\n📊 Results for {model_name}:")
     for metric, value in metrics.items():
-        print(f"  {metric}: {value:.4f}")
+        print(f"  - {metric}: {value:.4f}")
     
     return metrics
 
-def main():
-    parser = argparse.ArgumentParser(description='Comprehensive evaluation of all models')
-    parser.add_argument('--output', '-o', default='evaluation_results.json',
-                       help='Output file for results')
+def create_summary_table(results):
+    """Tạo bảng tổng kết kết quả."""
+    print("\n" + "="*25 + " SUMMARY TABLE " + "="*25)
     
+    rows = []
+    for model_name, model_results in results.items():
+        if model_results.get('pretrained'):
+            for metric, value in model_results['pretrained'].items():
+                rows.append({'Model': model_name, 'Training': 'Pretrained', 'Metric': metric, 'Value': value})
+        
+        if model_results.get('finetuned'):
+            for metric, value in model_results['finetuned'].items():
+                rows.append({'Model': model_name, 'Training': 'Fine-tuned', 'Metric': metric, 'Value': value})
+    
+    if not rows:
+        print("No results to display.")
+        return
+        
+    df = pd.DataFrame(rows)
+    
+    # Pivot để có bảng so sánh trực quan
+    pivot_df = df.pivot_table(index=['Metric', 'Model'], columns='Training', values='Value')
+    
+    # Sắp xếp lại thứ tự metric cho dễ đọc
+    metric_order = ['HitRate@1', 'HitRate@5', 'HitRate@10', 'MRR@1', 'MRR@5', 'MRR@10']
+    pivot_df = pivot_df.reindex(metric_order, level='Metric')
+    
+    print(pivot_df.to_string(float_format="%.4f"))
+    print("="*65)
+
+def main():
+    parser = argparse.ArgumentParser(description='Comprehensive evaluation of image retrieval models')
+    parser.add_argument('--output', '-o', default='evaluation_results.json', help='Output file for results in JSON format')
     args = parser.parse_args()
     
-    # Setup
     setup_logging()
     set_seed(42)
     
-    # Model configurations
-    models = [
+    # Định nghĩa các model cần đánh giá
+    models_to_evaluate = [
         {
             'name': 'DINOv2-ViT-S/14',
             'config': 'configs/dinov2_vits14.yaml',
-            'checkpoint': 'outputs/dinov2_vits14_ntxent/best_model.pth'
+            'checkpoint': 'outputs/dinov2_vits14_ntxent/best_model2.pth'
         },
-        # {
-        #     'name': 'DINOv2-ViT-B/14',
-        #     'config': 'configs/dinov2_vitb14.yaml',
-        #     'checkpoint': 'outputs/dinov2_vitb14_ntxent/best_model.pth'
-        # },
-        # {
-        #     'name': 'DINOv2-ViT-L/14',
-        #     'config': 'configs/dinov2_vitl14.yaml',
-        #     'checkpoint': 'outputs/dinov2_vitl14_ntxent/best_model.pth'
-        # },
-        # {
-        #     'name': 'ENT-ViT',
-        #     'config': 'configs/ent-vit.yaml',
-        #     'checkpoint': 'outputs/ent_vit_ntxent/best_model.pth'
-        # }
+        {
+            'name': 'ENT-ViT',
+            'config': 'configs/ent-vit.yaml',
+            'checkpoint': 'outputs/ent_vit_ntxent/best_model2.pth'
+        },
+        # Thêm các model khác vào đây
     ]
     
-    results = {}
+    all_results = {}
     
-    print("🚀 Starting comprehensive evaluation...")
+    print("🚀 Starting Comprehensive Evaluation...")
     print("=" * 80)
     
-    for model_config in models:
-        model_name = model_config['name']
-        config_path = Path(model_config['config'])
-        checkpoint_path = Path(model_config['checkpoint'])
+    for model_info in models_to_evaluate:
+        model_name = model_info['name']
+        config_path = Path(model_info['config'])
+        checkpoint_path = Path(model_info['checkpoint'])
         
-        print(f"\n🔍 Evaluating {model_name}")
+        print(f"\n\n🔍 Evaluating Model: {model_name}")
         print("-" * 50)
         
-        # Evaluate without fine-tuning (pretrained only)
-        print(f"📦 Evaluating {model_name} (Pretrained only)")
-        pretrained_results = evaluate_model(
-            config_path, 
-            checkpoint_path=None, 
-            model_name=f"{model_name} (Pretrained)",
-            use_pretrained=True
-        )
-        
-        # Evaluate with fine-tuning
-        print(f"\n🎯 Evaluating {model_name} (Fine-tuned)")
+        # Đánh giá model đã fine-tune
+        print(f"🎯 Evaluating {model_name} (Fine-tuned)")
         finetuned_results = evaluate_model(
             config_path,
             checkpoint_path=checkpoint_path,
-            model_name=f"{model_name} (Fine-tuned)",
-            use_pretrained=False
+            model_name=f"{model_name} (Fine-tuned)"
         )
         
-        # Store results
-        results[model_name] = {
+        # Đánh giá model pretrained (không load checkpoint)
+        print(f"\n📦 Evaluating {model_name} (Pretrained only)")
+        pretrained_results = evaluate_model(
+            config_path, 
+            checkpoint_path=None, 
+            model_name=f"{model_name} (Pretrained)"
+        )
+        
+        all_results[model_name] = {
             'pretrained': pretrained_results,
             'finetuned': finetuned_results
         }
     
-    # Save results
+    # Lưu kết quả
     output_path = Path(args.output)
     with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
+        json.dump(all_results, f, indent=4, ensure_ascii=False)
     
-    print(f"\n💾 Results saved to: {output_path}")
+    print(f"\n\n💾 All evaluation results saved to: {output_path}")
     
-    # Create summary table
-    create_summary_table(results)
-
-def create_summary_table(results):
-    """Tạo bảng tổng kết kết quả"""
-    print("\n📊 SUMMARY TABLE")
-    print("=" * 100)
-    
-    # Create DataFrame for better formatting
-    rows = []
-    
-    for model_name, model_results in results.items():
-        if model_results['pretrained']:
-            for metric, value in model_results['pretrained'].items():
-                rows.append({
-                    'Model': model_name,
-                    'Training': 'Pretrained Only',
-                    'Metric': metric,
-                    'Value': f"{value:.4f}"
-                })
-        
-        if model_results['finetuned']:
-            for metric, value in model_results['finetuned'].items():
-                rows.append({
-                    'Model': model_name,
-                    'Training': 'Fine-tuned',
-                    'Metric': metric,
-                    'Value': f"{value:.4f}"
-                })
-    
-    df = pd.DataFrame(rows)
-    
-    # Print by metric
-    metrics = ['HitRate@1', 'HitRate@5', 'HitRate@10', 'MRR@1', 'MRR@5', 'MRR@10']
-    
-    for metric in metrics:
-        print(f"\n📈 {metric}")
-        print("-" * 60)
-        metric_df = df[df['Metric'] == metric]
-        
-        if not metric_df.empty:
-            # Pivot table for better visualization
-            pivot_df = metric_df.pivot(index='Model', columns='Training', values='Value')
-            print(pivot_df.to_string())
-        
-        print()
+    # Tạo bảng tổng kết
+    create_summary_table(all_results)
 
 if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print("\n⚠️ Evaluation interrupted by user")
+        print("\n⚠️ Evaluation interrupted by user.")
     except Exception as e:
-        print(f"❌ Error: {e}")
-        raise
+        print(f"\n❌ An unexpected error occurred: {e}")
+        import traceback
+        traceback.print_exc()
+

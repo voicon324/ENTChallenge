@@ -1,0 +1,38 @@
+{
+    "DINOv2-ViT-S/14": {
+        "pretrained": {
+            "HitRate@1": 0.0,
+            "MRR@1": 0.0,
+            "HitRate@5": 0.01639344262295082,
+            "MRR@5": 0.004098360655737705,
+            "HitRate@10": 0.03278688524590164,
+            "MRR@10": 0.006830601092896175
+        },
+        "finetuned": {
+            "HitRate@1": 0.0,
+            "MRR@1": 0.0,
+            "HitRate@5": 0.0,
+            "MRR@5": 0.0,
+            "HitRate@10": 0.0,
+            "MRR@10": 0.0
+        }
+    },
+    "ENT-ViT": {
+        "pretrained": {
+            "HitRate@1": 0.0,
+            "MRR@1": 0.0,
+            "HitRate@5": 0.0,
+            "MRR@5": 0.0,
+            "HitRate@10": 0.0,
+            "MRR@10": 0.0
+        },
+        "finetuned": {
+            "HitRate@1": 0.0,
+            "MRR@1": 0.0,
+            "HitRate@5": 0.0,
+            "MRR@5": 0.0,
+            "HitRate@10": 0.0,
+            "MRR@10": 0.0
+        }
+    }
+}
