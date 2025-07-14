@@ -26,7 +26,7 @@ def analyze_results(results_file='evaluation_results.json'):
             finetuned = model_results['finetuned']
             
             for metric in pretrained.keys():
-                pretrained_score = pretrained[metric]
+                pretrained_score = pretrained[metric] + 0.0001  # Tránh chia cho 0
                 finetuned_score = finetuned[metric]
                 
                 # Tính % thay đổi

@@ -53,6 +53,7 @@ class EntVitModel(nn.Module):
     """EndoViT Model for Image Retrieval - Wrapper around core EntVitModel"""
     
     def __init__(self, 
+                 model_name = 'egeozsoy/EndoViT',
                  feature_dim: int = 768,
                  num_classes: int = 1000,
                  dropout: float = 0.1,

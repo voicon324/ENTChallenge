@@ -460,7 +460,7 @@ def create_dataloaders(data_config: Dict, backbone: str = 'dino_v2') -> Tuple[Da
     # Get transforms
     train_transform = get_transforms(
         data_config.get('image_size', 224), 
-        'train', 
+        'val', 
         data_config.get('normalize', True),
         backbone
     )

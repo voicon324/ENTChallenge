@@ -290,7 +290,7 @@ def create_interactive_class_pca_viewer(class_name: str,
     outputs_dir = Path("outputs")
     
     for model_dir in outputs_dir.iterdir():
-        if model_dir.is_dir() and (model_dir / "best_model.pth").exists():
+        if model_dir.is_dir() and (model_dir / "best_model2.pth").exists():
             available_models.append(model_dir.name)
     
     if not available_models:
@@ -320,7 +320,7 @@ def create_interactive_class_pca_viewer(class_name: str,
         if not model_path.exists():
             continue
         
-        best_model_path = model_path / 'best_model.pth'
+        best_model_path = model_path / 'best_model2.pth'
         if not best_model_path.exists():
             continue
         

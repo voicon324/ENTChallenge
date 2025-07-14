@@ -3,6 +3,7 @@
 Script đánh giá toàn diện cho các model với metrics:
 - HitRate@1, HitRate@5, HitRate@10
 - MRR@1, MRR@5, MRR@10
+- Recall@1, Recall@5, Recall@10
 
 Quy trình đánh giá:
 - Query: Các ảnh gốc trong tập test.
@@ -33,7 +34,7 @@ def calculate_metrics_with_topk(query_embeddings: torch.Tensor,
                                k_values: list,
                                query_to_augmented_mapping: dict) -> dict:
     """
-    Tính toán HitRate@k và MRR@k.
+    Tính toán HitRate@k, MRR@k và Recall@k.
 
     Args:
         query_embeddings: Embeddings của các ảnh test gốc (queries).
@@ -92,6 +93,22 @@ def calculate_metrics_with_topk(query_embeddings: torch.Tensor,
                 reciprocal_ranks.append(0.0)
         
         results[f"MRR@{k}"] = sum(reciprocal_ranks) / len(reciprocal_ranks) if reciprocal_ranks else 0.0
+        
+        # --- Tính Recall@k ---
+        recall_scores = []
+        for i in range(n_queries):
+            query_augmented_indices = set(query_to_augmented_mapping.get(i, []))
+            retrieved_indices = set(top_k_indices[i].tolist())
+            
+            # Tính số lượng ground truth được tìm thấy
+            found_gt = len(query_augmented_indices.intersection(retrieved_indices))
+            total_gt = len(query_augmented_indices)
+            
+            # Recall = số ground truth tìm thấy / tổng số ground truth
+            recall = found_gt / total_gt if total_gt > 0 else 0.0
+            recall_scores.append(recall)
+        
+        results[f"Recall@{k}"] = sum(recall_scores) / len(recall_scores) if recall_scores else 0.0
     
     return results
 
@@ -186,6 +203,9 @@ def extract_augmented_features(model, dataloader, device, backbone, num_augmenta
     model.eval()
     all_features = []
     all_labels = []
+
+    if num_augmentations <= 0:
+        return torch.tensor
     
     image_size = model.image_size if hasattr(model, 'image_size') else 224
     strong_transform = get_strong_augmentation_transform(image_size, backbone)
@@ -276,12 +296,12 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
     val_features, val_labels = extract_features(model, val_loader, device)
     
     # Corpus Part 2: Ảnh augment
-    num_augmentations = 1
+    num_augmentations = 5
     backbone = config['model']['backbone']
     print(f"📊 Extracting {num_augmentations} augmented features from train set (Corpus - Augmented)...")
-    train_aug_features, train_aug_labels = extract_augmented_features(model, train_loader, device, backbone, num_augmentations)
+    train_aug_features, train_aug_labels = extract_augmented_features(model, train_loader, device, backbone, 1)
     print(f"📊 Extracting {num_augmentations} augmented features from val set (Corpus - Augmented)...")
-    val_aug_features, val_aug_labels = extract_augmented_features(model, val_loader, device, backbone, num_augmentations)
+    val_aug_features, val_aug_labels = extract_augmented_features(model, val_loader, device, backbone, 1)
     print(f"📊 Extracting {num_augmentations} augmented features from test set (Corpus - Ground Truth)...")
     test_aug_features, test_aug_labels = extract_augmented_features(model, test_loader, device, backbone, num_augmentations)
 
@@ -337,8 +357,22 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
         aug_embs = F.normalize(corpus_features[aug_indices], p=2, dim=1)
         
         similarities = torch.mm(query_emb, aug_embs.t())
-        print(f"  - Cosine Sim (Query {i} vs. its augments): {similarities.squeeze().tolist()}")
-
+        avg_sim = similarities.mean().item()
+        
+        # Kiểm tra top similarities với toàn bộ corpus
+        all_sims = torch.mm(query_emb, F.normalize(corpus_features, p=2, dim=1).t())
+        top_sim_values, top_sim_indices = torch.topk(all_sims, 10, dim=1)
+        
+        print(f"  - Query {i} vs. its {num_augmentations} augments - Avg similarity: {avg_sim:.4f}")
+        print(f"    Individual similarities: {similarities.squeeze().tolist()}")
+        print(f"    Top 10 corpus similarities: {top_sim_values.squeeze()[:5].tolist()}")
+        print(f"    Ground truth indices: {aug_indices}")
+        print(f"    Top 10 retrieved indices: {top_sim_indices.squeeze()[:5].tolist()}")
+        
+        # Kiểm tra xem có ground truth nào trong top 10 không
+        gt_in_top10 = any(idx in aug_indices for idx in top_sim_indices.squeeze()[:10].tolist())
+        print(f"    Ground truth in top 10: {gt_in_top10}")
+        print()
     # --- 5. Tính toán và Trả về kết quả ---
     print("\n--- Calculating Metrics ---")
     metrics = calculate_metrics_with_topk(
@@ -378,7 +412,7 @@ def create_summary_table(results):
     pivot_df = df.pivot_table(index=['Metric', 'Model'], columns='Training', values='Value')
     
     # Sắp xếp lại thứ tự metric cho dễ đọc
-    metric_order = ['HitRate@1', 'HitRate@5', 'HitRate@10', 'MRR@1', 'MRR@5', 'MRR@10']
+    metric_order = ['HitRate@1', 'HitRate@5', 'HitRate@10', 'MRR@1', 'MRR@5', 'MRR@10', 'Recall@1', 'Recall@5', 'Recall@10']
     pivot_df = pivot_df.reindex(metric_order, level='Metric')
     
     print(pivot_df.to_string(float_format="%.4f"))
@@ -402,9 +436,18 @@ def main():
         {
             'name': 'ENT-ViT',
             'config': 'configs/ent-vit.yaml',
-            'checkpoint': 'outputs/ent_vit_ntxent/best_model2.pth'
+            'checkpoint': 'outputs/ent_vit_ntxent/best_model_final.pth'
         },
-        # Thêm các model khác vào đây
+                {
+            'name': 'DINOv2-ViT-B/14',
+            'config': 'configs/dinov2_vitb14.yaml',
+            'checkpoint': 'outputs/dinov2_vitb14_ntxent/best_model2.pth'
+        },
+                {
+            'name': 'DINOv2-ViT-L/14',
+            'config': 'configs/dinov2_vitl14.yaml',
+            'checkpoint': 'outputs/dinov2_vitl14_ntxent/best_model2.pth'
+        },
     ]
     
     all_results = {}
