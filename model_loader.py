@@ -23,12 +23,6 @@ class DinoV2Backbone(nn.Module):
             print(f"✅ Successfully loaded pretrained {model_name}")
         except Exception as e:
             print(f"⚠️ Could not load pretrained {model_name}: {e}")
-            print("💡 Falling back to torchvision ViT with ImageNet pretrained weights")
-            # Fallback to ViT with pretrained weights
-            from torchvision.models import vit_b_16, ViT_B_16_Weights
-            self.backbone = vit_b_16(weights=ViT_B_16_Weights.IMAGENET1K_V1)
-            self.backbone.heads = nn.Identity()
-            print("✅ Using fallback ViT model with pretrained weights")
         
         # Get output dimension
         self.feature_dim = self._get_feature_dim()
@@ -81,7 +75,7 @@ class DinoV2Model(nn.Module):
     """Complete DinoV2 model for image retrieval"""
     
     def __init__(self, 
-                 model_name: str = 'dinov2_vitb14',
+                 model_name: str = 'dinov2_vitb14', #dinoev2_vitb14, dinov2_vits14, dinov2_vitl14
                  feature_dim: int = 768,
                  num_classes: int = 7,
                  dropout: float = 0.1,
@@ -168,13 +162,7 @@ class EntVitBackbone(nn.Module):
                 
         except Exception as e:
             print(f"⚠️ Could not load EndoViT from HuggingFace: {e}")
-            print("💡 Falling back to standard ViT with ImageNet pretrained weights")
-            # Fallback to standard pretrained ViT
-            from torchvision.models import vit_b_16, ViT_B_16_Weights
-            self.backbone = vit_b_16(weights=ViT_B_16_Weights.IMAGENET1K_V1)
-            self.backbone.heads = nn.Identity()
-            self.feature_dim = 768
-            print("✅ Using fallback ViT model with pretrained weights")
+        
         
     def forward(self, x):
         """Forward pass"""
