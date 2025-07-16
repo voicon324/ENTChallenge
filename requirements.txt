@@ -19,6 +19,9 @@ pytest
 jupyter
 torchsummary
 huggingface-hub
+google-generativeai
+google-ai-generativelanguage
+google-genai
 
 # Development dependencies (optional)
 black

@@ -436,18 +436,18 @@ def main():
         {
             'name': 'ENT-ViT',
             'config': 'configs/ent-vit.yaml',
-            'checkpoint': 'outputs/ent_vit_ntxent/best_model_final.pth'
+            'checkpoint': 'outputs/ent_vit_ntxent/best_model2.pth'
         },
-                {
-            'name': 'DINOv2-ViT-B/14',
-            'config': 'configs/dinov2_vitb14.yaml',
-            'checkpoint': 'outputs/dinov2_vitb14_ntxent/best_model2.pth'
-        },
-                {
-            'name': 'DINOv2-ViT-L/14',
-            'config': 'configs/dinov2_vitl14.yaml',
-            'checkpoint': 'outputs/dinov2_vitl14_ntxent/best_model2.pth'
-        },
+        #         {
+        #     'name': 'DINOv2-ViT-B/14',
+        #     'config': 'configs/dinov2_vitb14.yaml',
+        #     'checkpoint': 'outputs/dinov2_vitb14_ntxent/best_model2.pth'
+        # },
+        #         {
+        #     'name': 'DINOv2-ViT-L/14',
+        #     'config': 'configs/dinov2_vitl14.yaml',
+        #     'checkpoint': 'outputs/dinov2_vitl14_ntxent/best_model2.pth'
+        # },
     ]
     
     all_results = {}
