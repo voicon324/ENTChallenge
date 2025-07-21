@@ -342,28 +342,28 @@ MODEL_CONFIGS = {
         'backbone': 'dino_v2',
         'model_name': 'dinov2_vits14',
         'feature_dim': 768,  # ✅ Khớp với configs/dinov2_vits14.yaml
-        'checkpoint_path': 'outputs/dinov2_vits14_ntxent/best_model2.pth',
+        'checkpoint_path': 'pretrained/dinov2_vits14.pth',  # ✅ Đã lưu lại
         'description': 'DinoV2 ViT-S/14'
     },
     'dinov2_vitb14': {
         'backbone': 'dino_v2',
         'model_name': 'dinov2_vitb14',
         'feature_dim': 768,  # ✅ Khớp với configs/dinov2_vitb14.yaml
-        'checkpoint_path': 'outputs/dinov2_vitb14_ntxent/best_model2.pth',
+        'checkpoint_path': 'pretrained/dinov2_vitb14.pth',  # ✅ Đã lưu lại
         'description': 'DinoV2 ViT-B/14'
     },
     'dinov2_vitl14': {
         'backbone': 'dino_v2',
         'model_name': 'dinov2_vitl14',
         'feature_dim': 768,  # ✅ Khớp với configs/dinov2_vitl14.yaml
-        'checkpoint_path': 'outputs/dinov2_vitl14_ntxent/best_model2.pth',
+        'checkpoint_path': 'pretrained/dinov2_vitl14.pth',  # ✅ Đã lưu lại
         'description': 'DinoV2 ViT-L/14'
     },
     'ent_vit': {
         'backbone': 'ent_vit',
         'model_name': 'ent_vit',
         'feature_dim': 768,  # ✅ Khớp với configs/ent-vit.yaml
-        'checkpoint_path': 'outputs/ent_vit_ntxent/best_model2.pth',
+        'checkpoint_path': 'pretrained/ent_vit.pth',  # ✅ Đã lưu lại
         'description': 'EndoViT'
     }
 }
@@ -473,12 +473,12 @@ def load_model(model_name: str,
         try:
             checkpoint = torch.load(checkpoint_path_str, map_location='cpu')
             
-            # Handle different checkpoint formats
-            if 'model_state_dict' in checkpoint:
-                state_dict = checkpoint['model_state_dict']
-            else:
-                state_dict = checkpoint
-            
+            # # Handle different checkpoint formats
+            # if 'model_state_dict' in checkpoint:
+            #     state_dict = checkpoint['model_state_dict']
+            # else:
+            #     state_dict = checkpoint
+            state_dict = checkpoint
             # Load state dict
             model.load_state_dict(state_dict, strict=False)
             print("✅ Checkpoint loaded successfully")
@@ -489,6 +489,13 @@ def load_model(model_name: str,
     
     model = model.to(DEVICE)
     model.eval()
+
+    import os
+    # save model_state_dict only
+    model_state_dict = model.state_dict()
+    model_save_path = os.path.join("pretrained", f"{model_name}.pth")
+    torch.save(model_state_dict, model_save_path)
+    
     
     # Print model summary
     total_params = sum(p.numel() for p in model.parameters())

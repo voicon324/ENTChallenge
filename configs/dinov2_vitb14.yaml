@@ -14,9 +14,9 @@ data:
   path: "data/processed/"
   batch_size: 16  # Tăng batch size cho multi-GPU (sẽ được chia đều cho các GPU)
   num_workers: 4  # Tăng num_workers cho multi-GPU
-  train_split: 0.8
-  val_split: 0.1
-  test_split: 0.1
+  train_split: 0.4
+  val_split: 0.2
+  test_split: 0.4
   image_size: 224
   normalize: true
 

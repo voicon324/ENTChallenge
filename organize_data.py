@@ -142,7 +142,7 @@ def main():
     random.seed(42)
     
     # Paths
-    dataset_dir = Path('/kaggle/input/entrep/Dataset')
+    dataset_dir = Path('Dataset')
     json_path = dataset_dir / 'data.json'
     images_dir = dataset_dir / 'images'
     target_dir = Path('data/processed')
@@ -161,8 +161,8 @@ def main():
     clean_existing_data(target_dir)
     
     # Create balanced splits
-    train_data, val_data, test_data = create_balanced_splits(data)
-    
+    train_data, val_data, test_data = create_balanced_splits(data, 0.4, 0.2, 0.4)
+
     print(f"\n📊 Final split sizes:")
     print(f"  Train: {len(train_data)} images")
     print(f"  Val: {len(val_data)} images")
