@@ -142,7 +142,7 @@ def main():
     random.seed(42)
     
     # Paths
-    dataset_dir = Path('Dataset')
+    dataset_dir = Path('/kaggle/input/entrep/Dataset')
     json_path = dataset_dir / 'data.json'
     images_dir = dataset_dir / 'images'
     target_dir = Path('data/processed')
