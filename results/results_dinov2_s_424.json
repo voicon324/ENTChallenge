@@ -1,0 +1,19 @@
+{
+  "model_name": "DinoV2-S-424",
+  "config_path": "configs/dinov2_vits14.yaml",
+  "checkpoint_path": "outputs/dinov2_vits14_ntxent/best_model424.pth",
+  "eval_data_dir": "eval_data",
+  "gemini_reranking_enabled": false,
+  "rerank_top_k": null,
+  "results": {
+    "HitRate@1": 0.9090909090909091,
+    "MRR@1": 0.9090909090909091,
+    "Recall@1": 0.18181818181818182,
+    "HitRate@5": 0.987012987012987,
+    "MRR@5": 0.9435064935064934,
+    "Recall@5": 0.6268398268398269,
+    "HitRate@10": 0.9956709956709957,
+    "MRR@10": 0.9446660482374769,
+    "Recall@10": 0.7515151515151515
+  }
+}

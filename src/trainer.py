@@ -1,5 +1,5 @@
 """
-Class Trainer chứa logic train/val và log W&B
+Class Trainer contains train/val logic and W&B logging
 """
 
 import torch
@@ -138,7 +138,7 @@ class Trainer:
         # Setup multi-GPU training
         self.multi_gpu = config.get('training', {}).get('multi_gpu', False)
         if self.multi_gpu and torch.cuda.device_count() > 1:
-            print(f"🚀 Cấu hình DataParallel với {torch.cuda.device_count()} GPU")
+            print(f"🚀 Configuring DataParallel with {torch.cuda.device_count()} GPUs")
             
             # Enable synchronized batch normalization if requested
             if config.get('training', {}).get('sync_bn', False):

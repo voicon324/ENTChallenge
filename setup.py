@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Script setup môi trường project
-Chạy: python setup.py
+Script to setup project environment
+Run: python setup.py
 """
 
 import subprocess
@@ -10,7 +10,7 @@ import os
 from pathlib import Path
 
 def run_command(command, description=""):
-    """Chạy command và hiển thị kết quả"""
+    """Run command and display results"""
     print(f"🔧 {description}")
     print(f"   Running: {command}")
     
@@ -27,7 +27,7 @@ def run_command(command, description=""):
         return False
 
 def check_python_version():
-    """Kiểm tra phiên bản Python"""
+    """Check Python version"""
     version = sys.version_info
     print(f"🐍 Python version: {version.major}.{version.minor}.{version.micro}")
     
@@ -39,7 +39,7 @@ def check_python_version():
         return True
 
 def install_requirements():
-    """Cài đặt requirements"""
+    """Install requirements"""
     requirements_file = Path("requirements.txt")
     
     if not requirements_file.exists():
@@ -67,7 +67,7 @@ def setup_wandb():
         return False
 
 def create_directories():
-    """Tạo các thư mục cần thiết"""
+    """Create necessary directories"""
     directories = [
         "data/processed",
         "outputs",
@@ -81,7 +81,7 @@ def create_directories():
     return True
 
 def check_gpu():
-    """Kiểm tra GPU availability"""
+    """Check GPU availability"""
     try:
         import torch
         if torch.cuda.is_available():
@@ -97,7 +97,7 @@ def check_gpu():
         return False
 
 def create_sample_data():
-    """Tạo dữ liệu mẫu"""
+    """Create sample data"""
     print("📊 Creating sample data...")
     
     return run_command(

@@ -2,17 +2,17 @@
 # W&B CONFIG
 # -------------------
 wandb:
-  project: "Image_Retrieval_Experiments"  # Tên project trên W&B
-  entity: "hokhanhduy-none"           # Tên user/team W&B của bạn
-  run_name: "ent_vit_ntxent"                          # Tên run cụ thể (null để tự động tạo)
+  project: "Image_Retrieval_Experiments"  # Project name on W&B
+  entity: "hokhanhduy-none"           # Your W&B user/team name
+  run_name: "ent_vit_ntxent"                          # Specific run name (null for auto-generation)
 
 # -------------------
 # DATA CONFIG
-# -------------------vơi
+# -------------------
 data:
   path: "data/processed/"
-  batch_size: 16  # Tăng batch size cho multi-GPU
-  num_workers: 4  # Tăng num_workers cho multi-GPU
+  batch_size: 16  # Increased batch size for multi-GPU
+  num_workers: 4  # Increased num_workers for multi-GPU
   train_split: 0.4
   val_split: 0.2
   test_split: 0.4
@@ -23,11 +23,11 @@ data:
 # MODEL CONFIG
 # -------------------
 model:
-  # Thay đổi 'dino_v2' thành 'ent_vit' để đổi backbone
+  # Change 'dino_v2' to 'ent_vit' to switch backbone
   backbone: "ent_vit"  # Options: "dino_v2", "ent_vit"
   model_name: "ent_vit"  # ENT-ViT model
-  # Đường dẫn tới checkpoint pre-trained (dùng cho test-only hoặc finetune)
-  pretrained_checkpoint: null  # ví dụ: "outputs/best_model.pth"
+  # Path to pre-trained checkpoint (used for test-only or finetune)
+  pretrained_checkpoint: null  # example: "outputs/best_model.pth"
   feature_dim: 768
   num_classes: 7
   dropout: 0.1
@@ -41,7 +41,7 @@ training:
   strategy: "ntxent"
   epochs:   200
   optimizer: "AdamW"
-  learning_rate: 0.00001    # Tăng learning rate cho multi-GPU
+  learning_rate: 0.00001    # Increased learning rate for multi-GPU
   weight_decay: 0.01
   scheduler: "cosine"
   warmup_epochs: 5
@@ -61,7 +61,7 @@ training:
 # -------------------
 evaluation:
   metrics: ["HitRate@1", "HitRate@5", "HitRate@10", "MRR", "mAP"]
-  # Bật/tắt tính năng log ảnh Grad-CAM lên W&B
+  # Enable/disable Grad-CAM image logging to W&B
   log_grad_cam: true
   grad_cam_samples: 5
   save_embeddings: true

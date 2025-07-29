@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Script đánh giá toàn diện cho các model với metrics:
+Comprehensive evaluation script for models with metrics:
 - HitRate@1, HitRate@5, HitRate@10
 - MRR@1, MRR@5, MRR@10
 - Recall@1, Recall@5, Recall@10
 
-Quy trình đánh giá:
-- Query: Các ảnh gốc trong tập test.
-- Corpus: Toàn bộ ảnh gốc và ảnh đã augment của tập train, val, và test.
-- Ground Truth: Với mỗi query (ảnh test gốc), kết quả đúng là 3 phiên bản augment tương ứng của chính nó trong corpus.
+Evaluation process:
+- Query: Original images in the test set.
+- Corpus: All original and augmented images from train, val, and test sets.
+- Ground Truth: For each query (original test image), the correct results are the 3 corresponding augmented versions of itself in the corpus.
 """
 
 import yaml
@@ -25,63 +25,63 @@ from src.model_factory import build_model
 from src.utils import set_seed, setup_logging
 import torch.nn.functional as F
 
-# --- Các hàm tính toán Metrics ---
-# Logic của các hàm này đã được làm gọn lại để tập trung vào mục tiêu chính:
-# tìm chính xác các phiên bản augment, thay vì fallback về so sánh class label.
+# --- Metrics Calculation Functions ---
+# The logic of these functions has been streamlined to focus on the main objective:
+# accurately finding augmented versions, rather than falling back to class label comparison.
 
 def calculate_metrics_with_topk(query_embeddings: torch.Tensor,
                                corpus_embeddings: torch.Tensor,
                                k_values: list,
                                query_to_augmented_mapping: dict) -> dict:
     """
-    Tính toán HitRate@k, MRR@k và Recall@k.
+    Calculate HitRate@k, MRR@k and Recall@k.
 
     Args:
-        query_embeddings: Embeddings của các ảnh test gốc (queries).
-        corpus_embeddings: Embeddings của toàn bộ ảnh trong corpus.
-        k_values: Danh sách các giá trị k (ví dụ: [1, 5, 10]).
-        query_to_augmented_mapping: Dict map từ index của query đến list các index của
-                                    phiên bản augment tương ứng trong corpus.
+        query_embeddings: Embeddings of original test images (queries).
+        corpus_embeddings: Embeddings of all images in the corpus.
+        k_values: List of k values (e.g., [1, 5, 10]).
+        query_to_augmented_mapping: Dict mapping from query index to list of
+                                   corresponding augmented version indices in corpus.
     """
     results = {}
     
-    # Chuẩn hóa embeddings để tính cosine similarity
+    # Normalize embeddings for cosine similarity calculation
     query_embeddings = F.normalize(query_embeddings, p=2, dim=1)
     corpus_embeddings = F.normalize(corpus_embeddings, p=2, dim=1)
     
-    # Tính ma trận tương đồng (cosine similarity) giữa queries và corpus
+    # Calculate similarity matrix (cosine similarity) between queries and corpus
     similarity_matrix = torch.mm(query_embeddings, corpus_embeddings.t())
     
     n_queries = query_embeddings.size(0)
     
-    # Lấy top-k indices cho tất cả các query cùng một lúc để tăng hiệu quả
-    # Lấy top-k lớn nhất để tái sử dụng cho các k nhỏ hơn
+    # Get top-k indices for all queries at once for efficiency
+    # Get the largest top-k to reuse for smaller k values
     max_k = max(k_values)
     _, top_k_indices_all = torch.topk(similarity_matrix, max_k, dim=1)
 
     for k in k_values:
-        # Lấy top-k cho giá trị k hiện tại
+        # Get top-k for the current k value
         top_k_indices = top_k_indices_all[:, :k]
         
-        # --- Tính HitRate@k ---
+        # --- Calculate HitRate@k ---
         hit_count = 0
         for i in range(n_queries):
             query_augmented_indices = set(query_to_augmented_mapping.get(i, []))
             retrieved_indices = set(top_k_indices[i].tolist())
             
-            # Giao của hai tập hợp không rỗng nghĩa là đã tìm thấy ít nhất 1 ground truth
+            # A non-empty intersection of the two sets means at least 1 ground truth was found
             if not query_augmented_indices.isdisjoint(retrieved_indices):
                 hit_count += 1
         
         results[f"HitRate@{k}"] = hit_count / n_queries
         
-        # --- Tính MRR@k ---
+        # --- Calculate MRR@k ---
         reciprocal_ranks = []
         for i in range(n_queries):
             query_augmented_indices = query_to_augmented_mapping.get(i, [])
             best_rank = float('inf')
             
-            # Tìm rank (vị trí) của ground truth đầu tiên được tìm thấy
+            # Find the rank (position) of the first found ground truth
             for rank, retrieved_idx in enumerate(top_k_indices[i].tolist()):
                 if retrieved_idx in query_augmented_indices:
                     best_rank = rank + 1
@@ -94,17 +94,17 @@ def calculate_metrics_with_topk(query_embeddings: torch.Tensor,
         
         results[f"MRR@{k}"] = sum(reciprocal_ranks) / len(reciprocal_ranks) if reciprocal_ranks else 0.0
         
-        # --- Tính Recall@k ---
+        # --- Calculate Recall@k ---
         recall_scores = []
         for i in range(n_queries):
             query_augmented_indices = set(query_to_augmented_mapping.get(i, []))
             retrieved_indices = set(top_k_indices[i].tolist())
             
-            # Tính số lượng ground truth được tìm thấy
+            # Calculate the number of ground truth found
             found_gt = len(query_augmented_indices.intersection(retrieved_indices))
             total_gt = len(query_augmented_indices)
             
-            # Recall = số ground truth tìm thấy / tổng số ground truth
+            # Recall = number of found ground truths / total number of ground truths
             recall = found_gt / total_gt if total_gt > 0 else 0.0
             recall_scores.append(recall)
         
@@ -112,10 +112,10 @@ def calculate_metrics_with_topk(query_embeddings: torch.Tensor,
     
     return results
 
-# --- Các hàm trích xuất đặc trưng ---
+# --- Feature Extraction Functions ---
 
 def extract_features(model, dataloader, device):
-    """Trích xuất đặc trưng cho các ảnh gốc (không augment)."""
+    """Extract features for original images (no augmentation)."""
     model.eval()
     all_features = []
     all_labels = []
@@ -133,7 +133,7 @@ def extract_features(model, dataloader, device):
     return torch.cat(all_features, dim=0), torch.cat(all_labels, dim=0)
 
 def get_strong_augmentation_transform(image_size=224, backbone='dinov2'):
-    """Tạo transform với augmentation mạnh."""
+    """Create transform with strong augmentation."""
     
     # Determine normalization parameters based on backbone
     if backbone == 'ent_vit':
@@ -145,60 +145,63 @@ def get_strong_augmentation_transform(image_size=224, backbone='dinov2'):
         mean = [0.485, 0.456, 0.406]
         std = [0.229, 0.224, 0.225]
     
-    # Gợi ý: Sử dụng torchvision.transforms.v2 để có thể chạy augment trên GPU, tăng tốc độ đáng kể
+    # Suggestion: Use torchvision.transforms.v2 to run augmentations on GPU, significantly speeding up the process
     return transforms.Compose([
-        # Bước 1: Tiền xử lý - Tập trung vào vùng quan trọng (vòng tròn nội soi)
-        # Crop phần trung tâm để loại bỏ phần lớn viền đen, giả sử vòng tròn ở giữa.
-        # Điều chỉnh kích thước crop cho phù hợp với ảnh của bạn.
-        transforms.CenterCrop(size=(450, 450)), # Giả sử ảnh gốc ~500x500
-        transforms.Resize((image_size, image_size)), # Resize về kích thước chuẩn
+        # Step 1: Preprocessing - Focus on the important region (endoscopic circle)
+        # Crop the central part to remove most of the black border, assuming the circle is in the middle.
+        # Adjust the crop size to fit your images.
+        # transforms.CenterCrop(size=(450, 450)), # Assuming original image is ~500x500
+        transforms.Resize((500, 400)), # Resize to a standard size
+        # transforms.CenterCrop(size=(450, 450)), # Assuming original image is ~500x500
+        transforms.RandomCrop(size=(image_size, image_size)), # Randomly crop a standard size region
+        transforms.Resize((image_size, image_size)), # Resize to a standard size
 
-        # Bước 2: Augmentation hình học (Mô phỏng chuyển động của ống soi)
-        # Áp dụng một trong các phép biến đổi hình học một cách ngẫu nhiên
+        # Step 2: Geometric Augmentation (Simulating endoscope movement)
+        # Randomly apply one of the geometric transformations
         transforms.RandomApply([
             transforms.RandomAffine(
-                degrees=20,               # Xoay một góc hợp lý
-                translate=(0.1, 0.1),     # Dịch chuyển nhẹ
-                scale=(0.9, 1.1)          # Zoom vào/ra một chút
-                # Shear (biến dạng trượt) thường không thực tế với ống soi, nên bỏ
+                degrees=20,               # Rotate by a reasonable angle
+                translate=(0.1, 0.1),     # Translate slightly
+                scale=(0.9, 1.1)          # Zoom in/out a bit
+                # Shear is often not realistic for endoscopes, so it's omitted
             )
-        ], p=0.7), # Áp dụng với xác suất 70%
+        ], p=0.7), # Apply with 70% probability
 
-        # transforms.RandomHorizontalFlip(p=0.5), # Rất quan trọng, mô phỏng soi tai trái/phải
+        # transforms.RandomHorizontalFlip(p=0.5), # Very important, simulates looking at left/right ear
 
-        # Bước 3: Augmentation màu sắc (Mô phỏng điều kiện ánh sáng và camera khác nhau)
-        # Sử dụng ColorJitter với cường độ vừa phải
+        # Step 3: Color Augmentation (Simulating different lighting and camera conditions)
+        # Use ColorJitter with moderate intensity
         transforms.ColorJitter(
-            brightness=0.2,   # Điều chỉnh độ sáng
-            contrast=0.2,     # Điều chỉnh độ tương phản
-            saturation=0.2,   # Điều chỉnh độ bão hòa
-            hue=0.05          # HUE rất nhạy, chỉ nên thay đổi rất ít
+            brightness=0.2,   # Adjust brightness
+            contrast=0.2,     # Adjust contrast
+            saturation=0.2,   # Adjust saturation
+            hue=0.05          # HUE is very sensitive, should only be changed slightly
         ),
         
-        # Các phép biến đổi màu sắc an toàn khác
-        transforms.RandomAutocontrast(p=0.2), # Tự động tăng cường độ tương phản
+        # Other safe color transformations
+        transforms.RandomAutocontrast(p=0.2), # Automatically enhance contrast
 
-        # Bước 4: Augmentation mô phỏng nhiễu và che khuất
-        # Làm mờ nhẹ để mô phỏng ảnh bị out-focus
+        # Step 4: Augmentation simulating noise and occlusion
+        # Apply slight blur to simulate out-of-focus images
         transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.5)),
 
-        # Chuyển sang Tensor TRƯỚC khi thực hiện RandomErasing
+        # Convert to Tensor BEFORE performing RandomErasing
         transforms.ToTensor(),
 
-        # Xóa một vùng nhỏ để mô phỏng bị che khuất (ví dụ: bởi ráy tai)
+        # Erase a small region to simulate occlusion (e.g., by earwax)
         transforms.RandomErasing(
-            p=0.2, # Áp dụng với xác suất thấp
-            scale=(0.02, 0.08), # Xóa một vùng nhỏ
+            p=0.2, # Apply with low probability
+            scale=(0.02, 0.08), # Erase a small area
             ratio=(0.3, 3.3),
-            value='random' # Điền vào bằng nhiễu ngẫu nhiên thay vì màu đen
+            value='random' # Fill with random noise instead of black
         ),
         transforms.Normalize(mean=mean, std=std)
     ])
 
 def extract_augmented_features(model, dataloader, device, backbone, num_augmentations=3):
     """
-    Trích xuất đặc trưng cho các phiên bản augment của ảnh.
-    Hàm này chỉ trả về features của các ảnh đã augment.
+    Extract features for augmented versions of images.
+    This function only returns features of the augmented images.
     """
     model.eval()
     all_features = []
@@ -210,7 +213,7 @@ def extract_augmented_features(model, dataloader, device, backbone, num_augmenta
     image_size = model.image_size if hasattr(model, 'image_size') else 224
     strong_transform = get_strong_augmentation_transform(image_size, backbone)
     
-    # Lấy transform chuẩn để denormalize ảnh trước khi augment
+    # Get standard transform to denormalize image before augmenting
     if backbone == 'ent_vit':
         # EndoViT-specific normalization parameters
         mean = [0.3464, 0.2280, 0.2228]
@@ -227,14 +230,14 @@ def extract_augmented_features(model, dataloader, device, backbone, num_augmenta
 
     with torch.no_grad():
         for images, targets in dataloader:
-            # `images` là batch ảnh gốc từ dataloader
+            # `images` is the batch of original images from the dataloader
             batch_size = images.size(0)
             
-            # Lặp lại targets cho các phiên bản augment
+            # Repeat targets for the augmented versions
             augmented_targets = targets.repeat_interleave(num_augmentations)
             all_labels.append(augmented_targets.cpu())
 
-            # Tạo và xử lý các phiên bản augment
+            # Create and process augmented versions
             batch_augmented_features = []
             for _ in range(num_augmentations):
                 augmented_batch_pil = []
@@ -248,9 +251,9 @@ def extract_augmented_features(model, dataloader, device, backbone, num_augmenta
                 features = model.get_features(augmented_batch_tensor)
                 batch_augmented_features.append(features)
             
-            # Nối các features augment theo đúng thứ tự:
+            # Concatenate the augmented features in the correct order:
             # [img1_aug1, img2_aug1, ..., img1_aug2, img2_aug2, ...]
-            # Cần sắp xếp lại để thành:
+            # Needs to be reordered to:
             # [img1_aug1, img1_aug2, ..., img2_aug1, img2_aug2, ...]
             reordered_features = torch.cat(batch_augmented_features, dim=0).reshape(num_augmentations, batch_size, -1).transpose(0, 1).reshape(batch_size * num_augmentations, -1)
             all_features.append(reordered_features.cpu())
@@ -263,15 +266,15 @@ def extract_augmented_features(model, dataloader, device, backbone, num_augmenta
 
 def evaluate_model(config_path, checkpoint_path=None, model_name=""):
     """
-    Hàm chính để đánh giá một model.
-    Quy trình đã được làm rõ và logic được đơn giản hóa.
+    Main function to evaluate a model.
+    The process has been clarified and the logic simplified.
     """
     with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
     
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
-    # --- 1. Tải Dataloaders và Model ---
+    # --- 1. Load Dataloaders and Model ---
     train_loader, val_loader, test_loader = create_dataloaders(config['data'], config['model']['backbone'])
     model = build_model(config['model'])
     model.to(device)
@@ -283,25 +286,25 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
     else:
         print("ℹ️ No checkpoint loaded. Using pretrained weights from model definition.")
     
-    # --- 2. Trích xuất đặc trưng ---
+    # --- 2. Feature Extraction ---
     print("\n--- Feature Extraction ---")
-    # Query: Test gốc
+    # Query: Original Test
     print("📊 Extracting features from test set (Queries)...")
     query_features, query_labels = extract_features(model, test_loader, device)
     
-    # Corpus Part 1: Ảnh gốc
+    # Corpus Part 1: Original Images
     print("📊 Extracting features from train set (Corpus - Original)...")
     train_features, train_labels = extract_features(model, train_loader, device)
     print("📊 Extracting features from val set (Corpus - Original)...")
     val_features, val_labels = extract_features(model, val_loader, device)
     
-    # Corpus Part 2: Ảnh augment
+    # Corpus Part 2: Augmented Images
     num_augmentations = 5
     backbone = config['model']['backbone']
     print(f"📊 Extracting {num_augmentations} augmented features from train set (Corpus - Augmented)...")
-    train_aug_features, train_aug_labels = extract_augmented_features(model, train_loader, device, backbone, 1)
+    train_aug_features, train_aug_labels = extract_augmented_features(model, train_loader, device, backbone, num_augmentations)
     print(f"📊 Extracting {num_augmentations} augmented features from val set (Corpus - Augmented)...")
-    val_aug_features, val_aug_labels = extract_augmented_features(model, val_loader, device, backbone, 1)
+    val_aug_features, val_aug_labels = extract_augmented_features(model, val_loader, device, backbone, num_augmentations)
     print(f"📊 Extracting {num_augmentations} augmented features from test set (Corpus - Ground Truth)...")
     test_aug_features, test_aug_labels = extract_augmented_features(model, test_loader, device, backbone, num_augmentations)
 
@@ -309,10 +312,10 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
         print(f"❌ Failed to extract necessary features for {model_name}. Skipping evaluation.")
         return None
 
-    # --- 3. Xây dựng Corpus và Ground Truth Mapping ---
+    # --- 3. Build Corpus and Ground Truth Mapping ---
     print("\n--- Building Corpus & Ground Truth ---")
     
-    # Nối tất cả các features lại để tạo thành corpus hoàn chỉnh
+    # Concatenate all features to create the complete corpus
     corpus_features = torch.cat([
         train_features, 
         val_features,
@@ -321,7 +324,7 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
         test_aug_features
     ], dim=0)
     
-    # (Tùy chọn) Nối labels nếu cần debug
+    # (Optional) Concatenate labels if needed for debugging
     corpus_labels = torch.cat([
         train_labels,
         val_labels,
@@ -330,11 +333,11 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
         test_aug_labels
     ], dim=0)
     
-    # Tính toán vị trí bắt đầu của các ảnh test augment trong corpus
-    # Đây là thông tin cốt lõi để xác định ground truth
+    # Calculate the starting position of test augmented images in corpus
+    # This is core information to determine ground truth
     test_aug_start_idx = len(train_features) + len(val_features) + len(train_aug_features) + len(val_aug_features)
     
-    # Tạo mapping từ query (test gốc) đến các phiên bản augment của nó
+    # Create mapping from query (original test) to its augmented versions
     query_to_augmented_mapping = {}
     for query_idx in range(len(query_features)):
         start = test_aug_start_idx + query_idx * num_augmentations
@@ -345,10 +348,10 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
     print(f"  - Test augmented (ground truth) start index: {test_aug_start_idx}")
     print(f"  - Example mapping: Query 0 -> Corpus indices {query_to_augmented_mapping.get(0)}")
 
-    # --- 4. Debug & Sanity Check (Quan trọng) ---
-    # Kiểm tra xem feature của ảnh gốc có "gần" với feature của các bản augment không.
-    # Chúng không bao giờ "bằng nhau" (equal) do có phép augment ngẫu nhiên.
-    # Ta kỳ vọng cosine similarity sẽ cao.
+    # --- 4. Debug & Sanity Check (Important) ---
+    # Check if the feature of an original image is "close" to the features of its augmentations.
+    # They will never be "equal" due to random augmentations.
+    # We expect the cosine similarity to be high.
     print("\n--- Sanity Check: Similarity of Query vs. its Augmentations ---")
     for i in range(min(3, len(query_features))):
         query_emb = F.normalize(query_features[i:i+1], p=2, dim=1)
@@ -359,7 +362,7 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
         similarities = torch.mm(query_emb, aug_embs.t())
         avg_sim = similarities.mean().item()
         
-        # Kiểm tra top similarities với toàn bộ corpus
+        # Check top similarities with the entire corpus
         all_sims = torch.mm(query_emb, F.normalize(corpus_features, p=2, dim=1).t())
         top_sim_values, top_sim_indices = torch.topk(all_sims, 10, dim=1)
         
@@ -369,11 +372,11 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
         print(f"    Ground truth indices: {aug_indices}")
         print(f"    Top 10 retrieved indices: {top_sim_indices.squeeze()[:5].tolist()}")
         
-        # Kiểm tra xem có ground truth nào trong top 10 không
+        # Check if any ground truth is in the top 10
         gt_in_top10 = any(idx in aug_indices for idx in top_sim_indices.squeeze()[:10].tolist())
         print(f"    Ground truth in top 10: {gt_in_top10}")
         print()
-    # --- 5. Tính toán và Trả về kết quả ---
+    # --- 5. Calculate and Return Results ---
     print("\n--- Calculating Metrics ---")
     metrics = calculate_metrics_with_topk(
         query_features, 
@@ -389,7 +392,7 @@ def evaluate_model(config_path, checkpoint_path=None, model_name=""):
     return metrics
 
 def create_summary_table(results):
-    """Tạo bảng tổng kết kết quả."""
+    """Create a summary table of results."""
     print("\n" + "="*25 + " SUMMARY TABLE " + "="*25)
     
     rows = []
@@ -408,10 +411,10 @@ def create_summary_table(results):
         
     df = pd.DataFrame(rows)
     
-    # Pivot để có bảng so sánh trực quan
+    # Pivot for a more intuitive comparison table
     pivot_df = df.pivot_table(index=['Metric', 'Model'], columns='Training', values='Value')
     
-    # Sắp xếp lại thứ tự metric cho dễ đọc
+    # Reorder metrics for better readability
     metric_order = ['HitRate@1', 'HitRate@5', 'HitRate@10', 'MRR@1', 'MRR@5', 'MRR@10', 'Recall@1', 'Recall@5', 'Recall@10']
     pivot_df = pivot_df.reindex(metric_order, level='Metric')
     
@@ -426,28 +429,28 @@ def main():
     setup_logging()
     set_seed(42)
     
-    # Định nghĩa các model cần đánh giá
+    # Define the models to be evaluated
     models_to_evaluate = [
         {
             'name': 'DINOv2-ViT-S/14',
             'config': 'configs/dinov2_vits14.yaml',
-            'checkpoint': 'outputs/dinov2_vits14_ntxent/best_model2.pth'
+            'checkpoint': 'outputs/dinov2_vits14_ntxent/best_model424.pth'
         },
         {
             'name': 'ENT-ViT',
             'config': 'configs/ent-vit.yaml',
-            'checkpoint': 'outputs/ent_vit_ntxent/best_model2.pth'
+            'checkpoint': 'outputs/ent_vit_ntxent/best_model424.pth'
         },
-        #         {
-        #     'name': 'DINOv2-ViT-B/14',
-        #     'config': 'configs/dinov2_vitb14.yaml',
-        #     'checkpoint': 'outputs/dinov2_vitb14_ntxent/best_model2.pth'
-        # },
-        #         {
-        #     'name': 'DINOv2-ViT-L/14',
-        #     'config': 'configs/dinov2_vitl14.yaml',
-        #     'checkpoint': 'outputs/dinov2_vitl14_ntxent/best_model2.pth'
-        # },
+                {
+            'name': 'DINOv2-ViT-B/14',
+            'config': 'configs/dinov2_vitb14.yaml',
+            'checkpoint': 'outputs/dinov2_vitb14_ntxent/best_model424.pth'
+        },
+                {
+            'name': 'DINOv2-ViT-L/14',
+            'config': 'configs/dinov2_vitl14.yaml',
+            'checkpoint': 'outputs/dinov2_vitl14_ntxent/best_model424.pth'
+        },
     ]
     
     all_results = {}
@@ -463,7 +466,7 @@ def main():
         print(f"\n\n🔍 Evaluating Model: {model_name}")
         print("-" * 50)
         
-        # Đánh giá model đã fine-tune
+        # Evaluate the fine-tuned model
         print(f"🎯 Evaluating {model_name} (Fine-tuned)")
         finetuned_results = evaluate_model(
             config_path,
@@ -471,7 +474,7 @@ def main():
             model_name=f"{model_name} (Fine-tuned)"
         )
         
-        # Đánh giá model pretrained (không load checkpoint)
+        # Evaluate the pretrained model (without loading checkpoint)
         print(f"\n📦 Evaluating {model_name} (Pretrained only)")
         pretrained_results = evaluate_model(
             config_path, 
@@ -484,14 +487,14 @@ def main():
             'finetuned': finetuned_results
         }
     
-    # Lưu kết quả
+    # Save results
     output_path = Path(args.output)
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(all_results, f, indent=4, ensure_ascii=False)
     
     print(f"\n\n💾 All evaluation results saved to: {output_path}")
     
-    # Tạo bảng tổng kết
+    # Create summary table
     create_summary_table(all_results)
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Script để chuẩn bị và kiểm tra dữ liệu
-Chạy: python prepare_data.py
+Script to prepare and check data
+Run: python prepare_data.py
 """
 
 import os
@@ -14,22 +14,22 @@ import random
 from collections import defaultdict
 
 def create_sample_data(output_dir: str, num_classes: int = 5, images_per_class: int = 20):
-    """Tạo dữ liệu mẫu để test"""
+    """Create sample data for testing"""
     
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     
-    # Tạo các class folders
+    # Create class folders
     class_names = [f"class_{i:02d}" for i in range(num_classes)]
     
     for class_name in class_names:
         class_dir = output_path / class_name
         class_dir.mkdir(exist_ok=True)
         
-        # Tạo dummy images (chỉ là placeholder files)
+        # Create dummy images (just placeholder files)
         for i in range(images_per_class):
             img_path = class_dir / f"{class_name}_{i:03d}.jpg"
-            img_path.touch()  # Tạo file rỗng
+            img_path.touch()  # Create empty file
     
     print(f"✅ Created sample data in {output_dir}")
     print(f"   Classes: {num_classes}")
@@ -37,7 +37,7 @@ def create_sample_data(output_dir: str, num_classes: int = 5, images_per_class: 
     print(f"   Total images: {num_classes * images_per_class}")
 
 def analyze_dataset(data_dir: str) -> Dict:
-    """Phân tích dataset"""
+    """Analyze dataset"""
     
     data_path = Path(data_dir)
     if not data_path.exists():
@@ -71,7 +71,7 @@ def analyze_dataset(data_dir: str) -> Dict:
     return stats
 
 def analyze_split(split_dir: Path) -> Dict:
-    """Phân tích một split"""
+    """Analyze a split"""
     
     stats = {
         'total_images': 0,
@@ -101,7 +101,7 @@ def analyze_split(split_dir: Path) -> Dict:
     return stats
 
 def print_dataset_stats(stats: Dict):
-    """In thống kê dataset"""
+    """Print dataset statistics"""
     
     print("\n📊 Dataset Statistics:")
     print("=" * 50)
@@ -131,7 +131,7 @@ def print_dataset_stats(stats: Dict):
     print("=" * 50)
 
 def create_annotation_files(data_dir: str):
-    """Tạo annotation files cho dataset"""
+    """Create annotation files for dataset"""
     
     data_path = Path(data_dir)
     splits = ['train', 'val', 'test']
@@ -164,7 +164,7 @@ def create_annotation_files(data_dir: str):
                 print(f"✅ Created {annotation_file} with {len(annotations)} annotations")
 
 def validate_dataset(data_dir: str) -> bool:
-    """Kiểm tra tính hợp lệ của dataset"""
+    """Validate dataset integrity"""
     
     data_path = Path(data_dir)
     

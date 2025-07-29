@@ -1,0 +1,19 @@
+{
+  "model_name": "DinoV2-B-Pretrained",
+  "config_path": "configs/dinov2_vitb14.yaml",
+  "checkpoint_path": null,
+  "eval_data_dir": "eval_data",
+  "gemini_reranking_enabled": false,
+  "rerank_top_k": null,
+  "results": {
+    "HitRate@1": 0.04329004329004329,
+    "MRR@1": 0.04329004329004329,
+    "Recall@1": 0.008658008658008658,
+    "HitRate@5": 0.1341991341991342,
+    "MRR@5": 0.07344877344877344,
+    "Recall@5": 0.032034632034632034,
+    "HitRate@10": 0.2077922077922078,
+    "MRR@10": 0.08363395863395863,
+    "Recall@10": 0.05194805194805195
+  }
+}

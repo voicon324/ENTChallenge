@@ -1,5 +1,5 @@
 """
-"Nhà máy" tạo ra model (DinoV2, EntVit)
+"Factory" to create models (DinoV2, EntVit)
 """
 
 import torch

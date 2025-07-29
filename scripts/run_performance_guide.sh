@@ -1,0 +1,31 @@
+#!/bin/bash
+# Performance comparison script
+
+echo "📊 SAMPLING PERFORMANCE COMPARISON"
+echo "=" * 60
+
+echo "🔥 Available test scripts:"
+echo ""
+echo "1. 📋 test_quick_batch.sh"
+echo "   • 20 queries (11.5x faster)"
+echo "   • Top-5 → Rerank top-3"
+echo "   • Time: ~10-15 minutes"
+echo "   • Usage: ./test_quick_batch.sh"
+echo ""
+echo "2. 📈 test_batch_sampling.sh"
+echo "   • 50 queries (4.6x faster)"
+echo "   • Top-10 → Rerank top-5"
+echo "   • Time: ~20-30 minutes"
+echo "   • Usage: ./test_batch_sampling.sh"
+echo ""
+echo "3. 🚀 Full evaluation (no sampling)"
+echo "   • 231 queries (full dataset)"
+echo "   • Top-10 → Rerank top-5"
+echo "   • Time: ~2-3 hours"
+echo "   • Usage: python run_two_stage_eval.py --batch"
+echo ""
+echo "💡 Recommendation: Start with quick test (20 queries) first!"
+echo ""
+echo "🎯 Choose your option:"
+echo "   ./test_quick_batch.sh      # Fast test"
+echo "   ./test_batch_sampling.sh   # Medium test"

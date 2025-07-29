@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Script tạo bộ data evaluation cho image retrieval:
-- Query: Các ảnh gốc trong tập test
-- Corpus: Toàn bộ ảnh gốc và ảnh đã augment của tập train, val, và test
-- Ground Truth: Mapping từ mỗi query đến các phiên bản augment tương ứng trong corpus
+Script to create evaluation dataset for image retrieval:
+- Query: Original images in test set
+- Corpus: All original and augmented images from train, val, and test sets
+- Ground Truth: Mapping from each query to corresponding augmented versions in corpus
 
 Output:
 - eval_data/
-  ├── query/                    # Ảnh test gốc (queries)
-  ├── corpus/                   # Toàn bộ ảnh trong corpus
-  └── ground_truth.json         # Mapping từ query đến ground truth trong corpus
+  ├── query/                    # Original test images (queries)
+  ├── corpus/                   # All images in corpus
+  └── ground_truth.json         # Mapping from query to ground truth in corpus
 """
 
 import yaml
@@ -30,68 +30,76 @@ from src.utils import set_seed, setup_logging
 
 def get_augmentation_transform_without_normalize(image_size=224, backbone='dinov2'):
     """
-    Tạo transform với augmentation mạnh nhưng KHÔNG normalize.
-    Dùng để tạo ảnh augment để lưu trữ.
+    Create transform with strong augmentation but NO normalization.
+    Used to create augmented images for storage.
     """
     return transforms.Compose([
-        # Bước 1: Tiền xử lý - Tập trung vào vùng quan trọng (vòng tròn nội soi)
-        transforms.Resize((640, 480)),
-        transforms.CenterCrop(size=(450, 450)), # Giả sử ảnh gốc ~500x500
-        transforms.Resize((image_size, image_size)), # Resize về kích thước chuẩn
+        # Step 1: Preprocessing - Focus on important area (endoscope circle)
+        # Crop center to remove most black borders, assuming circle is in center.
+        # Adjust crop size to fit your images.
+        # transforms.CenterCrop(size=(450, 450)), # Assuming original image ~500x500
+        transforms.Resize((500, 400)), # Resize to standard size
+        # transforms.CenterCrop(size=(450, 450)), # Assuming original image ~500x500
+        transforms.RandomCrop(size=(image_size, image_size)), # Random crop standard size area
+        transforms.Resize((image_size, image_size)), # Resize to standard size
 
-        # Bước 2: Augmentation hình học (Mô phỏng chuyển động của ống soi)
+        # Step 2: Geometric augmentation (Simulating endoscope movement)
+        # Apply one of geometric transformations randomly
         transforms.RandomApply([
             transforms.RandomAffine(
-                degrees=20,               # Xoay một góc hợp lý
-                translate=(0.1, 0.1),     # Dịch chuyển nhẹ
-                scale=(0.6, 1.3)          # Zoom vào/ra một chút
+                degrees=20,               # Rotate by a reasonable angle
+                translate=(0.1, 0.1),     # Light translation
+                scale=(0.9, 1.1)          # Zoom in/out slightly
+                # Shear (skew deformation) usually not realistic with endoscope, so skip
             )
-        ], p=0.7), # Áp dụng với xác suất 70%
+        ], p=0.7), # Apply with 70% probability
 
-        # Bước 3: Augmentation màu sắc (Mô phỏng điều kiện ánh sáng và camera khác nhau)
+        # transforms.RandomHorizontalFlip(p=0.5), # Very important, simulates left/right ear examination
+
+        # Step 3: Color augmentation (Simulating different lighting and camera conditions)
+        # Use ColorJitter with moderate intensity
         transforms.ColorJitter(
-            brightness=0.2,   # Điều chỉnh độ sáng
-            contrast=0.2,     # Điều chỉnh độ tương phản
-            saturation=0.2,   # Điều chỉnh độ bão hòa
-            hue=0.05          # HUE rất nhạy, chỉ nên thay đổi rất ít
+            brightness=0.2,   # Adjust brightness
+            contrast=0.2,     # Adjust contrast
+            saturation=0.2,   # Adjust saturation
+            hue=0.05          # HUE is very sensitive, should change very little
         ),
         
-        # Các phép biến đổi màu sắc an toàn khác
-        transforms.RandomAutocontrast(p=0.2), # Tự động tăng cường độ tương phản
+        # Other safe color transformations
+        transforms.RandomAutocontrast(p=0.2), # Automatically enhance contrast
 
-        # Bước 4: Augmentation mô phỏng nhiễu và che khuất
+        # Step 4: Noise and occlusion simulation augmentation
+        # Light blur to simulate out-of-focus images
         transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.5)),
 
-        # Chuyển sang Tensor TRƯỚC khi thực hiện RandomErasing
+        # Convert to Tensor BEFORE performing RandomErasing
         transforms.ToTensor(),
 
-        # Xóa một vùng nhỏ để mô phỏng bị che khuất (ví dụ: bởi ráy tai)
+        # Erase a small area to simulate occlusion (e.g., by earwax)
         transforms.RandomErasing(
-            p=0.8, # Áp dụng với xác suất thấp
-            scale=(0.02, 0.08), # Xóa một vùng nhỏ
+            p=0.2, # Apply with low probability
+            scale=(0.02, 0.08), # Erase a small area
             ratio=(0.3, 3.3),
-            value='random' # Điền vào bằng nhiễu ngẫu nhiên thay vì màu đen
+            value='random' # Fill with random noise instead of black
         ),
-        # KHÔNG có Normalize ở đây!
+        # transforms.Normalize(mean=mean, std=std)
     ])
 
 
 def get_standard_transform_without_normalize(image_size=224):
     """
-    Tạo transform chuẩn cho ảnh gốc nhưng KHÔNG normalize.
+    Create standard transform for original images but NO normalization.
     """
     return transforms.Compose([
-        transforms.Resize((640, 480)),
-        transforms.CenterCrop(size=(450, 450)),
         transforms.Resize((image_size, image_size)),
         transforms.ToTensor(),
-        # KHÔNG có Normalize ở đây!
+        # NO Normalize here!
     ])
 
 
 def get_denormalization_transform(backbone='dinov2'):
     """
-    Tạo transform để denormalize ảnh về dạng PIL có thể lưu được.
+    Create transform to denormalize images back to PIL format for saving.
     """
     if backbone == 'ent_vit':
         mean = [0.3464, 0.2280, 0.2228]
@@ -108,17 +116,17 @@ def get_denormalization_transform(backbone='dinov2'):
 
 def save_images_from_dataloader(dataloader, output_dir, prefix, transform_func=None, backbone='dinov2'):
     """
-    Lưu ảnh từ dataloader vào thư mục output_dir.
+    Save images from dataloader to output_dir.
     
     Args:
-        dataloader: DataLoader chứa ảnh
-        output_dir: Thư mục đích
-        prefix: Prefix cho tên file (ví dụ: 'train_', 'val_', 'test_')
-        transform_func: Hàm transform để áp dụng lên ảnh (nếu có)
-        backbone: Loại backbone để xác định denormalization
+        dataloader: DataLoader containing images
+        output_dir: Destination directory
+        prefix: Prefix for filename (e.g., 'train_', 'val_', 'test_')
+        transform_func: Transform function to apply to images (if any)
+        backbone: Backbone type to determine denormalization
     
     Returns:
-        List các path ảnh đã lưu
+        List of saved image paths
     """
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -132,24 +140,24 @@ def save_images_from_dataloader(dataloader, output_dir, prefix, transform_func=N
         batch_size = images.size(0)
         
         for i in range(batch_size):
-            # Lấy ảnh từ batch
+            # Get image from batch
             img_tensor = images[i].cpu()
             label = labels[i].item()
             
-            # Denormalize ảnh về dạng có thể convert sang PIL
+            # Denormalize image to PIL-compatible format
             img_denormalized = denormalize(img_tensor)
             img_pil = transforms.ToPILImage()(img_denormalized)
             
-            # Nếu có transform_func, áp dụng nó
+            # If transform_func exists, apply it
             if transform_func is not None:
                 img_tensor_processed = transform_func(img_pil)
                 img_pil = transforms.ToPILImage()(img_tensor_processed)
             
-            # Tạo tên file
+            # Create filename
             filename = f"{prefix}{image_counter:05d}_class{label}.jpg"
             filepath = output_dir / filename
             
-            # Lưu ảnh
+            # Save image
             img_pil.save(filepath)
             saved_paths.append(str(filepath))
             
@@ -160,17 +168,17 @@ def save_images_from_dataloader(dataloader, output_dir, prefix, transform_func=N
 
 def create_augmented_images_from_dataloader(dataloader, output_dir, prefix, num_augmentations, backbone='dinov2'):
     """
-    Tạo và lưu các phiên bản augment của ảnh từ dataloader.
+    Create and save augmented versions of images from dataloader.
     
     Args:
-        dataloader: DataLoader chứa ảnh
-        output_dir: Thư mục đích
-        prefix: Prefix cho tên file
-        num_augmentations: Số lượng phiên bản augment cho mỗi ảnh
-        backbone: Loại backbone
+        dataloader: DataLoader containing images
+        output_dir: Destination directory
+        prefix: Prefix for filename
+        num_augmentations: Number of augmented versions per image
+        backbone: Backbone type
     
     Returns:
-        List các path ảnh augment đã lưu (được group theo ảnh gốc)
+        List of saved augmented image paths (grouped by original image)
     """
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -185,26 +193,26 @@ def create_augmented_images_from_dataloader(dataloader, output_dir, prefix, num_
         batch_size = images.size(0)
         
         for i in range(batch_size):
-            # Lấy ảnh từ batch
+            # Get image from batch
             img_tensor = images[i].cpu()
             label = labels[i].item()
             
-            # Denormalize ảnh về dạng có thể convert sang PIL
+            # Denormalize image to PIL-compatible format
             img_denormalized = denormalize(img_tensor)
             img_pil = transforms.ToPILImage()(img_denormalized)
             
-            # Tạo các phiên bản augment
+            # Create augmented versions
             augmented_paths = []
             for aug_idx in range(num_augmentations):
-                # Áp dụng augmentation
+                # Apply augmentation
                 img_tensor_aug = augment_transform(img_pil)
                 img_pil_aug = transforms.ToPILImage()(img_tensor_aug)
                 
-                # Tạo tên file
+                # Create filename
                 filename = f"{prefix}{image_counter:05d}_aug{aug_idx:02d}_class{label}.jpg"
                 filepath = output_dir / filename
                 
-                # Lưu ảnh
+                # Save image
                 img_pil_aug.save(filepath)
                 augmented_paths.append(str(filepath))
             
@@ -216,12 +224,12 @@ def create_augmented_images_from_dataloader(dataloader, output_dir, prefix, num_
 
 def create_evaluation_dataset(config_path, output_dir, num_augmentations=5):
     """
-    Tạo bộ data evaluation hoàn chỉnh.
+    Create complete evaluation dataset.
     
     Args:
-        config_path: Đường dẫn đến file config
-        output_dir: Thư mục đích
-        num_augmentations: Số lượng phiên bản augment cho mỗi ảnh test
+        config_path: Path to config file
+        output_dir: Destination directory
+        num_augmentations: Number of augmented versions per test image
     """
     # Load config
     with open(config_path, 'r', encoding='utf-8') as f:
@@ -272,7 +280,7 @@ def create_evaluation_dataset(config_path, output_dir, num_augmentations=5):
     # Corpus Part 3: Ảnh augment từ train (1 augment mỗi ảnh)
     print("  - Adding train set (augmented)...")
     train_aug_paths = create_augmented_images_from_dataloader(
-        train_loader, corpus_dir, 'train_aug_', 1, backbone
+        train_loader, corpus_dir, 'train_aug_', num_augmentations, backbone
     )
     # Flatten list of lists
     train_aug_flat = [path for paths in train_aug_paths for path in paths]
@@ -282,7 +290,7 @@ def create_evaluation_dataset(config_path, output_dir, num_augmentations=5):
     # Corpus Part 4: Ảnh augment từ val (1 augment mỗi ảnh)
     print("  - Adding val set (augmented)...")
     val_aug_paths = create_augmented_images_from_dataloader(
-        val_loader, corpus_dir, 'val_aug_', 1, backbone
+        val_loader, corpus_dir, 'val_aug_', num_augmentations, backbone
     )
     # Flatten list of lists
     val_aug_flat = [path for paths in val_aug_paths for path in paths]

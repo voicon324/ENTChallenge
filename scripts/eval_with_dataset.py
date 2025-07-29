@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-Script đánh giá model sử dụng bộ data evaluation đã tạo sẵn.
+Model evaluation script using pre-created evaluation dataset.
 """
 
 import yaml
 import torch
 import argparse
 import json
+import os
 from pathlib import Path
 import pandas as pd
 
@@ -14,15 +15,22 @@ from eval_dataset_loader import EvaluationDataset
 from src.model_factory import build_model
 from src.utils import set_seed, setup_logging
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 
 def extract_features_from_images(model, images, device, batch_size=32):
     """
-    Trích xuất features từ tensor ảnh.
+    Extract features from image tensors.
     
     Args:
-        model: Model để trích xuất features
-        images: Tensor ảnh (N, C, H, W)
-        device: Device để chạy
+        model: Model to extract features
+        images: Image tensor (N, C, H, W)
+        device: Device to run on
         batch_size: Batch size
         
     Returns:
@@ -40,24 +48,29 @@ def extract_features_from_images(model, images, device, batch_size=32):
     return torch.cat(all_features, dim=0)
 
 
-def evaluate_model_with_dataset(config_path, eval_data_dir, checkpoint_path=None, model_name=""):
+def evaluate_model_with_dataset(config_path, eval_data_dir, checkpoint_path=None, model_name="", 
+                               use_gemini_reranking=False, rerank_top_k=10, gemini_api_key=None):
     """
-    Đánh giá model sử dụng bộ data evaluation.
+    Evaluate model using evaluation dataset.
     
     Args:
-        config_path: Đường dẫn config model
-        eval_data_dir: Thư mục chứa bộ data evaluation
-        checkpoint_path: Đường dẫn checkpoint (optional)
-        model_name: Tên model
+        config_path: Model config path
+        eval_data_dir: Directory containing evaluation dataset
+        checkpoint_path: Checkpoint path (optional)
+        model_name: Model name
+        use_gemini_reranking: Whether to use Gemini reranking
+        rerank_top_k: Number of top results to rerank
+        gemini_api_key: API key for Gemini (optional)
         
     Returns:
-        Dict chứa kết quả evaluation
+        Dict containing evaluation results
     """
     # Load config
     with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
     
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(f"Using device: {device}")
     
     # Load model
     print(f"🔄 Loading model: {model_name}")
@@ -98,7 +111,16 @@ def evaluate_model_with_dataset(config_path, eval_data_dir, checkpoint_path=None
     
     # Evaluate
     print("📊 Evaluating retrieval performance...")
-    results = eval_dataset.evaluate_retrieval(query_features, corpus_features)
+    if use_gemini_reranking:
+        print(f"🤖 Using LVLM-based Dual-Score Fusion (LDSF) with Gemini reranking")
+        results = eval_dataset.evaluate_retrieval_with_reranking(
+            query_features, corpus_features,
+            use_gemini_reranking=True,
+            rerank_top_k=rerank_top_k,
+            gemini_api_key=gemini_api_key
+        )
+    else:
+        results = eval_dataset.evaluate_retrieval(query_features, corpus_features)
     
     # Print results
     eval_dataset.print_results(results, f"Results for {model_name}")
@@ -114,6 +136,15 @@ def main():
     parser.add_argument('--model_name', '-n', default='Model', help='Model name for display')
     parser.add_argument('--output', '-o', help='Output JSON file for results (optional)')
     
+    # LVLM reranking options
+    parser.add_argument('--use_gemini_reranking', action='store_true', 
+                       help='Use Gemini LVLM for reranking top-k results')
+    parser.add_argument('--rerank_top_k', type=int, 
+                       default=int(os.getenv('DEFAULT_RERANK_TOP_K', '10')),
+                       help='Number of top results to rerank with Gemini (default: from .env or 10)')
+    parser.add_argument('--gemini_api_key', type=str,
+                       help='Google API key for Gemini (or set in .env file as GOOGLE_API_KEY)')
+    
     args = parser.parse_args()
     
     setup_logging()
@@ -125,6 +156,10 @@ def main():
     print(f"📁 Eval data: {args.eval_data}")
     print(f"📁 Checkpoint: {args.checkpoint}")
     print(f"🏷️  Model name: {args.model_name}")
+    if args.use_gemini_reranking:
+        print(f"🤖 Gemini reranking: Enabled (top-{args.rerank_top_k})")
+    else:
+        print("🤖 Gemini reranking: Disabled")
     print("=" * 60)
     
     try:
@@ -133,7 +168,10 @@ def main():
             config_path=args.config,
             eval_data_dir=args.eval_data,
             checkpoint_path=args.checkpoint,
-            model_name=args.model_name
+            model_name=args.model_name,
+            use_gemini_reranking=args.use_gemini_reranking,
+            rerank_top_k=args.rerank_top_k,
+            gemini_api_key=args.gemini_api_key
         )
         
         # Save results if output path provided
@@ -144,6 +182,8 @@ def main():
                 'config_path': args.config,
                 'checkpoint_path': args.checkpoint,
                 'eval_data_dir': args.eval_data,
+                'gemini_reranking_enabled': args.use_gemini_reranking,
+                'rerank_top_k': args.rerank_top_k if args.use_gemini_reranking else None,
                 'results': results
             }
             

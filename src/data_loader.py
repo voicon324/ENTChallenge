@@ -1,5 +1,5 @@
 """
-Class Dataset và hàm tạo DataLoader
+Dataset class and DataLoader creation function
 """
 
 import torch
@@ -28,7 +28,7 @@ class ImageRetrievalDataset(Dataset):
             data_path: Path to data directory
             split: 'train', 'val', or 'test'
             transform: Data augmentation transforms
-            image_size: Size to resize images to
+            image_size: Image size
         """
         self.data_path = Path(data_path)
         self.split = split
@@ -313,50 +313,50 @@ def get_transforms(image_size: int = 224,
     
     if split == 'train':
         transform_list = [
-            # Bước 1: Tiền xử lý - Tập trung vào vùng quan trọng (vòng tròn nội soi)
-            # Crop phần trung tâm để loại bỏ phần lớn viền đen, giả sử vòng tròn ở giữa.
-            # Điều chỉnh kích thước crop cho phù hợp với ảnh của bạn.
-            transforms.CenterCrop(size=(450, 450)), # Giả sử ảnh gốc ~500x500
-            transforms.Resize((image_size, image_size)), # Resize về kích thước chuẩn
+            # Step 1: Preprocessing - Focus on the important area (endoscope circle)
+            # Crop the center part to remove most of the black border, assuming the circle is in the middle.
+            # Adjust the crop size according to your image.
+            transforms.CenterCrop(size=(450, 450)), # Assuming original image is ~500x500
+            transforms.Resize((image_size, image_size)), # Resize to standard size
 
-            # Bước 2: Augmentation hình học (Mô phỏng chuyển động của ống soi)
-            # Áp dụng một trong các phép biến đổi hình học một cách ngẫu nhiên
+            # Step 2: Geometric Augmentation (Simulate endoscope movement)
+            # Apply one of the geometric transformations randomly
             transforms.RandomApply([
                 transforms.RandomAffine(
-                    degrees=20,               # Xoay một góc hợp lý
-                    translate=(0.1, 0.1),     # Dịch chuyển nhẹ
-                    scale=(0.9, 1.1)          # Zoom vào/ra một chút
-                    # Shear (biến dạng trượt) thường không thực tế với ống soi, nên bỏ
+                    degrees=20,               # Rotate by a reasonable angle
+                    translate=(0.1, 0.1),     # Slight translation
+                    scale=(0.9, 1.1)          # Zoom in/out a bit
+                    # Shear is usually not realistic for endoscopes, so it's omitted
                 )
-            ], p=0.7), # Áp dụng với xác suất 70%
+            ], p=0.7), # Apply with 70% probability
 
-            # transforms.RandomHorizontalFlip(p=0.5), # Rất quan trọng, mô phỏng soi tai trái/phải
+            # transforms.RandomHorizontalFlip(p=0.5), # Very important, simulates left/right ear examination
 
-            # Bước 3: Augmentation màu sắc (Mô phỏng điều kiện ánh sáng và camera khác nhau)
-            # Sử dụng ColorJitter với cường độ vừa phải
+            # Step 3: Color Augmentation (Simulate different lighting and camera conditions)
+            # Use ColorJitter with moderate intensity
             transforms.ColorJitter(
-                brightness=0.2,   # Điều chỉnh độ sáng
-                contrast=0.2,     # Điều chỉnh độ tương phản
-                saturation=0.2,   # Điều chỉnh độ bão hòa
-                hue=0.05          # HUE rất nhạy, chỉ nên thay đổi rất ít
+                brightness=0.2,   # Adjust brightness
+                contrast=0.2,     # Adjust contrast
+                saturation=0.2,   # Adjust saturation
+                hue=0.05          # HUE is very sensitive, should be changed very little
             ),
             
-            # Các phép biến đổi màu sắc an toàn khác
-            transforms.RandomAutocontrast(p=0.2), # Tự động tăng cường độ tương phản
+            # Other safe color transformations
+            transforms.RandomAutocontrast(p=0.2), # Automatically enhance contrast
 
-            # Bước 4: Augmentation mô phỏng nhiễu và che khuất
-            # Làm mờ nhẹ để mô phỏng ảnh bị out-focus
+            # Step 4: Augmentation to simulate noise and occlusion
+            # Apply slight blur to simulate out-of-focus images
             transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.5)),
 
-            # Chuyển sang Tensor TRƯỚC khi thực hiện RandomErasing
+            # Convert to Tensor BEFORE applying RandomErasing
             transforms.ToTensor(),
 
-            # Xóa một vùng nhỏ để mô phỏng bị che khuất (ví dụ: bởi ráy tai)
+            # Erase a small area to simulate occlusion (e.g., by earwax)
             transforms.RandomErasing(
-                p=0.2, # Áp dụng với xác suất thấp
-                scale=(0.02, 0.08), # Xóa một vùng nhỏ
+                p=0.2, # Apply with low probability
+                scale=(0.02, 0.08), # Erase a small area
                 ratio=(0.3, 3.3),
-                value='random' # Điền vào bằng nhiễu ngẫu nhiên thay vì màu đen
+                value='random' # Fill with random noise instead of black
             ),
         ]
     else:
@@ -460,7 +460,7 @@ def create_dataloaders(data_config: Dict, backbone: str = 'dino_v2') -> Tuple[Da
     # Get transforms
     train_transform = get_transforms(
         data_config.get('image_size', 224), 
-        'train', 
+        'val', 
         data_config.get('normalize', True),
         backbone
     )

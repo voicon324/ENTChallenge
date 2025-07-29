@@ -1,5 +1,5 @@
 """
-Các hàm tiện ích: grad_cam, lưu checkpoint, metrics calculation...
+Utility functions: grad_cam, save checkpoint, metrics calculation...
 """
 
 import torch
@@ -18,7 +18,7 @@ import seaborn as sns
 import torchvision.transforms as T
 
 def set_seed(seed: int = 42):
-    """Đặt seed cho reproducibility"""
+    """Set seed for reproducibility"""
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -28,7 +28,7 @@ def set_seed(seed: int = 42):
     torch.backends.cudnn.benchmark = False
 
 def setup_logging():
-    """Thiết lập logging"""
+    """Setup logging"""
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -39,7 +39,7 @@ def setup_logging():
     )
 
 def save_checkpoint(model, optimizer, scheduler, epoch, loss, filepath):
-    """Lưu checkpoint"""
+    """Save checkpoint"""
     # Handle DataParallel models
     if hasattr(model, 'module'):
         model_state_dict = model.module.state_dict()
@@ -54,10 +54,10 @@ def save_checkpoint(model, optimizer, scheduler, epoch, loss, filepath):
         'loss': loss,
     }
     torch.save(checkpoint, filepath)
-    print(f"💾 Đã lưu checkpoint: {filepath}")
+    print(f"💾 Saved checkpoint: {filepath}")
 
 def load_checkpoint(filepath, model, optimizer=None, scheduler=None):
-    """Tải checkpoint"""
+    """Load checkpoint"""
     checkpoint = torch.load(filepath, map_location='cpu')
     
     # Handle DataParallel models
@@ -77,7 +77,7 @@ def load_checkpoint(filepath, model, optimizer=None, scheduler=None):
 def calculate_metrics(embeddings: torch.Tensor, labels: torch.Tensor, 
                      metrics: List[str], k_values: List[int] = [1, 5, 10]) -> Dict[str, float]:
     """
-    Tính toán các metrics cho image retrieval
+    Calculate metrics for image retrieval
     
     Args:
         embeddings: Feature embeddings (N, D)
@@ -93,14 +93,14 @@ def calculate_metrics(embeddings: torch.Tensor, labels: torch.Tensor,
     # Normalize embeddings
     embeddings = F.normalize(embeddings, p=2, dim=1)
     
-    # Tính similarity matrix
+    # Calculate similarity matrix
     similarity_matrix = torch.mm(embeddings, embeddings.t())
     
-    # Tạo mask để loại bỏ self-similarity
+    # Create mask to remove self-similarity
     mask = torch.eye(similarity_matrix.size(0), dtype=torch.bool)
     similarity_matrix.masked_fill_(mask, -float('inf'))
     
-    # Tính toán cho mỗi query
+    # Calculate for each query
     n_queries = embeddings.size(0)
     
     for metric in metrics:
@@ -118,15 +118,15 @@ def calculate_metrics(embeddings: torch.Tensor, labels: torch.Tensor,
     return results
 
 def calculate_hit_rate(similarity_matrix: torch.Tensor, labels: torch.Tensor, k: int) -> float:
-    """Tính Hit Rate@k"""
+    """Calculate Hit Rate@k"""
     n_queries = similarity_matrix.size(0)
     hit_count = 0
     
     for i in range(n_queries):
-        # Lấy top-k similar items
+        # Get top-k similar items
         _, top_k_indices = torch.topk(similarity_matrix[i], k)
         
-        # Kiểm tra xem có item nào cùng class không
+        # Check if any item has the same class
         query_label = labels[i]
         retrieved_labels = labels[top_k_indices]
         
@@ -136,17 +136,17 @@ def calculate_hit_rate(similarity_matrix: torch.Tensor, labels: torch.Tensor, k:
     return hit_count / n_queries
 
 def calculate_mrr(similarity_matrix: torch.Tensor, labels: torch.Tensor) -> float:
-    """Tính Mean Reciprocal Rank"""
+    """Calculate Mean Reciprocal Rank"""
     n_queries = similarity_matrix.size(0)
     reciprocal_ranks = []
     
     for i in range(n_queries):
-        # Sắp xếp theo similarity giảm dần
+        # Sort by similarity in descending order
         _, sorted_indices = torch.sort(similarity_matrix[i], descending=True)
         
         query_label = labels[i]
         
-        # Tìm rank của item đầu tiên cùng class
+        # Find rank of first item with same class
         for rank, idx in enumerate(sorted_indices):
             if labels[idx] == query_label:
                 reciprocal_ranks.append(1.0 / (rank + 1))
@@ -157,21 +157,21 @@ def calculate_mrr(similarity_matrix: torch.Tensor, labels: torch.Tensor) -> floa
     return np.mean(reciprocal_ranks)
 
 def calculate_map(similarity_matrix: torch.Tensor, labels: torch.Tensor) -> float:
-    """Tính Mean Average Precision"""
+    """Calculate Mean Average Precision"""
     n_queries = similarity_matrix.size(0)
     average_precisions = []
     
     for i in range(n_queries):
-        # Sắp xếp theo similarity giảm dần
+        # Sort by similarity in descending order
         _, sorted_indices = torch.sort(similarity_matrix[i], descending=True)
         
         query_label = labels[i]
         retrieved_labels = labels[sorted_indices]
         
-        # Tạo binary relevance vector
+        # Create binary relevance vector
         relevance = (retrieved_labels == query_label).float()
         
-        # Tính Average Precision
+        # Calculate Average Precision
         if torch.sum(relevance) > 0:
             precision_at_k = torch.cumsum(relevance, dim=0) / torch.arange(1, len(relevance) + 1, dtype=torch.float)
             ap = torch.mean(precision_at_k * relevance)
@@ -184,10 +184,10 @@ def calculate_map(similarity_matrix: torch.Tensor, labels: torch.Tensor) -> floa
 def generate_grad_cam_image(model, images: torch.Tensor, device: torch.device, 
                            target_layer: str = None) -> np.ndarray:
     """
-    Tạo ảnh Grad-CAM để visualize attention heatmap overlay trên ảnh gốc
+    Create Grad-CAM image to visualize attention heatmap overlay on original image
     
     Args:
-        model: Model để tạo Grad-CAM
+        model: Model to create Grad-CAM
         images: Input images (B, C, H, W)
         device: Device
         target_layer: Target layer name
@@ -505,11 +505,11 @@ def log_confusion_matrix(y_true: np.ndarray, y_pred: np.ndarray,
         plt.close()
         
     except Exception as e:
-        print(f"⚠️ Không thể log confusion matrix: {e}")
+        print(f"⚠️ Cannot log confusion matrix: {e}")
 
 def create_embedding_plot(embeddings: torch.Tensor, labels: torch.Tensor, 
                          wandb_run, method: str = "tsne") -> None:
-    """Tạo plot embedding space với t-SNE hoặc PCA"""
+    """Create embedding space plot with t-SNE or PCA"""
     try:
         from sklearn.manifold import TSNE
         from sklearn.decomposition import PCA
@@ -539,20 +539,20 @@ def create_embedding_plot(embeddings: torch.Tensor, labels: torch.Tensor,
         plt.close()
         
     except Exception as e:
-        print(f"⚠️ Không thể tạo embedding plot: {e}")
+        print(f"⚠️ Cannot create embedding plot: {e}")
 
 def log_sample_images(images: torch.Tensor, labels: torch.Tensor, 
                      predictions: torch.Tensor, wandb_run, num_samples: int = 8) -> None:
-    """Log sample images với predictions"""
+    """Log sample images with predictions"""
     try:
-        # Chọn random samples
+        # Select random samples
         indices = torch.randperm(len(images))[:num_samples]
         
         sample_images = images[indices]
         sample_labels = labels[indices]
         sample_preds = predictions[indices]
         
-        # Tạo wandb Images
+        # Create wandb Images
         wandb_images = []
         for i in range(num_samples):
             img = sample_images[i].cpu().numpy()
@@ -572,14 +572,14 @@ def log_sample_images(images: torch.Tensor, labels: torch.Tensor,
         wandb_run.log({"sample_predictions": wandb_images})
         
     except Exception as e:
-        print(f"⚠️ Không thể log sample images: {e}")
+        print(f"⚠️ Cannot log sample images: {e}")
 
 def get_model_summary(model, input_size: Tuple[int, int, int, int] = (1, 3, 224, 224)) -> Dict:
-    """Tạo summary của model"""
+    """Create model summary"""
     try:
         from torchsummary import summary
         
-        # Tạo dummy input
+        # Create dummy input
         dummy_input = torch.randn(input_size)
         
         # Count parameters
@@ -594,7 +594,7 @@ def get_model_summary(model, input_size: Tuple[int, int, int, int] = (1, 3, 224,
         }
         
     except Exception as e:
-        print(f"⚠️ Không thể tạo model summary: {e}")
+        print(f"⚠️ Cannot create model summary: {e}")
         return {}
 
 def process_entvit_image(image_path, input_size=224, dataset_mean=[0.3464, 0.2280, 0.2228], dataset_std=[0.2520, 0.2128, 0.2093]):

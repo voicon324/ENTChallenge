@@ -12,8 +12,8 @@ wandb:
 # -------------------
 data:
   path: "data/processed/"
-  batch_size: 16  # Tăng batch size cho multi-GPU (ViT-L cần ít hơn ViT-B)
-  num_workers: 4  # Tăng num_workers cho multi-GPU
+  batch_size: 16  # Increased batch size for multi-GPU (ViT-L needs less than ViT-B)
+  num_workers: 4  # Increased num_workers for multi-GPU
   train_split: 0.4
   val_split: 0.2
   test_split: 0.4
@@ -26,7 +26,7 @@ data:
 model:
   backbone: "dino_v2"
   model_name: "dinov2_vitl14"  # Large model
-  pretrained_checkpoint: null  # ví dụ: "outputs/best_model.pth"
+  pretrained_checkpoint: null  # example: "outputs/best_model.pth"
   feature_dim: 768
   num_classes: 7
   dropout: 0.1
@@ -40,7 +40,7 @@ training:
   strategy: "ntxent"
   epochs:   200
   optimizer: "AdamW"
-  learning_rate: 0.00001  # Tăng learning rate cho multi-GPU (ViT-L cần ít hơn ViT-B)
+  learning_rate: 0.00001  # Increased learning rate for multi-GPU (ViT-L needs less than ViT-B)
   weight_decay: 0.01
   scheduler: "cosine"
   warmup_epochs: 5
@@ -60,7 +60,7 @@ training:
 # -------------------
 evaluation:
   metrics: ["HitRate@1", "HitRate@5", "HitRate@10", "MRR", "mAP"]
-  # Bật/tắt tính năng log ảnh Grad-CAM lên W&B
+  # Enable/disable Grad-CAM image logging to W&B
   log_grad_cam: true
   grad_cam_samples: 5
   save_embeddings: true

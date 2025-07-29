@@ -336,39 +336,39 @@ def get_transforms(image_size: int = 224,
 # SIMPLE MODEL CONFIGURATION AND FUNCTIONS
 # ===================================================================
 
-# Model configurations - PHẢI KHỚP VỚI CONFIG ĐÃ TRAIN
+# Model configurations - MUST MATCH TRAINED CONFIG
 MODEL_CONFIGS = {
     'dinov2_vits14': {
         'backbone': 'dino_v2',
         'model_name': 'dinov2_vits14',
-        'feature_dim': 768,  # ✅ Khớp với configs/dinov2_vits14.yaml
-        'checkpoint_path': 'pretrained/dinov2_vits14.pth',  # ✅ Đã lưu lại
+        'feature_dim': 768,  # ✅ Matches configs/dinov2_vits14.yaml
+        'checkpoint_path': 'pretrained/dinov2_vits14.pth',  # ✅ Saved checkpoint
         'description': 'DinoV2 ViT-S/14'
     },
     'dinov2_vitb14': {
         'backbone': 'dino_v2',
         'model_name': 'dinov2_vitb14',
-        'feature_dim': 768,  # ✅ Khớp với configs/dinov2_vitb14.yaml
-        'checkpoint_path': 'pretrained/dinov2_vitb14.pth',  # ✅ Đã lưu lại
+        'feature_dim': 768,  # ✅ Matches configs/dinov2_vitb14.yaml
+        'checkpoint_path': 'pretrained/dinov2_vitb14.pth',  # ✅ Saved checkpoint
         'description': 'DinoV2 ViT-B/14'
     },
     'dinov2_vitl14': {
         'backbone': 'dino_v2',
         'model_name': 'dinov2_vitl14',
-        'feature_dim': 768,  # ✅ Khớp với configs/dinov2_vitl14.yaml
-        'checkpoint_path': 'pretrained/dinov2_vitl14.pth',  # ✅ Đã lưu lại
+        'feature_dim': 768,  # ✅ Matches configs/dinov2_vitl14.yaml
+        'checkpoint_path': 'pretrained/dinov2_vitl14.pth',  # ✅ Saved checkpoint
         'description': 'DinoV2 ViT-L/14'
     },
     'ent_vit': {
         'backbone': 'ent_vit',
         'model_name': 'ent_vit',
-        'feature_dim': 768,  # ✅ Khớp với configs/ent-vit.yaml
-        'checkpoint_path': 'pretrained/ent_vit.pth',  # ✅ Đã lưu lại
+        'feature_dim': 768,  # ✅ Matches configs/ent-vit.yaml
+        'checkpoint_path': 'pretrained/ent_vit.pth',  # ✅ Saved checkpoint
         'description': 'EndoViT'
     }
 }
 
-# ENT Classes (7 classes theo checkpoint)
+# ENT Classes (7 classes according to checkpoint)
 ENT_CLASSES = ['ear', 'nose', 'throat', 'vc', 'class_4', 'class_5', 'class_6']
 
 # Global device
@@ -400,7 +400,7 @@ def find_best_checkpoint(model_name: str, workspace_root: Path = Path(".")) -> O
 
 def load_model(model_name: str, 
                checkpoint_path: Optional[str] = None,
-               num_classes: int = 7,  # ✅ Khớp với config đã train
+               num_classes: int = 7,  # ✅ Matches trained config
                dropout: float = 0.1,
                freeze_backbone: bool = False) -> nn.Module:
     """

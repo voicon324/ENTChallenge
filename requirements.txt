@@ -22,6 +22,7 @@ huggingface-hub
 google-generativeai
 google-ai-generativelanguage
 google-genai
+python-dotenv
 
 # Development dependencies (optional)
 black

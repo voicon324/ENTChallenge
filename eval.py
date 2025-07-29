@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Script để đánh giá model trên tập test
-Chạy: python eval.py
+Script to evaluate model on test set
+Run: python eval.py
 """
 
 import yaml
