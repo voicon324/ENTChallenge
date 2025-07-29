@@ -141,8 +141,7 @@ python eval.py --config configs/dinov2_vitb14.yaml --checkpoint outputs/<wandb-r
 The evaluation script will compute retrieval metrics including:
 
 - HitRate@1, HitRate@5, HitRate@10
-- Mean Reciprocal Rank (MRR)
-- Mean Average Precision (mAP)
+- MRR@1, MRR@5, MRR@10
 
 ## Acknowledgments
 
