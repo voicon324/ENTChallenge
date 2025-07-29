@@ -3,6 +3,11 @@
 [![Challenge](https://img.shields.io/badge/ENTRep%20Challenge-Track%202-blue)](https://aichallenge.hcmus.edu.vn/acm-mm-2025/entrep)
 [![Ranking](https://img.shields.io/badge/Ranking-Top%205-gold)](https://aichallenge.hcmus.edu.vn/acm-mm-2025/entrep)
 
+<!-- Leaderboard image -->
+<p align="center">
+  <img src="assets/image.png" alt="Leaderboard" width="600"/>
+</p>
+
 ## Overview
 
 This repository contains the implementation for **Track 2: Endoscopy Medical Images - Image-to-Image Retrieval** of the ENTRep Challenge, presented at ACM Multimedia 2025. Our solution, developed by **Team ELO**, achieved a **Top 5** placement on the private leaderboard.

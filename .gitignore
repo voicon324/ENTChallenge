@@ -159,3 +159,6 @@ Thumbs.db
 
 *.png
 .venv
+wandb
+!assets/
+!assets/image.png
