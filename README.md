@@ -1,17 +1,15 @@
-# ENTRep Challenge Track 3: Medical Text-Image Retrieval
+# ENTRep Challenge Track 2: Medical Image-to-Image Retrieval
 
-[![Challenge](https://img.shields.io/badge/ENTRep%20Challenge-Track%203-blue)](https://aichallenge.hcmus.edu.vn/acm-mm-2025/entrep)
-[![Ranking](https://img.shields.io/badge/Ranking-Top%202-gold)](https://aichallenge.hcmus.edu.vn/acm-mm-2025/entrep)
+[![Challenge](https://img.shields.io/badge/ENTRep%20Challenge-Track%202-blue)](https://aichallenge.hcmus.edu.vn/acm-mm-2025/entrep)
+[![Ranking](https://img.shields.io/badge/Ranking-Top%205-gold)](https://aichallenge.hcmus.edu.vn/acm-mm-2025/entrep)
 
 ## Overview
 
-This repository contains the implementation for **Track 3: Endoscopy Medical Images - Text-to-Image Retrieval** of the ENTRep Challenge, presented at ACM Multimedia 2025. Our solution, developed by **Team ELO**, achieved **2nd place** in the private leaderboard.
-
-![ENTRep Challenge Track 3 Private Leaderboard](public/track3-top2.png)
+This repository contains the implementation for **Track 2: Endoscopy Medical Images - Image-to-Image Retrieval** of the ENTRep Challenge, presented at ACM Multimedia 2025. Our solution, developed by **Team ELO**, achieved a **Top 5** placement on the private leaderboard.
 
 ## Abstract
 
-The task involves developing a robust text-to-image retrieval system for endoscopic medical images. Our approach leverages state-of-the-art vision encoders (DINOv2, EndoViT) combined with CLIP-based text encoders to create an effective cross-modal retrieval system for medical image analysis.
+The task is to develop a robust image-to-image retrieval system for endoscopic medical images. Our approach leverages state-of-the-art vision encoders, including **DINOv2** and **EndoViT**. We employ a contrastive learning strategy using the NT-Xent loss function to train the model, creating an effective embedding space for medical image analysis and retrieval.
 
 ## Table of Contents
 
@@ -19,8 +17,9 @@ The task involves developing a robust text-to-image retrieval system for endosco
 - [Dataset Structure](#dataset-structure)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Citation](#citation)
 - [Acknowledgments](#acknowledgments)
+- [License](#license)
+- [Contact](#contact)
 
 ## Installation
 
@@ -32,197 +31,119 @@ The task involves developing a robust text-to-image retrieval system for endosco
 
 ### Dependencies
 
+To install all required dependencies, run the following command:
+
 ```bash
-pip install torch torchvision
-pip install transformers
-pip install clip-by-openai
-pip install pyyaml
-pip install numpy pandas
+pip install -r requirements.txt
 ```
 
-## Folder Structure
+## Dataset Structure
 
-Organize your folder according to the following structure:
+Please organize your data according to the following structure:
 
 ```
-Dataset/
-├── test/
-│   ├── class1/
-│   ├── class2/
-│   ├── class3/
-│   └── class4/
-├── train/
-│   ├── class1/
-│   ├── class2/
-│   ├── class3/
-│   └── class4/
-├── val/
-│   ├── class1/
-│   ├── class2/
-│   ├── class3/
-│   └── class4/
-└── splits_info.json
-
-Config/
-├── eval/
-│   ├── dinob.yaml
-│   ├── dinol.yaml
-│   ├── dinos.yaml
-│   └── endovit.yaml
-└── train/
-    ├── dino_b.yaml
-    ├── dino_l.yaml
-    ├── dino_s.yaml
-    └── endovit.yaml
-
-Pretrained/
-├── backbones/
-└── checkpoints/
+data/
+└── processed/
+    ├── train/
+    │   ├── ear/
+    │   ├── nose/
+    │   ├── throat/
+    │   └── vc/
+    ├── val/
+    │   ├── ear/
+    │   └── ...
+    └── test/
+        ├── ear/
+        └── ...
+configs/
+├── dinov2_vits14.yaml
+├── dinov2_vitb14.yaml
+├── dinov2_vitl14.yaml
+└── ent-vit.yaml
+outputs/
+└── <wandb-run-name>/
+    ├── best_model.pth
+    └── ...
 ```
 
 ## Configuration
 
-### Evaluation Configuration
+Configuration files in the `configs/` directory allow for customizing data, model, and training parameters.
 
-The evaluation configuration specifies model parameters and evaluation settings:
-
-```yaml
-evaluator:
-  batch_size: 32
-  image_size: 224
-  img_dir: Dataset/test/
-  json_path: Dataset/splits_info.json  # Original dataset for building index
-  test_path: Dataset/test_set.json     # Enhanced test set for evaluation
-  k_values: [1, 5, 10]                # Top-k retrieval metrics
-
-model:
-  vision_encoder:
-    type: dinov2
-    feature_dim: 768
-    model_name: dinov2_vits14
-    ckp_path: Pretrained/backbones/dinov2_vits14/best_model.pth
-  text_encoder:
-    type: clip
-    feature_dim: 768
-    model_name: openai/clip-vit-base-patch32
-  ckp_path: Pretrained/checkpoints/dinos_clip/best.pt
-```
-
-### Training Configuration
-
-The training configuration defines data preprocessing and model training parameters:
+Below is an example configuration for the `DINOv2-Base` model:
 
 ```yaml
+# configs/dinov2_vitb14.yaml
+
+# W&B configuration for experiment tracking
+wandb:
+  project: "Image_Retrieval_Experiments"
+  entity: "hokhanhduy-none"
+  run_name: "dinov2_vitb14_ntxent"
+
+# Data configuration
 data:
-  path: Dataset/
-  json_path: splits_info.json
-  train_split: 0.8
-  val_split: 0.1
-  test_split: 0.1
+  path: "data/processed/"
+  batch_size: 16
+  num_workers: 4
   image_size: 224
   normalize: true
 
+# Model configuration
 model:
-  vision_encoder:
-    type: dinov2
-    feature_dim: 768
-    model_name: dinov2_vits14
-    ckp_path: Pretrained/dinov2_vits14/best_model.pth
-  text_encoder:
-    type: clip
-    feature_dim: 768
-    model_name: openai/clip-vit-base-patch32
-  temperature: 0.07
+  backbone: "dino_v2"
+  model_name: "dinov2_vitb14"
+  feature_dim: 768
+  num_classes: 7
+  dropout: 0.1
+  freeze_backbone: false
 
-trainer:
-  num_epochs: 10
-  batch_size: 32
-  learning_rate: 0.001
-  weight_decay: 0.0001
-  output_path: checkpoints/
-  model_name: dinos
+# Training configuration
+training:
+  strategy: "ntxent"
+  epochs: 200
+  optimizer: "AdamW"
+  learning_rate: 0.00001
+  weight_decay: 0.01
+  scheduler: "cosine"
 ```
 
 ## Usage
 
 ### Training
 
-To train a model with a specific configuration:
+To train a model with a specific configuration, run the following command:
 
 ```bash
-python train.py --file_config endovit.yaml
+python train.py --config configs/dinov2_vitb14.yaml
 ```
 
 Available training configurations:
-- `dino_s.yaml` - DINOv2 Small variant
-- `dino_b.yaml` - DINOv2 Base variant  
-- `dino_l.yaml` - DINOv2 Large variant
-- `endovit.yaml` - EndoViT specialized for endoscopic images
+
+- `dinov2_vits14.yaml` - DINOv2 Small variant
+- `dinov2_vitb14.yaml` - DINOv2 Base variant
+- `dinov2_vitl14.yaml` - DINOv2 Large variant
+- `ent-vit.yaml` - EndoViT specialized for endoscopic images
 
 ### Evaluation
 
-To evaluate a trained model:
+To evaluate a trained model on the test set:
 
 ```bash
-python evaluate.py --file_config endovit.yaml
+python eval.py --config configs/dinov2_vitb14.yaml --checkpoint outputs/<wandb-run-name>/best_model.pth --split test
 ```
 
 The evaluation script will compute retrieval metrics including:
+
 - HitRate@1, HitRate@5, HitRate@10
 - Mean Reciprocal Rank (MRR)
-
-## ✨ Advanced Features
-
-### 🤖 LVLM-based Dual-Score Fusion (LDSF)
-
-The system now supports **reranking with Gemini Large Vision-Language Model** to improve image retrieval performance through semantic understanding:
-
-- **Dual-Score Fusion**: Combines initial similarity scores with LVLM semantic scores
-- **Gemini Integration**: Uses Google Gemini to evaluate semantic relevance
-- **Comprehensive Evaluation**: Direct comparison of standard retrieval vs LDSF
-
-**Quick start with reranking**:
-```bash
-# Set up .env file
-cp .env.example .env
-# Edit .env and add GOOGLE_API_KEY=your_api_key
-
-# Two-stage approach (recommended)
-python run_two_stage_eval.py --config configs/dinov2_vitb14.yaml --model_name "DINOv2-B"
-
-# Or run individual stages
-python eval_save_topk.py --config configs/dinov2_vitb14.yaml --model_name "DINOv2-B" --output results/top10.json
-python eval_with_saved_topk.py --input results/top10.json --output results/reranked.json
-
-# Batch evaluation for all models
-python run_two_stage_eval.py --batch
-```
-
-📖 **See [RERANKING_README.md](RERANKING_README.md) for details**
-
-## Supported Models
-
-### DinoV2
-- **dinov2_vits14**: Small model (21M parameters)
-- **dinov2_vitb14**: Base model (86M parameters)  
-- **dinov2_vitl14**: Large model (300M parameters)
-
-### EndoViT
-- Pre-trained on endoscopic datasets
-- Specialized for medical image analysis
-- 768-dimensional embeddings
-
-## Training Strategies
-
-- **ntxent**: NT-Xent contrastive loss
-- **contrastive**: Standard contrastive learning
-- **test_only**: Evaluation only mode
+- Mean Average Precision (mAP)
 
 ## Acknowledgments
 
-- ENTRep Challenge organizers for providing the dataset
-- ACM Multimedia 2025 for hosting the challenge
-- Authors of DINOv2, CLIP, and EndoViT for their foundational work
+- ENTRep Challenge organizers for providing the dataset.
+- ACM Multimedia 2025 for hosting the challenge.
+- The authors of DINOv2 and EndoViT for their foundational work.
 
 ## License
 
@@ -232,6 +153,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions about this implementation, please open an issue or contact the team through the challenge platform.
 
----
+-----
 
 **Team ELO** | ENTRep Challenge 2025 | ACM Multimedia
